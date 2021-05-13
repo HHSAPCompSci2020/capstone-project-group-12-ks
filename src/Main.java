@@ -1,3 +1,5 @@
+import java.awt.Graphics;
+
 import javax.swing.JFrame;
 
 /**
@@ -12,11 +14,32 @@ public class Main extends JFrame {
 	 */
 	public static void main(String[] args) {
 		System.out.println("Welcome to the Dungeon");
-		Main window = new Main(); 
-		window.setTitle("Legends of Kenjiro: The Infinte Dungeon");
-		window.setBounds(100, 100, 500, 400);
-		window.setResizable(true);
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setVisible(true);
+		
+		GameBoard board = new GameBoard(50,50,500,500);
+		Graphics g = board.getGraphics();
+		
+		while(true) {
+			
+			board.clear();
+			board.refreshGame();
+			board.paintComponent(g);
+			
+			
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+		
+//		Main window = new Main(); 
+//		window.setTitle("Legends of Kenjiro: The Infinite Dungeon");
+//		window.setBounds(100, 100, 500, 400);
+//		window.setResizable(true);
+//		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		window.setVisible(true);
 	}
 }

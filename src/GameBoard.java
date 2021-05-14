@@ -28,7 +28,7 @@ import com.google.firebase.database.OnDisconnect;
 /**
  * This is the GameBoard Class the manages the Game "Legends of Kenjiro" as a whole
  * by tying all the other classes together 
- * @author srikrishna
+ * @author srikrishna + kinjal(multiplayer)
  * @version 1.0.0
  */
 public class GameBoard extends JPanel implements ChildEventListener{
@@ -57,6 +57,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 
 	/**
 	 * Creates a GameBoard Object
+	 * Creates connection with database and adds player to database
 	 * @param x X coordinate where the window that should be created
 	 * @param y Y coordinate where the window that should be created
 	 * @param w width of window that should be created
@@ -128,14 +129,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		disconnector = playerRef.onDisconnect();
 		disconnector.removeValueAsync();
 		
-//		ArrayList<PlayerData> newData;
-//		newData = new ArrayList<PlayerData>();
-//		for(Player data : players) {
-//			currentPost = new PlayerData();
-//			currentPost.x = data.getX();
-//			currentPost.y = data.getY();
-//			newData.add(currentPost);
-//		}
+
 		currentPost = new PlayerData();
 		currentPost.x = 200;
 		currentPost.y = 200;
@@ -144,7 +138,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 //		spawn.players = newData;
 		playerRef.setValueAsync(currentPost);
 		try {
-			Thread.sleep(200);//5 sec loading time
+			Thread.sleep(200);//delay to add player to database
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -159,7 +153,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 
 		p1 = new Player(200,200);
 
-		//frame.addKeyListener(this);
+
 
 		frame.addKeyListener(p1);
 
@@ -168,6 +162,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 
 	/**
 	 * This refreshes the game and activates all the objects this class holds
+	 * Updates database with new location of player
 	 * (intended to be called continously for the game to run)
 	 */
 	public void refreshGame() {
@@ -225,6 +220,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 
 
 	@Override
+
 	public void onCancelled(DatabaseError arg0) {
 		// TODO Auto-generated method stub
 
@@ -232,28 +228,25 @@ public class GameBoard extends JPanel implements ChildEventListener{
 
 
 	@Override
+	/**
+	 * Runs when new players are added to the database
+	 * @param arg0 the current state of the database
+	 */
 	public void onChildAdded(DataSnapshot arg0, String arg1) {
 		PlayerData data = arg0.getValue(PlayerData.class);
-//		ArrayList<Player> newPlayers;
-//		newPlayers = new ArrayList<Player>();
-//		for(PlayerData data : post.getPlayers()) {
-//			newPlayers.add(new Player((int)data.getX(), (int)data.getY()));
-//		}
-//		players = newPlayers;
 		players.add(null);
 		players.set(Integer.parseInt(arg0.getKey()), new Player((int)data.getX(), (int)data.getY()));
 	}
 
 
 	@Override
+	/**
+	 * runs when the database is updated
+	 * @param arg0 the current state of the database
+	 */
 	public void onChildChanged(DataSnapshot arg0, String arg1) {
 		PlayerData data = arg0.getValue(PlayerData.class);
-//		ArrayList<Player> newPlayers;
-//		newPlayers = new ArrayList<Player>();
-//		for(PlayerData data : post.getPlayers()) {
-//			newPlayers.add(new Player((int)data.getX(), (int)data.getY()));
-//		}
-//		players = newPlayers;
+
 		players.set(Integer.parseInt(arg0.getKey()), new Player((int)data.getX(), (int)data.getY()));
 
 	}

@@ -24,6 +24,8 @@ public class Player implements KeyListener{
 	private boolean isLeft;
 	
 	private double currentSpeedConstant =20;
+	
+	private Weapon currentWeapon;
 
 	//Constructor
 	public Player(int x, int y)
@@ -42,6 +44,7 @@ public class Player implements KeyListener{
 		xSpeed = 0;
 		ySpeed = 0;
 		isVisible= true;
+		
 	}
 
 	//Methods

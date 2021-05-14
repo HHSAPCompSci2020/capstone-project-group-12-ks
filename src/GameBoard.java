@@ -72,6 +72,9 @@ public class GameBoard extends JPanel{
 			p.move();
 			p.draw(bufferedG, null);
 		}
+		
+		enemies.moveAll();
+		enemies.drawAll(bufferedG);
 	}
 	
 	public void clear() {

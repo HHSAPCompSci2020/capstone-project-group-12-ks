@@ -1,16 +1,14 @@
+import java.util.ArrayList;
 
 public class Post {
+	
 	Post(){
 		
 	}
 	
-	public double x, y;
-	
-	public double getX(){
-		return x;
+	ArrayList<PlayerData> players;
+	public ArrayList<PlayerData> getPlayers() {
+		return players;
 	}
-	public double getY(){
-		return y;
-	}
-	
 }
+

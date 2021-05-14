@@ -23,6 +23,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.OnDisconnect;
 
 /**
  * This is the GameBoard Class the manages the Game "Legends of Kenjiro" as a whole
@@ -34,6 +35,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 
 	private Image backGroundImage;
 	private ArrayList<Player> players;
+	private Player p1;
 	private EnemyManager enemies;
 	private GameBoard board;
 	private ArrayList<String> storySubtitles; 	//Will contain string that have the file path to text documents (that hv subs)
@@ -43,9 +45,11 @@ public class GameBoard extends JPanel implements ChildEventListener{
 	private Graphics bufferedG;
 	private JFrame frame;
 	//Database fields
-	private Post currentPost;
+	private PlayerData currentPost;
 	private DatabaseReference postsRef;
 	private DatabaseReference playerRef;
+	private OnDisconnect disconnector;
+	
 	
 	
 	private Stack<Room> rooms;
@@ -59,7 +63,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 	 * @param h height of window that should be created
 	 */
 	public GameBoard(int x, int y, int w, int h) {
-		
+		players = new ArrayList<Player>();
 		//Firebase Setup
 		FileInputStream refreshToken;
 		try {
@@ -99,6 +103,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		this.setPreferredSize(new Dimension(w,h));
 		frame.add(this);
 		frame.pack();
+		frame.setResizable(false);
 
 		frame.setVisible(true);
 
@@ -112,19 +117,39 @@ public class GameBoard extends JPanel implements ChildEventListener{
 
 
 		backGroundImage = null;
-		players = new ArrayList<Player>();
+		
 		rooms = new Stack<Room>();
 		storySubtitles = new ArrayList<String>();
 		enemies = new EnemyManager();
-		currentRoom = new Room();
+//		currentRoom = new Room();
 		
-		
+
 		playerRef = postsRef.child(players.size()+"");
-		currentPost = new Post();
+		disconnector = playerRef.onDisconnect();
+		disconnector.removeValueAsync();
+		
+//		ArrayList<PlayerData> newData;
+//		newData = new ArrayList<PlayerData>();
+//		for(Player data : players) {
+//			currentPost = new PlayerData();
+//			currentPost.x = data.getX();
+//			currentPost.y = data.getY();
+//			newData.add(currentPost);
+//		}
+		currentPost = new PlayerData();
 		currentPost.x = 200;
 		currentPost.y = 200;
+//		newData.add(currentPost);
+//		Post spawn = new Post();
+//		spawn.players = newData;
 		playerRef.setValueAsync(currentPost);
-//		players.add(new Player(200,200));
+		try {
+			Thread.sleep(200);//5 sec loading time
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		
 		for(int i=10;i>0;i--) {
@@ -132,12 +157,12 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		}
 		currentRoom = rooms.pop();
 
-		players.add(new Player(200,200));
+		p1 = new Player(200,200);
 
 		//frame.addKeyListener(this);
-		for(int i =0;i<players.size();i++) {
-			frame.addKeyListener(players.get(i));
-		}
+
+		frame.addKeyListener(p1);
+
 
 	}
 
@@ -146,11 +171,17 @@ public class GameBoard extends JPanel implements ChildEventListener{
 	 * (intended to be called continously for the game to run)
 	 */
 	public void refreshGame() {
+		p1.move();
+		PlayerData data = new PlayerData();
+		data.x = p1.getX();
+		data.y = p1.getY();
+		playerRef.setValueAsync(data);
+		
 		Player p;
 		for(int i =0;i<players.size();i++) {
 			p = players.get(i);
-			p.move();
-			p.draw(bufferedG);
+			if(p != null)
+				p.draw(bufferedG);
 		}
 
 		enemies.moveAll();
@@ -202,16 +233,28 @@ public class GameBoard extends JPanel implements ChildEventListener{
 
 	@Override
 	public void onChildAdded(DataSnapshot arg0, String arg1) {
-		Post post = arg0.getValue(Post.class);
+		PlayerData data = arg0.getValue(PlayerData.class);
+//		ArrayList<Player> newPlayers;
+//		newPlayers = new ArrayList<Player>();
+//		for(PlayerData data : post.getPlayers()) {
+//			newPlayers.add(new Player((int)data.getX(), (int)data.getY()));
+//		}
+//		players = newPlayers;
 		players.add(null);
-//		player.set(Integer.parseInt(arg0.getKey()), Player())
-//		postsRef.ge
+		players.set(Integer.parseInt(arg0.getKey()), new Player((int)data.getX(), (int)data.getY()));
 	}
 
 
 	@Override
 	public void onChildChanged(DataSnapshot arg0, String arg1) {
-		// TODO Auto-generated method stub
+		PlayerData data = arg0.getValue(PlayerData.class);
+//		ArrayList<Player> newPlayers;
+//		newPlayers = new ArrayList<Player>();
+//		for(PlayerData data : post.getPlayers()) {
+//			newPlayers.add(new Player((int)data.getX(), (int)data.getY()));
+//		}
+//		players = newPlayers;
+		players.set(Integer.parseInt(arg0.getKey()), new Player((int)data.getX(), (int)data.getY()));
 
 	}
 
@@ -225,8 +268,8 @@ public class GameBoard extends JPanel implements ChildEventListener{
 
 	@Override
 	public void onChildRemoved(DataSnapshot arg0) {
-		// TODO Auto-generated method stub
-
+		PlayerData data = arg0.getValue(PlayerData.class);
+		players.set(Integer.parseInt(arg0.getKey()),null);
 	}
 
 

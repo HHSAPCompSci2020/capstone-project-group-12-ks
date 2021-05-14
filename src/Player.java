@@ -154,7 +154,7 @@ public class Player implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) 
 	{
-		//System.out.println("FDJ ");
+//		System.out.println("FDJ ");
 		int keycode = e.getKeyCode();
 
 		if(keycode==KeyEvent.VK_D) 
@@ -212,6 +212,13 @@ public class Player implements KeyListener{
 		}
 		
 		
+	}
+	
+	public int getX() {
+		return x;
+	}
+	public int getY() {
+		return y;
 	}
 
 }

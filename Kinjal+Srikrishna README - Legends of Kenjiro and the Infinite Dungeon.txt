@@ -6,7 +6,7 @@ Revision: 4/20/21
 Introduction: 
 [In a few paragraphs totaling about ½ page, introduce the high-level concept of your program. What this looks like depends a lot on what type of thing you are making. An introduction for an application will look different than one for a game. In general, your introduction should address questions like these:
 What does your program do?
-Our program will be a top-down view 2D dungeon crawler type game which utilizes something like boss fights and puzzle rooms.[a] We will be able to implement concepts like chests and loot while developing an interesting storyline. We will also try to maybe implement some horror aspect to the game as well. The world we depict the game in will utilize magic, bows, swordsmanship, and etc. This game will also be multiplayer.
+Our program will be a top-down view 2D dungeon crawler type game which utilizes something like boss fights and puzzle rooms.[a][b][c] We will be able to implement concepts like chests and loot while developing an interesting storyline. We will also try to maybe implement some horror aspect to the game as well. The world we depict the game in will utilize magic, bows, swordsmanship, and etc. This game will also be multiplayer.
 What problem does it solve? Why did you write it?
 Lack of good 2D dungeon crawler games. We felt there was a market for a good 2D dungeon crawler game and we sought to fill this gap with a featureful interactive experience with a combination of hack and slash combat head scratching puzzles and intense boss fights. 
 What is the story?
@@ -24,7 +24,7 @@ Instructions:
 Which keyboard keys will do what? 
 * AWSD to move
 * Left Mouse Click to initiate attack (attack depends on weapon equipped)
-* Right Mouse Click if weapon has a special ability to activate it[b]
+* Right Mouse Click if weapon has a special ability to activate it
 * E to pick up items and interact with the world
 * Wherever the mouse is placed that will be the direction the user’s avatar faces towards
 
@@ -47,7 +47,7 @@ Features List (THE ONLY SECTION THAT CANNOT CHANGE LATER):
 Must-have Features:
 [These are features that we agree you will definitely have by the project due date. A good final project would have all of these completed. At least 5 are required. Each feature should be fully described (at least a few full sentences for each)]
 *  Various monsters
-*  At least one boss fights in the dungeon. A room in a dungeon where a stronger than average monster [c][d]fights you. This would be the last obstacle or a checkpoint in the game.
+*  At least one boss fights in the dungeon. A room in a dungeon where a stronger than average monster fights you. This would be the last obstacle or a checkpoint in the game.
 *  A way to win or lose. This can be determined using health bars and having a finite story that ends.
 * Unique weapons with perks and special ability. Extra rare weapons will have a special perk allowing the player to use a special ability. Couple examples of these abilities could be throwing 4 daggers in an arc every 30 seconds, teleporting a small distance, increasing damage for a limited amount of time. These special abilities will be activated with the right mouse click and should have cooldowns,
 * Firebase based Multiplayer (2 players for now). One player will control Kenjiro and the Other player will control Takumi
@@ -63,8 +63,8 @@ Want-to-have Features:
 *  Multiple levels with varying difficulty and length. The dungeon would have a varying number of rooms and the monsters would have more or less health and deal more or less damage.
 * Inventory Menu that can be used to equip armor, weapons, and gear. This can be used to manage the player's loot. I can also adapt this to include a trading option with the other players in the game
 * Srikrishna can draw the characters in the story and we can have the images of them appear when lines of that character are being spoken in the story. 
-*  At least one puzzle room in the dungeon. A room where there are varying clues and puzzles that the user[e] and the 2nd player will have to solve together to go on to the next room.
-* Various weapons, and gear: When defeating monsters weapons and gear should be dropped[f]. The monsters and gear should at least have some variety so that the game does not become boring.
+*  At least one puzzle room in the dungeon. A room where there a varying clues and puzzles that the user and the 2nd player will have to solve together to go on to the next room.
+* Various weapons, and gear: When defeating monsters weapons and gear should be dropped[d]. The monsters and gear should at least have some variety so that the game does not become boring.
 * More effort is put into the story lines and story aspect of the game, this would include physically making images of the characters that appear when the character is speaking. Cleaning up texts and subtitles
 
 
@@ -89,7 +89,7 @@ We don't exactly know what classes we will need yet, we will most likely find ou
    * A superclass all monsters extend
 * Mob SubClass
    * A specific type of mob
-* Game
+* GameBoard
    * The main class of the game that manages all the other classes, should manage graphics as well
 * MessageSender
    * Sends update Information to other clients
@@ -112,15 +112,22 @@ Credits:
 * List the group members and describe how each member contributed to the completion of the final program. This could be classes written, art assets created, leadership/organizational skills exercises, or other tasks. Initially, this is how you plan on splitting the work.
 * Give credit to all outside resources used. This includes downloaded images or sounds, external java libraries, parent/tutor/student coding help, etc.]
    * We are going to use images from online
-   * We may also have to use code for creating a server if decide to go beyond 2 player
-   * (we will find out as we code the program)
+   * Firebase library
+   * Setup code from firebase demos
 * Kinjal
    * Set up eclipse project
+   * Implementation of multiplayer
+      * Used: Gameboard, PlayerData, Player
 * Srikrishna
-	* Coded the Enemy, EnemyManager, Player, Room, EnemyRoom, Weapon, GameBoard Classes
+   * Coded the
+      * GameBoard
+      * Player
+      * Enemy
+      * EnemyManager
+      * Room
+      * EnemyRoom
+      * Weapon
 [a]How will you implement/code boss fights and puzzle rooms? It's a little unclear what these concepts are.
-[b]What is the special ability and how do you gain it?
-[c]How will you classify "Stronger than average?" In other words, what would you add to the monster to make them stronger?
-[d]Modifying Health, Damage, Speed etc.
-[e]What kind of clues and puzzles? You might want to be more specific when you're planning it
-[f]How will it be dropped? Will there be a place to drop weapons/gear or will they "fall on" the player?
+[b]_Marked as resolved_
+[c]_Re-opened_
+[d]How will it be dropped? Will there be a place to drop weapons/gear or will they "fall on" the player?

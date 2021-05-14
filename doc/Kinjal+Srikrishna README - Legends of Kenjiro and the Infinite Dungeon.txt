@@ -117,6 +117,7 @@ Credits:
 * Kinjal
    * Set up eclipse project
 * Srikrishna
+	* Coded the Enemy, EnemyManager, Player, Room, EnemyRoom, Weapon, GameBoard Classes
 [a]How will you implement/code boss fights and puzzle rooms? It's a little unclear what these concepts are.
 [b]What is the special ability and how do you gain it?
 [c]How will you classify "Stronger than average?" In other words, what would you add to the monster to make them stronger?

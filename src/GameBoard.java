@@ -151,7 +151,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		}
 		currentRoom = rooms.pop();
 
-		p1 = new Player(200,200);
+		p1 = new Player(200,200,50,50);
 
 
 
@@ -175,8 +175,12 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		Player p;
 		for(int i =0;i<players.size();i++) {
 			p = players.get(i);
-			if(p != null)
+			if(p != null) {
 				p.draw(bufferedG);
+				if(i != Integer.parseInt(playerRef.getKey())) {
+					p1.collisionCheck(p);
+				}
+			}
 		}
 
 		enemies.moveAll();
@@ -235,7 +239,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 	public void onChildAdded(DataSnapshot arg0, String arg1) {
 		PlayerData data = arg0.getValue(PlayerData.class);
 		players.add(null);
-		players.set(Integer.parseInt(arg0.getKey()), new Player((int)data.getX(), (int)data.getY()));
+		players.set(Integer.parseInt(arg0.getKey()), new Player((int)data.getX(), (int)data.getY(), 50, 50));
 	}
 
 
@@ -247,7 +251,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 	public void onChildChanged(DataSnapshot arg0, String arg1) {
 		PlayerData data = arg0.getValue(PlayerData.class);
 
-		players.set(Integer.parseInt(arg0.getKey()), new Player((int)data.getX(), (int)data.getY()));
+		players.set(Integer.parseInt(arg0.getKey()), new Player((int)data.getX(), (int)data.getY(), 50, 50));
 
 	}
 

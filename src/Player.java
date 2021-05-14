@@ -3,6 +3,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.Rectangle2D.Double;
 import java.awt.image.ImageObserver;
 
 import javax.swing.ImageIcon;
@@ -12,11 +14,12 @@ import javax.swing.ImageIcon;
  * @author srikrishna
  * @version 1.0.0
  */
-public class Player implements KeyListener{
+public class Player implements KeyListener, Collidable{
 	//Fields
 
 	private int x, y;
 	private int width, height;
+	private Rectangle2D.Double hitbox;
 	private Image image;
 	protected boolean isVisible;
 	private boolean hit;
@@ -37,14 +40,14 @@ public class Player implements KeyListener{
 	 * @param x X coordinate of Where the Player object should spawn
 	 * @param y Y coordinate of Where the Player object should spawn
 	 */
-	public Player(int x, int y)
+	public Player(int x, int y, int w, int h)
 	{
 
 		//image = img;
 		this.x = x;
 		this.y = y;
-		//width = w;
-		//height = h;
+		width = w;
+		height = h;
 		isVisible = true;
 		hit=false;
 		counter=0;
@@ -99,12 +102,12 @@ public class Player implements KeyListener{
 		g.setColor(Color.black);
 		if(isLeft) {
 			//g.drawImage(left, x, y,width,height, io);
-			g.drawRect(x, y, 50, 50);
+			g.drawRect(x, y, width, height);
 			g.drawString("Player",x+5,y+25);
 		}
 		else if(isVisible){
 			//g.drawImage(right, x, y, width, height, io);
-			g.drawRect(x, y, 50, 50);
+			g.drawRect(x, y, width, height);
 			g.drawString("Player",x+5,y+25);
 		}
 		
@@ -219,6 +222,28 @@ public class Player implements KeyListener{
 	}
 	public int getY() {
 		return y;
+	}
+
+	@Override
+	public void onImpact(Collidable other) {
+		System.out.println(other);
+		
+	}
+
+	@Override
+	public boolean collisionCheck(Collidable other) {
+		if(getHitbox().intersects(other.getHitbox())) {
+			onImpact(other);
+			other.onImpact(this);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public Double getHitbox() {
+		Rectangle2D.Double hitbox = new Rectangle2D.Double(x,y,width,height);
+		return hitbox;
 	}
 
 }

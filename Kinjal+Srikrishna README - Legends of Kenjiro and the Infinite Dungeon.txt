@@ -118,6 +118,9 @@ Credits:
    * Set up eclipse project
    * Implementation of multiplayer
       * Used: Gameboard, PlayerData, Player
+   *  Modified our existing code to add collision detections
+      * Collidable Interface
+      * Added Collision detection loop between players in Gameboard
 * Srikrishna
    * Coded the
       * GameBoard
@@ -127,7 +130,7 @@ Credits:
       * Room
       * EnemyRoom
       * Weapon
-[a]How will you implement/code boss fights and puzzle rooms? It's a little unclear what these concepts are.
+   * [a]How will you implement/code boss fights and puzzle rooms? It's a little unclear what these concepts are.
 [b]_Marked as resolved_
 [c]_Re-opened_
 [d]How will it be dropped? Will there be a place to drop weapons/gear or will they "fall on" the player?

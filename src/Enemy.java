@@ -6,7 +6,7 @@ public class Enemy {
 	private double x,y;
 	private double xSpeed, ySpeed;
 	private boolean isHit;
-	private double currentSpeedConstant = 20;
+	private double currentSpeedConstant = 15;
 	private Image img;
 	
 	
@@ -22,6 +22,7 @@ public class Enemy {
 	
 	public void draw(Graphics g) {
 		g.drawOval((int)x, (int)y, 50, 50);
+		g.drawString("Enemy", (int)x+8, (int)y+27);
 	}
 	
 	

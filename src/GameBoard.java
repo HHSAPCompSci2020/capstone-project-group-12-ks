@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Stack;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -23,15 +24,16 @@ public class GameBoard extends JPanel implements ChildEventListener{
 	private EnemyManager enemies;
 	private GameBoard board;
 	private ArrayList<String> storySubtitles; 	//Will contain string that have the file path to text documents (that hv subs)
-	private ArrayList<Room> rooms;
+	//private ArrayList<Room> rooms;
 	private Room currentRoom;
 	private BufferedImage bImage;
 	private Graphics bufferedG;
 	private JFrame frame;
+	private Stack<Room> rooms;
 
-	
+
 	public GameBoard(int x, int y, int w, int h) {
-		
+
 		frame=new JFrame("MyDrawingBoard");
 		frame.setBounds(x, y,0,0);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,26 +51,28 @@ public class GameBoard extends JPanel implements ChildEventListener{
 
 		bufferedG.setColor(Color.white);
 		bufferedG.drawRect(x, y,w, h);
-		
-		
+
+
 		backGroundImage = null;
 		players = new ArrayList<Player>();
-		rooms = new ArrayList<Room>();
+		rooms = new Stack<Room>();
 		storySubtitles = new ArrayList<String>();
 		enemies = new EnemyManager();
-		currentRoom = new Room();
-		
-	 
+		for(int i=10;i>0;i--) {
+			rooms.add(new EnemyRoom("xxx.txt","Room "+i));
+		}
+		currentRoom = rooms.pop();
+
 		players.add(new Player(200,200));
-		
+
 		//frame.addKeyListener(this);
 		for(int i =0;i<players.size();i++) {
-		frame.addKeyListener(players.get(i));
+			frame.addKeyListener(players.get(i));
 		}
-		
+
 	}
-	
-	
+
+
 	public void refreshGame() {
 		Player p;
 		for(int i =0;i<players.size();i++) {
@@ -76,11 +80,13 @@ public class GameBoard extends JPanel implements ChildEventListener{
 			p.move();
 			p.draw(bufferedG, null);
 		}
-		
+
 		enemies.moveAll();
 		enemies.drawAll(bufferedG);
+		
+		currentRoom.draw(bufferedG);
 	}
-	
+
 	public void clear() {
 		for(int i=0;i<getWidth();i++) {
 			for(int j=0;j<getHeight();j++) {
@@ -88,55 +94,55 @@ public class GameBoard extends JPanel implements ChildEventListener{
 			}
 		}
 	}
-	
-	
+
+
 	public Graphics getBufferedGraphics() {
 		return bufferedG;
 	}
-	
+
 	public void paintComponent(Graphics g) {
-		
+
 		g.drawImage(bImage, 0, 0, this);
-		
-		
-		
+
+
+
 	}
 
 
 	@Override
 	public void onCancelled(DatabaseError arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
 	@Override
 	public void onChildAdded(DataSnapshot arg0, String arg1) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
 	@Override
 	public void onChildChanged(DataSnapshot arg0, String arg1) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
 	@Override
 	public void onChildMoved(DataSnapshot arg0, String arg1) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
 	@Override
 	public void onChildRemoved(DataSnapshot arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
-	
+
 }

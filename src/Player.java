@@ -44,7 +44,7 @@ public class Player implements KeyListener{
 		xSpeed = 0;
 		ySpeed = 0;
 		isVisible= true;
-		
+		currentWeapon = new Weapon();
 	}
 
 	//Methods
@@ -81,6 +81,8 @@ public class Player implements KeyListener{
 			g.drawRect(x, y, 50, 50);
 			g.drawString("Player",x+5,y+25);
 		}
+		
+		currentWeapon.draw(g, x+50, y-50);
 	}
 
 	public void setLeft(boolean left) {
@@ -109,12 +111,15 @@ public class Player implements KeyListener{
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
+		int keycode = e.getKeyCode();
+		
+		
 
 	}
 
 	public void keyPressed(KeyEvent e) 
 	{
-		System.out.println("FDJ ");
+		//System.out.println("FDJ ");
 		int keycode = e.getKeyCode();
 
 		if(keycode==KeyEvent.VK_D) 
@@ -166,6 +171,11 @@ public class Player implements KeyListener{
 			crouch = false;
 			this.setYSpeed(0);
 		}
+		else if(e.getKeyCode()==KeyEvent.VK_SPACE) 
+		{
+			currentWeapon.attack();
+		}
+		
 		
 	}
 

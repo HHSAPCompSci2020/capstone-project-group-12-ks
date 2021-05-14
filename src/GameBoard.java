@@ -68,7 +68,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		FileInputStream refreshToken;
 		try {
 
-			refreshToken = new FileInputStream("/Users/kinjal/Desktop/AnimationDemoProcessing/Key.json");
+			refreshToken = new FileInputStream("Key.json");
 
 			FirebaseOptions options = new FirebaseOptions.Builder()
 					.setCredentials(GoogleCredentials.fromStream(refreshToken))

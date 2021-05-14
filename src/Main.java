@@ -18,6 +18,7 @@ public class Main extends JFrame {
 		GameBoard board = new GameBoard(50,50,500,500);
 		Graphics g = board.getGraphics();
 		
+		
 		while(true) {
 			
 			board.clear();
@@ -26,7 +27,7 @@ public class Main extends JFrame {
 			
 			
 			try {
-				Thread.sleep(500);
+				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

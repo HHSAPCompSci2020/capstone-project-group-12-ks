@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class GameBoard extends JPanel implements KeyListener {
+public class GameBoard extends JPanel{
 
 	private Image backGroundImage;
 	private ArrayList<Player> players;
@@ -24,6 +24,7 @@ public class GameBoard extends JPanel implements KeyListener {
 	private BufferedImage bImage;
 	private Graphics bufferedG;
 	private JFrame frame;
+
 	
 	public GameBoard(int x, int y, int w, int h) {
 		
@@ -53,15 +54,23 @@ public class GameBoard extends JPanel implements KeyListener {
 		enemies = new EnemyManager();
 		currentRoom = new Room();
 		
+	 
 		players.add(new Player(200,200));
 		
+		//frame.addKeyListener(this);
+		for(int i =0;i<players.size();i++) {
+		frame.addKeyListener(players.get(i));
+		}
 		
 	}
 	
 	
 	public void refreshGame() {
+		Player p;
 		for(int i =0;i<players.size();i++) {
-			players.get(i).draw(bufferedG, null);
+			p = players.get(i);
+			p.move();
+			p.draw(bufferedG, null);
 		}
 	}
 	
@@ -83,33 +92,6 @@ public class GameBoard extends JPanel implements KeyListener {
 		g.drawImage(bImage, 0, 0, this);
 		
 		
-		
-	}
-
-
-
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 

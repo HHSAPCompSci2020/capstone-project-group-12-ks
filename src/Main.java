@@ -3,9 +3,9 @@ import java.awt.Graphics;
 import javax.swing.JFrame;
 
 /**
- * 
+ * Main Class that initiates the Game "Legend of Kenjiro"
  * @author Kinjal
- *
+ * @version 1.0.0
  */
 public class Main extends JFrame {
 	/**

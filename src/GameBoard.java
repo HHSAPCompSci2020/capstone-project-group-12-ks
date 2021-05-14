@@ -17,6 +17,12 @@ import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 
+/**
+ * This is the GameBoard Class the manages the Game "Legends of Kenjiro" as a whole
+ * by tying all the other classes together 
+ * @author srikrishna
+ * @version 1.0.0
+ */
 public class GameBoard extends JPanel implements ChildEventListener{
 
 	private Image backGroundImage;
@@ -32,6 +38,13 @@ public class GameBoard extends JPanel implements ChildEventListener{
 	private Stack<Room> rooms;
 
 
+	/**
+	 * Creates a GameBoard Object
+	 * @param x X coordinate where the window that should be created
+	 * @param y Y coordinate where the window that should be created
+	 * @param w width of window that should be created
+	 * @param h height of window that should be created
+	 */
 	public GameBoard(int x, int y, int w, int h) {
 
 		frame=new JFrame("MyDrawingBoard");
@@ -72,13 +85,16 @@ public class GameBoard extends JPanel implements ChildEventListener{
 
 	}
 
-
+	/**
+	 * This refreshes the game and activates all the objects this class holds
+	 * (intended to be called continously for the game to run)
+	 */
 	public void refreshGame() {
 		Player p;
 		for(int i =0;i<players.size();i++) {
 			p = players.get(i);
 			p.move();
-			p.draw(bufferedG, null);
+			p.draw(bufferedG);
 		}
 
 		enemies.moveAll();
@@ -87,6 +103,11 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		currentRoom.draw(bufferedG);
 	}
 
+	/**
+	 * Clears the BufferedImage this object contains within itself by painting it white
+	 * if the BufferedImage is painted white so will the window because the Image is the
+	 * representation of the window
+	 */
 	public void clear() {
 		for(int i=0;i<getWidth();i++) {
 			for(int j=0;j<getHeight();j++) {
@@ -95,11 +116,18 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		}
 	}
 
-
+	/**
+	 * returns the graphics which are used to draw on this classes BufferedImage
+	 * @return Graphics for the Buffered image in this object
+	 */
 	public Graphics getBufferedGraphics() {
 		return bufferedG;
 	}
 
+	
+	/**
+	 * important method that redraws everything on the screen by redrawing the BufferedImage 
+	 */
 	public void paintComponent(Graphics g) {
 
 		g.drawImage(bImage, 0, 0, this);

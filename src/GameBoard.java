@@ -76,6 +76,9 @@ public class GameBoard extends JPanel implements ChildEventListener{
 			p.move();
 			p.draw(bufferedG, null);
 		}
+		
+		enemies.moveAll();
+		enemies.drawAll(bufferedG);
 	}
 	
 	public void clear() {

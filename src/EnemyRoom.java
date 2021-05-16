@@ -13,8 +13,8 @@ public class EnemyRoom extends Room {
 	 * @param filePath filePath to the subtitles with the story for this room
 	 * @param roomName the name this room will recieve
 	 */
-	public EnemyRoom(String filePath, String roomName) {
-		super(filePath, roomName);
+	public EnemyRoom(String filePath, String roomName, int w, int h) {
+		super(filePath, roomName, w, h);
 		enemiesLeft = numEnemiesForRoom;
 	}
 	

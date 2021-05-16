@@ -122,7 +122,6 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		rooms = new Stack<Room>();
 		storySubtitles = new ArrayList<String>();
 		enemies = new EnemyManager();
-//		currentRoom = new Room();
 		
 
 		playerRef = postsRef.child(players.size()+"");
@@ -147,7 +146,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		
 		
 		for(int i=10;i>0;i--) {
-			rooms.add(new EnemyRoom("xxx.txt","Room "+i));
+			rooms.add(new EnemyRoom("xxx.txt","Room "+i, w, h));
 		}
 		currentRoom = rooms.pop();
 
@@ -182,6 +181,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 				}
 			}
 		}
+		currentRoom.collisionCheck(p1);
 
 		enemies.moveAll();
 		enemies.drawAll(bufferedG);

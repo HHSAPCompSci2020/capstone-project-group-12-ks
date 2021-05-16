@@ -34,6 +34,7 @@ public class Player implements KeyListener, Collidable{
 	private double currentSpeedConstant =20;
 	
 	private Weapon currentWeapon;
+	private boolean touchingWall;
 
 	/**
 	 * Constructor that creates a Player Object
@@ -55,6 +56,7 @@ public class Player implements KeyListener, Collidable{
 		//left=new ImageIcon("png name").getImage();
 		xSpeed = 0;
 		ySpeed = 0;
+		touchingWall = false;
 		isVisible= true;
 		currentWeapon = new Weapon();
 	}
@@ -90,8 +92,14 @@ public class Player implements KeyListener, Collidable{
 	 * Moves the object by altering its x,y position
 	 */
 	public void move() {
-		x+=xSpeed;
-		y+=ySpeed;
+		if(!touchingWall) {
+			x+=xSpeed;
+			y+=ySpeed;
+		} else {
+			x-=xSpeed;
+			y-=ySpeed;
+			touchingWall = false;
+		}
 	}
 	
 	/**
@@ -226,7 +234,10 @@ public class Player implements KeyListener, Collidable{
 
 	@Override
 	public void onImpact(Collidable other) {
-		System.out.println(other);
+		if(other.getClass() == Room.class || other.getClass().getSuperclass() == Room.class) {
+			System.out.println("hi");
+			touchingWall = true;
+		}
 		
 	}
 

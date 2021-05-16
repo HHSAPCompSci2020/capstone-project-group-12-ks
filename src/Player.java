@@ -19,7 +19,6 @@ public class Player implements KeyListener, Collidable{
 
 	private int x, y;
 	private int width, height;
-	private Rectangle2D.Double hitbox;
 	private Image image;
 	protected boolean isVisible;
 	private boolean hit;
@@ -92,14 +91,9 @@ public class Player implements KeyListener, Collidable{
 	 * Moves the object by altering its x,y position
 	 */
 	public void move() {
-		if(!touchingWall) {
-			x+=xSpeed;
-			y+=ySpeed;
-		} else {
-			x-=xSpeed;
-			y-=ySpeed;
-			touchingWall = false;
-		}
+		x+=xSpeed;
+		y+=ySpeed;
+
 	}
 	
 	/**
@@ -235,8 +229,20 @@ public class Player implements KeyListener, Collidable{
 	@Override
 	public void onImpact(Collidable other) {
 		if(other.getClass() == Room.class || other.getClass().getSuperclass() == Room.class) {
-			System.out.println("hi");
-			touchingWall = true;
+//			System.out.println("hi");
+//			Rectangle2D cross = getHitbox().createIntersection(other.getHitbox());
+//			if(cross.getX() < 0) {
+//				x+=cross.getWidth();
+//			} else {
+//				x-=cross.getWidth();
+//			}
+//			if(cross.getY() < 0) {
+//				y+=cross.getHeight();
+//			} else {
+//				y-=cross.getHeight();
+//			}
+			xSpeed = 0;
+			ySpeed = 0;
 		}
 		
 	}
@@ -253,7 +259,7 @@ public class Player implements KeyListener, Collidable{
 
 	@Override
 	public Double getHitbox() {
-		Rectangle2D.Double hitbox = new Rectangle2D.Double(x,y,width,height);
+		Rectangle2D.Double hitbox = new Rectangle2D.Double(x+xSpeed,y+ySpeed,width,height);//this is a projected hitbox
 		return hitbox;
 	}
 

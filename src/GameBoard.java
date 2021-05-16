@@ -165,12 +165,6 @@ public class GameBoard extends JPanel implements ChildEventListener{
 	 * (intended to be called continously for the game to run)
 	 */
 	public void refreshGame() {
-		p1.move();
-		PlayerData data = new PlayerData();
-		data.x = p1.getX();
-		data.y = p1.getY();
-		playerRef.setValueAsync(data);
-		
 		Player p;
 		for(int i =0;i<players.size();i++) {
 			p = players.get(i);
@@ -182,6 +176,14 @@ public class GameBoard extends JPanel implements ChildEventListener{
 			}
 		}
 		currentRoom.collisionCheck(p1);
+		
+		p1.move();
+		PlayerData data = new PlayerData();
+		data.x = p1.getX();
+		data.y = p1.getY();
+		playerRef.setValueAsync(data);
+		
+		
 
 		enemies.moveAll();
 		enemies.drawAll(bufferedG);

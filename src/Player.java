@@ -23,6 +23,7 @@ public class Player implements KeyListener, Collidable{
 	protected boolean isVisible;
 	private boolean hit;
 	private Image leftImage;
+	private Image testImage;
 	private int counter;
 	private boolean left,right,jump,crouch;
 
@@ -44,6 +45,7 @@ public class Player implements KeyListener, Collidable{
 	{
 
 		//image = img;
+		testImage = new ImageIcon("images/Test.png").getImage();
 		this.x = x;
 		this.y = y;
 		width = w;
@@ -114,6 +116,8 @@ public class Player implements KeyListener, Collidable{
 		}
 		
 		currentWeapon.draw(g, x+50, y-50);
+		
+		g.drawImage(testImage, x, y, null);
 	}
 
 //	public void setLeft(boolean left) {

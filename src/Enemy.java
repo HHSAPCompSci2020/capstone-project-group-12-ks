@@ -59,5 +59,12 @@ public class Enemy {
 			y+=-currentSpeedConstant;
 		}
 	}
+	
+	public double getX() {
+		return x;
+	}
+	public double getY() {
+		return y;
+	}
 
 }

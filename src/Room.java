@@ -6,7 +6,7 @@ import java.awt.geom.Rectangle2D.Double;
 
 /**
  * Room class that represents a single room in the dungeon
- * @author srikrishna
+ * @author srikrishna + kinjal(Collision Detection)
  * @version 1.0.0
  */
 public class Room implements Collidable {

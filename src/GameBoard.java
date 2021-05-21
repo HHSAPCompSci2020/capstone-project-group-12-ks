@@ -46,9 +46,10 @@ public class GameBoard extends JPanel implements ChildEventListener{
 	private JFrame frame;
 	//Database fields
 	private PlayerData currentPost;
-	private DatabaseReference postsRef;
+	private DatabaseReference playersRef;
 	private DatabaseReference playerRef;
 	private OnDisconnect disconnector;
+	private DatabaseReference enemyRef;
 	
 	
 	
@@ -65,6 +66,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 	 */
 	public GameBoard(int x, int y, int w, int h) {
 		players = new ArrayList<Player>();
+		enemies = new EnemyManager();
 		//Firebase Setup
 		FileInputStream refreshToken;
 		try {
@@ -78,9 +80,11 @@ public class GameBoard extends JPanel implements ChildEventListener{
 
 			FirebaseApp.initializeApp(options);
 			DatabaseReference database = FirebaseDatabase.getInstance().getReference();
-			postsRef = database.child("Players");
+			playersRef = database.child("Players");
+			enemyRef = database.child("Enemies");
+			enemyRef.addChildEventListener(enemies);
 
-			postsRef.addChildEventListener(this);
+			playersRef.addChildEventListener(this);
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -92,6 +96,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		enemies.setReference(enemyRef);
 		currentPost = null;
 		
 		//Window Setup
@@ -121,10 +126,10 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		
 		rooms = new Stack<Room>();
 		storySubtitles = new ArrayList<String>();
-		enemies = new EnemyManager();
+
 		
 
-		playerRef = postsRef.child(players.size()+"");
+		playerRef = playersRef.child(players.size()+"");
 		disconnector = playerRef.onDisconnect();
 		disconnector.removeValueAsync();
 		
@@ -149,6 +154,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 			rooms.add(new EnemyRoom("xxx.txt","Room "+i, w, h));
 		}
 		currentRoom = rooms.pop();
+		enemies.spawnRoomEnemies();
 
 		p1 = new Player(200,200,50,50);
 

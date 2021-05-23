@@ -37,6 +37,11 @@ public class Room implements Collidable {
 	protected String roomName;
 	
 	private int width, height;
+	
+	/**
+	 * Field representing the FilePath to access image for background of room
+	 */
+	protected String imageFilePath;
 	/**
 	 * Constructor that creates Room Object
 	 * @param filePath filePath for subtitles file with text
@@ -57,7 +62,7 @@ public class Room implements Collidable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+		this.imageFilePath=imageFilePath;
 	}
 	
 	/**
@@ -67,7 +72,7 @@ public class Room implements Collidable {
 	public void draw(Graphics g) {
 		//draw image here because its the background image for room
 		g.drawString(roomName, 230, 10);
-		g.drawImage(img, -15, -10, null);
+		g.drawImage(img, -18, -10, null);
 	}
 	
 	/**
@@ -95,7 +100,13 @@ public class Room implements Collidable {
 
 	@Override
 	public Double getHitbox() {
-		Rectangle2D.Double hitbox = new Rectangle2D.Double(0,0,width,height);
+		Rectangle2D.Double hitbox;
+		if(imageFilePath.indexOf("Option1")!=-1) {
+		hitbox = new Rectangle2D.Double(50,50,width-50,height-50);
+		}
+		else {
+		hitbox = new Rectangle2D.Double(0,0,width,height);
+		}
 		return hitbox;
 	}
 	

@@ -50,9 +50,9 @@ public class Player implements KeyListener, Collidable{
 		//image = img;
 //		testImage = new ImageIcon("images/Test.png").getImage();
 //		testImage = Toolkit.getDefaultToolkit().getImage("images/Test.png");
-		testImage = new ImageIcon("Images/pos1.png").getImage();
+		testImage = new ImageIcon("Images/position1.png").getImage();
 		try {
-			testImage = ImageIO.read(getClass().getClassLoader().getResource("Images/pos1.png"));
+			testImage = ImageIO.read(getClass().getClassLoader().getResource("Images/position1.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -115,20 +115,20 @@ public class Player implements KeyListener, Collidable{
 	 */
 	public void draw(Graphics g) {
 		if(testImage == null) System.out.println("im null");
-		g.setColor(Color.blue);
-		if(isLeft) {
-			//g.drawImage(left, x, y,width,height, io);
-			g.drawRect(x, y, width, height);
-			g.drawString("Player",x+5,y+25);
-		}
-		else if(isVisible){
-			//g.drawImage(right, x, y, width, height, io);
-			g.drawRect(x, y, width, height);
-			g.drawString("Player",x+5,y+25);
-		}
+//		g.setColor(Color.blue);
+//		if(isLeft) {
+//			//g.drawImage(left, x, y,width,height, io);
+//			g.drawRect(x, y, width, height);
+//			g.drawString("Player",x+5,y+25);
+//		}
+//		else if(isVisible){
+//			//g.drawImage(right, x, y, width, height, io);
+//			g.drawRect(x, y, width, height);
+//			g.drawString("Player",x+5,y+25);
+//		}
 		
 		currentWeapon.draw(g, x+50, y-50);
-		g.drawImage(testImage, x, y, null);
+		g.drawImage(testImage, x-165, y-105, null);
 		//g.drawImage(testImage, 50, 50, null);
 		
 	}

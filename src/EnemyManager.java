@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
@@ -112,7 +113,7 @@ public class EnemyManager implements ChildEventListener {
 		EnemyData e = arg0.getValue(EnemyData.class);
 		int index = Integer.parseInt(arg0.getKey());
 		enemies.add(null);
-		enemies.set(index, new Enemy(e.getX(), e.getY()));
+		enemies.set(index, new Enemy(e.getX(), e.getY(),new HealthBar(150,150,Color.red)));
 		refs.add(null);
 		refs.set(index, arg0.getRef());
 		if(indeces.contains(index)) {
@@ -129,7 +130,7 @@ public class EnemyManager implements ChildEventListener {
 	@Override
 	public void onChildChanged(DataSnapshot arg0, String arg1) {
 		EnemyData e = arg0.getValue(EnemyData.class);
-		enemies.set(Integer.parseInt(arg0.getKey()), new Enemy(e.getX(), e.getY()));
+		enemies.set(Integer.parseInt(arg0.getKey()), new Enemy(e.getX(), e.getY(),new HealthBar(150,150,Color.red)));
 		
 	}
 

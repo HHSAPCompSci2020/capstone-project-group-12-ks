@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.geom.Rectangle2D;
@@ -14,6 +15,7 @@ public class Enemy implements Collidable{
 	private boolean isHit;
 	private double currentSpeedConstant = 15;
 	private Image img;
+	private HealthBar health;
 	
 	
 	
@@ -22,11 +24,11 @@ public class Enemy implements Collidable{
 	 * @param x coordinate spawn point
 	 * @param y coordinate spawn point
 	 */
-	public Enemy(double x, double y) {
+	public Enemy(double x, double y, HealthBar health) {
 		isHit = false;
 		this.x = x;
 		this.y = y;
-		
+		this.health=health;
 	}
 	
 	
@@ -36,8 +38,10 @@ public class Enemy implements Collidable{
 	 * @param g  graphics object passed which is the pixel grid you intend to draw this object on
 	 */
 	public void draw(Graphics g) {
+		g.setColor(Color.red);
 		g.drawOval((int)x, (int)y, 50, 50);
 		g.drawString("Enemy", (int)x+8, (int)y+27);
+		health.draw(g, (int)x, (int)y-15);
 	}
 	
 	/**

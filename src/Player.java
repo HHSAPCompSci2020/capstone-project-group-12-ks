@@ -41,7 +41,7 @@ public class Player implements KeyListener, Collidable{
 	private Weapon currentWeapon;
 	
 	private boolean inMotion;
-	
+	private HealthBar health;
 	
 	
 	
@@ -163,7 +163,7 @@ public class Player implements KeyListener, Collidable{
 		left = false;
 		right = false;
 		inMotion = false;
-
+		health = new HealthBar(200,150,Color.GREEN);
 	}
 
 //	//Methods
@@ -223,7 +223,7 @@ public class Player implements KeyListener, Collidable{
 		}
 		
 		currentWeapon.draw(g, x+50, y-50);
-		
+		health.draw(g, x, y-15);
 		
 		
 		if(up) {

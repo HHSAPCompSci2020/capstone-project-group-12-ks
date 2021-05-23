@@ -2,6 +2,10 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Double;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 
 /**
@@ -38,7 +42,7 @@ public class Room implements Collidable {
 	 * @param filePath filePath for subtitles file with text
 	 * @param roomName Name of the Room
 	 */
-	public Room(String filePath, String roomName, int w, int h) {
+	public Room(String filePath, String roomName, String imageFilePath, int w, int h) {
 		//set image
 		numEnemiesForRoom=10;
 		canMoveToNextRoom = false;
@@ -46,6 +50,14 @@ public class Room implements Collidable {
 		this.roomName=roomName;
 		width = w;
 		height = h;
+		
+		img = new ImageIcon(imageFilePath).getImage();
+		try {
+			img = ImageIO.read(getClass().getClassLoader().getResource(imageFilePath));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	/**
@@ -55,6 +67,7 @@ public class Room implements Collidable {
 	public void draw(Graphics g) {
 		//draw image here because its the background image for room
 		g.drawString(roomName, 230, 10);
+		g.drawImage(img, -15, -10, null);
 	}
 	
 	/**

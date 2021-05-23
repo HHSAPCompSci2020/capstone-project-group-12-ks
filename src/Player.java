@@ -40,6 +40,10 @@ public class Player implements KeyListener, Collidable{
 	private Weapon currentWeapon;
 	private boolean touchingWall;
 	
+	private double direction;
+	
+	
+	
 	private int count = 1;
 
 	/**
@@ -154,9 +158,10 @@ public class Player implements KeyListener, Collidable{
 		currentWeapon = new Weapon();
 		count = 1;
 		up = false;
-		down = false;
+		down = true;
 		left = false;
 		right = false;
+		direction = -1;
 	}
 
 //	//Methods
@@ -200,8 +205,8 @@ public class Player implements KeyListener, Collidable{
 	 * @param g the graphics object connected to the pixel grid you wish to draw this object on
 	 */
 	public void draw(Graphics g) {
-		System.out.println("IN DRAW --- "+up+" "+down+" "+left+" "+right);
-		System.out.println(xSpeed+" "+ySpeed);
+		//System.out.println("IN DRAW --- "+up+" "+down+" "+left+" "+right);
+		//System.out.println(xSpeed+" "+ySpeed+" "+x+" "+y);
 		g.setColor(Color.blue);
 		//g.drawImage(right1, x-165, y-105, null);
 		if(isLeft) {
@@ -290,6 +295,13 @@ public class Player implements KeyListener, Collidable{
 //		isVisible = true;
 //	}
 //
+	
+	public void setLeft(boolean left) {
+		this.left=left;
+	}
+	public void setRight(boolean right) {
+		this.right=right;
+	}
 	/**
 	 * Immediately moves Player to new Location
 	 * @param x X coordinate of Where the Player object should move
@@ -319,6 +331,29 @@ public class Player implements KeyListener, Collidable{
 		// TODO Auto-generated method stub
 		int keycode = e.getKeyCode();
 		
+
+		if(keycode==KeyEvent.VK_D) 
+		{
+			//setLeft(false);
+			setRight(true);
+		
+		}
+		else if(keycode==KeyEvent.VK_A) 
+		{
+			//setLeft(true);
+			setLeft(true);
+			
+		}
+		else if(keycode==KeyEvent.VK_S) 
+		{
+			down = true;
+		
+		}
+		else if(keycode==KeyEvent.VK_W) 
+		{
+			up = true;
+			
+		}
 		
 
 	}
@@ -331,13 +366,13 @@ public class Player implements KeyListener, Collidable{
 		if(keycode==KeyEvent.VK_D) 
 		{
 			//setLeft(false);
-			right = true;
+			setRight(true);
 			this.setXSpeed(currentSpeedConstant);
 		}
 		else if(keycode==KeyEvent.VK_A) 
 		{
 			//setLeft(true);
-			left = true;
+			setLeft(true);
 			this.setXSpeed(-currentSpeedConstant);
 		}
 		else if(keycode==KeyEvent.VK_S) 
@@ -359,13 +394,13 @@ public class Player implements KeyListener, Collidable{
 		if (e.getKeyCode() == KeyEvent.VK_A) 
 		{
 			//setLeft(true);
-			left = false;
+			setLeft(false);
 			this.setXSpeed(0);
 		} 
 		else if (e.getKeyCode() == KeyEvent.VK_D) 
 		{
 			//setLeft(false);
-			right = false;
+			setRight(false);
 			this.setXSpeed(0);
 		} 
 		else if (e.getKeyCode() == KeyEvent.VK_W) 

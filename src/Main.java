@@ -15,7 +15,7 @@ public class Main extends JFrame {
 	public static void main(String[] args) {
 		System.out.println("Welcome to the Dungeon");
 		
-		GameBoard board = new GameBoard(50,50,500,500);
+		GameBoard board = new GameBoard(50,50,750,550);
 		Graphics g = board.getGraphics();
 		
 		

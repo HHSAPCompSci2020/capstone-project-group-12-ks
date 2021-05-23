@@ -28,7 +28,8 @@ public class Player implements KeyListener, Collidable{
 	private Image leftImage;
 	private Image testImage;
 	private int counter;
-	private boolean left,right,jump,crouch;
+	private boolean left,right,up,down;
+	private Image up1, up2, up3, down1, down2, down3, left1, left2,left3, right1,right2, right3;
 
 	private double xSpeed, ySpeed;
 	private Image rightImage, leftImages;
@@ -38,6 +39,8 @@ public class Player implements KeyListener, Collidable{
 	
 	private Weapon currentWeapon;
 	private boolean touchingWall;
+	
+	private int count = 1;
 
 	/**
 	 * Constructor that creates a Player Object
@@ -50,13 +53,91 @@ public class Player implements KeyListener, Collidable{
 		//image = img;
 //		testImage = new ImageIcon("images/Test.png").getImage();
 //		testImage = Toolkit.getDefaultToolkit().getImage("images/Test.png");
-		testImage = new ImageIcon("Images/position1.png").getImage();
+		up1 = new ImageIcon("Images/position10.png").getImage();
 		try {
-			testImage = ImageIO.read(getClass().getClassLoader().getResource("Images/position1.png"));
+			up1 = ImageIO.read(getClass().getClassLoader().getResource("Images/position10.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println(testImage==null);
+		
+		up2 = new ImageIcon("Images/position11.png").getImage();
+		try {
+			up2 = ImageIO.read(getClass().getClassLoader().getResource("Images/position11.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		up3 = new ImageIcon("Images/position12.png").getImage();
+		try {
+			up3 = ImageIO.read(getClass().getClassLoader().getResource("Images/position12.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		left1 = new ImageIcon("Images/position4.png").getImage();
+		try {
+			left1 = ImageIO.read(getClass().getClassLoader().getResource("Images/position4.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		left2 = new ImageIcon("Images/position5.png").getImage();
+		try {
+			left2 = ImageIO.read(getClass().getClassLoader().getResource("Images/position5.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		left3 = new ImageIcon("Images/position6.png").getImage();
+		try {
+			left3 = ImageIO.read(getClass().getClassLoader().getResource("Images/position6.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		right1 = new ImageIcon("Images/position7.png").getImage();
+		try {
+			right1 = ImageIO.read(getClass().getClassLoader().getResource("Images/position7.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		right2 = new ImageIcon("Images/position8.png").getImage();
+		try {
+			right2 = ImageIO.read(getClass().getClassLoader().getResource("Images/position8.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		right3 = new ImageIcon("Images/position9.png").getImage();
+		try {
+			right3 = ImageIO.read(getClass().getClassLoader().getResource("Images/position9.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		down1 = new ImageIcon("Images/position1.png").getImage();
+		try {
+			down1 = ImageIO.read(getClass().getClassLoader().getResource("Images/position1.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		down2 = new ImageIcon("Images/position2.png").getImage();
+		try {
+			down2 = ImageIO.read(getClass().getClassLoader().getResource("Images/position2.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		down3 = new ImageIcon("Images/position3.png").getImage();
+		try {
+			down3 = ImageIO.read(getClass().getClassLoader().getResource("Images/position3.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
 		this.x = x;
 		this.y = y;
 		width = w;
@@ -71,6 +152,11 @@ public class Player implements KeyListener, Collidable{
 		touchingWall = false;
 		isVisible= true;
 		currentWeapon = new Weapon();
+		count = 1;
+		up = false;
+		down = false;
+		left = false;
+		right = false;
 	}
 
 //	//Methods
@@ -114,21 +200,84 @@ public class Player implements KeyListener, Collidable{
 	 * @param g the graphics object connected to the pixel grid you wish to draw this object on
 	 */
 	public void draw(Graphics g) {
-		if(testImage == null) System.out.println("im null");
-//		g.setColor(Color.blue);
-//		if(isLeft) {
-//			//g.drawImage(left, x, y,width,height, io);
-//			g.drawRect(x, y, width, height);
-//			g.drawString("Player",x+5,y+25);
-//		}
-//		else if(isVisible){
-//			//g.drawImage(right, x, y, width, height, io);
-//			g.drawRect(x, y, width, height);
-//			g.drawString("Player",x+5,y+25);
-//		}
+		System.out.println("IN DRAW --- "+up+" "+down+" "+left+" "+right);
+		System.out.println(xSpeed+" "+ySpeed);
+		g.setColor(Color.blue);
+		//g.drawImage(right1, x-165, y-105, null);
+		if(isLeft) {
+			//g.drawImage(left, x, y,width,height, io);
+			g.drawRect(x, y, width, height);
+			g.drawString("Player",x+5,y+25);
+		}
+		else if(isVisible){
+			//g.drawImage(right, x, y, width, height, io);
+			g.drawRect(x, y, width, height);
+			g.drawString("Player",x+5,y+25);
+		}
 		
 		currentWeapon.draw(g, x+50, y-50);
-		g.drawImage(testImage, x-165, y-105, null);
+		
+		
+		
+		if(up) {
+			if(count==1) {
+				g.drawImage(up1, x-165, y-105, null);
+				count++;
+			}
+			else if(count==2) {
+				g.drawImage(up2, x-165, y-105, null);
+				count++;
+			}
+			else if(count==3) {
+				g.drawImage(up3, x-165, y-105, null);
+				count=1;
+			}
+		}
+		else if(down) {
+			if(count==1) {
+				g.drawImage(down1, x-165, y-105, null);
+				count++;
+			}
+			else if(count==2) {
+				g.drawImage(down2, x-165, y-105, null);
+				count++;
+			}
+			else if(count==3) {
+				g.drawImage(down3, x-165, y-105, null);
+				count=1;
+			}
+		}
+		else if(left) {
+			if(count==1) {
+				g.drawImage(left1, x-165, y-105, null);
+				count++;
+			}
+			else if(count==2) {
+				g.drawImage(left2, x-165, y-105, null);
+				count++;
+			}
+			else if(count==3) {
+				g.drawImage(left3, x-165, y-105, null);
+				count=1;
+			}
+		}
+		else if(right) {
+			if(count==1) {
+				g.drawImage(right1, x-165, y-105, null);
+				count++;
+			}
+			else if(count==2) {
+				g.drawImage(right2, x-165, y-105, null);
+				count++;
+			}
+			else if(count==3) {
+				g.drawImage(right3, x-165, y-105, null);
+				count=1;
+			}
+		}
+		
+		
+		
 		//g.drawImage(testImage, 50, 50, null);
 		
 	}
@@ -176,7 +325,7 @@ public class Player implements KeyListener, Collidable{
 	@Override
 	public void keyPressed(KeyEvent e) 
 	{
-//		System.out.println("FDJ ");
+		System.out.println("IN KEY PRESSED ");
 		int keycode = e.getKeyCode();
 
 		if(keycode==KeyEvent.VK_D) 
@@ -193,12 +342,12 @@ public class Player implements KeyListener, Collidable{
 		}
 		else if(keycode==KeyEvent.VK_S) 
 		{
-			crouch = true;
+			down = true;
 			this.setYSpeed(currentSpeedConstant);
 		}
 		else if(keycode==KeyEvent.VK_W) 
 		{
-			jump = true;
+			up = true;
 			this.setYSpeed(-currentSpeedConstant);
 		}
 	
@@ -206,6 +355,7 @@ public class Player implements KeyListener, Collidable{
 	@Override
 	public void keyReleased(KeyEvent e) 
 	{
+		System.out.println("IN KEY RELEASED");
 		if (e.getKeyCode() == KeyEvent.VK_A) 
 		{
 			//setLeft(true);
@@ -220,12 +370,12 @@ public class Player implements KeyListener, Collidable{
 		} 
 		else if (e.getKeyCode() == KeyEvent.VK_W) 
 		{
-			jump = false;
+			up = false;
 			this.setYSpeed(0);
 		} 
 		else if (e.getKeyCode() == KeyEvent.VK_S) 
 		{
-			crouch = false;
+			down = false;
 			this.setYSpeed(0);
 		}
 		else if(e.getKeyCode()==KeyEvent.VK_SPACE) 

@@ -1,12 +1,15 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Double;
 import java.awt.image.ImageObserver;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 /**
@@ -45,7 +48,14 @@ public class Player implements KeyListener, Collidable{
 	{
 
 		//image = img;
-		testImage = new ImageIcon("images/Test.png").getImage();
+//		testImage = new ImageIcon("images/Test.png").getImage();
+//		testImage = Toolkit.getDefaultToolkit().getImage("images/Test.png");
+		testImage = new ImageIcon("Images/Test.png").getImage();
+		try {
+			testImage = ImageIO.read(getClass().getClassLoader().getResource("Images/Test.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		this.x = x;
 		this.y = y;
 		width = w;
@@ -103,7 +113,8 @@ public class Player implements KeyListener, Collidable{
 	 * @param g the graphics object connected to the pixel grid you wish to draw this object on
 	 */
 	public void draw(Graphics g) {
-		g.setColor(Color.black);
+		if(testImage == null) System.out.println("im null");
+		g.setColor(Color.blue);
 		if(isLeft) {
 			//g.drawImage(left, x, y,width,height, io);
 			g.drawRect(x, y, width, height);
@@ -116,8 +127,9 @@ public class Player implements KeyListener, Collidable{
 		}
 		
 		currentWeapon.draw(g, x+50, y-50);
+		g.drawImage(testImage, x, y, 50, 50, null);
+		//g.drawImage(testImage, 50, 50, null);
 		
-		g.drawImage(testImage, x, y, null);
 	}
 
 //	public void setLeft(boolean left) {

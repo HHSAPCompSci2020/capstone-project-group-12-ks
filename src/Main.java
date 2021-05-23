@@ -35,7 +35,6 @@ public class Main extends JFrame {
 			
 		}
 		
-		
 //		Main window = new Main(); 
 //		window.setTitle("Legends of Kenjiro: The Infinite Dungeon");
 //		window.setBounds(100, 100, 500, 400);

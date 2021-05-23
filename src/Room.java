@@ -102,7 +102,7 @@ public class Room implements Collidable {
 	public Double getHitbox() {
 		Rectangle2D.Double hitbox;
 		if(imageFilePath.indexOf("Option1")!=-1) {
-		hitbox = new Rectangle2D.Double(50,50,width-50,height-50);
+		hitbox = new Rectangle2D.Double(50,50,width-100,height-100);
 		}
 		else {
 		hitbox = new Rectangle2D.Double(0,0,width,height);

@@ -182,8 +182,9 @@ public class GameBoard extends JPanel implements ChildEventListener{
 				}
 			}
 		}
-		currentRoom.collisionCheck(p1);
 		
+		boolean collided = currentRoom.collisionCheck(p1);
+		if(!collided)
 		p1.move();
 		PlayerData data = new PlayerData();
 		data.x = p1.getX();
@@ -191,7 +192,11 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		playerRef.setValueAsync(data);
 		
 		
-
+		for(int i=0;i<enemies.size();i++) {
+			if(!currentRoom.collisionCheck(enemies.get(i))){
+				enemies.move(i);
+			}
+		}
 		enemies.moveAll();
 		enemies.drawAll(bufferedG);
 		

@@ -1,11 +1,13 @@
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.Rectangle2D.Double;
 /**
  * Enemy Class that represents a single enemy unit in the game
  * @author srikrishna joshi
  * @version 1.0.0
  */
-public class Enemy {
+public class Enemy implements Collidable{
 	
 	private double x,y;
 	private double xSpeed, ySpeed;
@@ -65,6 +67,27 @@ public class Enemy {
 	}
 	public double getY() {
 		return y;
+	}
+
+
+	@Override
+	public void onImpact(Collidable other) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public boolean collisionCheck(Collidable other) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public Double getHitbox() {
+		
+		return new Rectangle2D.Double(x+xSpeed,y+ySpeed,50,50);
 	}
 
 }

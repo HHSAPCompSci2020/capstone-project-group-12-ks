@@ -55,6 +55,22 @@ public class EnemyManager implements ChildEventListener {
 		}
 	}
 	
+	public void move(int i) {
+		enemies.get(i).move();
+		EnemyData data = new EnemyData();
+		data.x = enemies.get(i).getX();
+		data.y = enemies.get(i).getY();
+		refs.get(i).setValueAsync(data);
+	}
+	
+	public Enemy get(int i) {
+		return enemies.get(i);
+	}
+	
+	public int size() {
+		return enemies.size();
+	}
+	
 	/**
 	 * Used to create a new Enemy that will be managed by this class
 	 */

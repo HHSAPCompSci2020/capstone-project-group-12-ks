@@ -40,6 +40,8 @@ public class Player implements KeyListener, Collidable{
 	
 	private Weapon currentWeapon;
 	
+	private boolean inMotion;
+	
 	
 	
 	
@@ -160,6 +162,7 @@ public class Player implements KeyListener, Collidable{
 		down = true;
 		left = false;
 		right = false;
+		inMotion = false;
 
 	}
 
@@ -363,6 +366,7 @@ public class Player implements KeyListener, Collidable{
 	@Override
 	public void keyPressed(KeyEvent e) 
 	{
+		inMotion=true;
 		System.out.println("IN KEY PRESSED ");
 		int keycode = e.getKeyCode();
 
@@ -393,6 +397,7 @@ public class Player implements KeyListener, Collidable{
 	@Override
 	public void keyReleased(KeyEvent e) 
 	{
+		inMotion = false;
 		System.out.println("IN KEY RELEASED");
 		if (e.getKeyCode() == KeyEvent.VK_A) 
 		{
@@ -464,10 +469,13 @@ public class Player implements KeyListener, Collidable{
 
 	@Override
 	public Double getHitbox() {
-		Rectangle2D.Double hitbox = new Rectangle2D.Double(x+xSpeed,y+ySpeed,width,height);//this is a projected hitbox
+		Rectangle2D.Double hitbox = new Rectangle2D.Double(x+xSpeed,y+ySpeed,width,height+20);//this is a projected hitbox
 		return hitbox;
 	}
-
+	
+	public boolean isAttacking() {
+		return currentWeapon.isSwingingt();
+	}
 }
 
 

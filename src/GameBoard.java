@@ -196,7 +196,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 				enemies.move(i);
 			}
 		}
-		enemies.moveAll();
+		//enemies.moveAll();
 		enemies.drawAll(bufferedG);
 		
 		repaint();

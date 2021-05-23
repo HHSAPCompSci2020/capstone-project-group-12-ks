@@ -88,7 +88,7 @@ public class EnemyManager implements ChildEventListener {
 			indeces.add(refs.size());
 			newRef.setValueAsync(data);
 			try {
-				Thread.sleep(200);//delay to add enemy to database
+				Thread.sleep(500);//delay to add enemy to database
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

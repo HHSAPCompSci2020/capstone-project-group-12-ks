@@ -9,6 +9,8 @@ public class PlayerData{
 		
 	}
 	public double x, y;
+	public boolean swing;
+	
 	
 	/**
 	 * getter for x coord
@@ -23,5 +25,9 @@ public class PlayerData{
 	 */
 	public double getY(){
 		return y;
+	}
+	
+	public boolean getSwing() {
+		return swing;
 	}
 }

@@ -34,7 +34,7 @@ public class Weapon implements Collidable{
 	 * @param y Y coordinate you wish to draw this Weapon Object
 	 */
 	public void draw(Graphics g,double x, double y) {
-		if(swing && swingCount<=5) {
+		if(swing && swingCount<=3) {
 			g.drawRect((int)x, (int)y+90, 90, 10);
 			swingCount++;
 		}
@@ -73,4 +73,5 @@ public class Weapon implements Collidable{
 		return null;
 	}
 
+	public boolean isSwingingt() {return swing;}
 }

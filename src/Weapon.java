@@ -1,11 +1,12 @@
 import java.awt.Graphics;
+import java.awt.geom.Rectangle2D.Double;
 
 /**
  * Weapon Class that represents a weapon a Player can use (In the Future Enemy Class may use it too)
  * @author srikrishna
  * @version 1.0.0
  */
-public class Weapon {
+public class Weapon implements Collidable{
 	private String weaponName;
 	private int weaponRarity;
 	private String weaponType;
@@ -51,6 +52,24 @@ public class Weapon {
 	public void attack() {
 		swing=true;
 		swingCount = 0;
+	}
+
+	@Override
+	public void onImpact(Collidable other) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean collisionCheck(Collidable other) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Double getHitbox() {
+		
+		return null;
 	}
 
 }

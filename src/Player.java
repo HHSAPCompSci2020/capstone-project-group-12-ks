@@ -50,12 +50,13 @@ public class Player implements KeyListener, Collidable{
 		//image = img;
 //		testImage = new ImageIcon("images/Test.png").getImage();
 //		testImage = Toolkit.getDefaultToolkit().getImage("images/Test.png");
-		testImage = new ImageIcon("Images/Test.png").getImage();
+		testImage = new ImageIcon("Images/pos1.png").getImage();
 		try {
-			testImage = ImageIO.read(getClass().getClassLoader().getResource("Images/Test.png"));
+			testImage = ImageIO.read(getClass().getClassLoader().getResource("Images/pos1.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		System.out.println(testImage==null);
 		this.x = x;
 		this.y = y;
 		width = w;
@@ -127,7 +128,7 @@ public class Player implements KeyListener, Collidable{
 		}
 		
 		currentWeapon.draw(g, x+50, y-50);
-		g.drawImage(testImage, x, y, 50, 50, null);
+		g.drawImage(testImage, x, y, null);
 		//g.drawImage(testImage, 50, 50, null);
 		
 	}

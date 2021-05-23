@@ -30,6 +30,7 @@ public class Player implements KeyListener, Collidable{
 	private int counter;
 	private boolean left,right,up,down;
 	private Image up1, up2, up3, down1, down2, down3, left1, left2,left3, right1,right2, right3;
+	
 
 	private double xSpeed, ySpeed;
 	private Image rightImage, leftImages;
@@ -38,9 +39,7 @@ public class Player implements KeyListener, Collidable{
 	private double currentSpeedConstant =20;
 	
 	private Weapon currentWeapon;
-	private boolean touchingWall;
 	
-	private double direction;
 	
 	
 	
@@ -53,7 +52,7 @@ public class Player implements KeyListener, Collidable{
 	 */
 	public Player(int x, int y, int w, int h)
 	{
-
+		System.out.println();
 		//image = img;
 //		testImage = new ImageIcon("images/Test.png").getImage();
 //		testImage = Toolkit.getDefaultToolkit().getImage("images/Test.png");
@@ -153,7 +152,7 @@ public class Player implements KeyListener, Collidable{
 		//left=new ImageIcon("png name").getImage();
 		xSpeed = 0;
 		ySpeed = 0;
-		touchingWall = false;
+
 		isVisible= true;
 		currentWeapon = new Weapon();
 		count = 1;
@@ -161,7 +160,7 @@ public class Player implements KeyListener, Collidable{
 		down = true;
 		left = false;
 		right = false;
-		direction = -1;
+
 	}
 
 //	//Methods
@@ -205,8 +204,8 @@ public class Player implements KeyListener, Collidable{
 	 * @param g the graphics object connected to the pixel grid you wish to draw this object on
 	 */
 	public void draw(Graphics g) {
-		//System.out.println("IN DRAW --- "+up+" "+down+" "+left+" "+right);
-		//System.out.println(xSpeed+" "+ySpeed+" "+x+" "+y);
+		System.out.println("IN DRAW --- "+up+" "+down+" "+left+" "+right);
+	    System.out.println(xSpeed+" "+ySpeed+" "+x+" "+y);
 		g.setColor(Color.blue);
 		//g.drawImage(right1, x-165, y-105, null);
 		if(isLeft) {
@@ -353,6 +352,10 @@ public class Player implements KeyListener, Collidable{
 		{
 			up = true;
 			
+		}
+		else if(keycode==KeyEvent.VK_R) {
+			currentWeapon.attack();
+			System.out.println("DONE");
 		}
 		
 

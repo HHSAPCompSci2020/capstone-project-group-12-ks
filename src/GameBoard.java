@@ -51,8 +51,6 @@ public class GameBoard extends JPanel implements ChildEventListener{
 	private OnDisconnect disconnector;
 	private DatabaseReference enemyRef;
 	
-	
-	
 	private Stack<Room> rooms;
 
 
@@ -183,6 +181,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 			}
 		}
 		
+		p1.draw(getBufferedGraphics());
 		boolean collided = currentRoom.collisionCheck(p1);
 		if(!collided)
 		p1.move();

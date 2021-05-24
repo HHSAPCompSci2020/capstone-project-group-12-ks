@@ -49,9 +49,11 @@ public class EnemyManager implements ChildEventListener {
 	 */
 	public void moveAll(int x, int y) {
 		for(int i : indeces) {
+			System.out.println("he");
 			if(enemies.get(i) == null) {
 				return;
 			}
+			
 			enemies.get(i).move(x,y);
 			EnemyData data = new EnemyData();
 			data.x = enemies.get(i).getX();

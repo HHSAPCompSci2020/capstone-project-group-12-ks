@@ -10,8 +10,8 @@ public class PlayerData{
 	}
 	public double x, y;
 	public boolean swing;
-	public double yVel, xVel;
-	
+	public double health;
+	public boolean left,right,up,down;
 	
 	/**
 	 * getter for x coord
@@ -32,11 +32,23 @@ public class PlayerData{
 		return swing;
 	}
 	
-	public double getyVel() {
-		return yVel;
+	public double getHealth() {
+		return health;
 	}
 	
-	public double getxVel() {
-		return xVel;
+	public boolean getLeft() {
+		return left;
+	}
+	
+	public boolean getRight() {
+		return right;
+	}
+	
+	public boolean getUp() {
+		return up;
+	}
+	
+	public boolean getDown() {
+		return down;
 	}
 }

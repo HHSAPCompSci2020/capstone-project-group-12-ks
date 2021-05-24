@@ -483,7 +483,7 @@ public class Player implements KeyListener, Collidable{
 //			} else {
 //				y-=cross.getHeight();
 //			}
-			health.reduceHealth(200);
+			health.reduceHealth(10);
 			}
 		
 		}
@@ -526,6 +526,44 @@ public class Player implements KeyListener, Collidable{
 		this.y=y;
 	}
 	
+	public boolean getLeft() {
+		return left;
+	}
+	
+	public boolean getRight() {
+		return right;
+	}
+	
+	public boolean getUp() {
+		return up;
+	}
+	
+	public boolean getDown() {
+		return down;
+	}
+	
+	public void setUp(boolean u) {
+		up = u;
+	}
+	
+	public void setDown(boolean d) {
+		down = d;
+	}
+	public void setHealth(double h) {
+		health.reduceHealth(health.getHealth()-h);
+	}
+	
+	public double getHealth() {
+		return health.getHealth();
+	}
+	
+	public boolean getSwing() {
+		return currentWeapon.isSwinging();
+	}
+	
+	public void setSwing() {
+		currentWeapon.attack();
+	}
 	public void reduceHealth(double amt) {
 		health.reduceHealth(amt);
 	}

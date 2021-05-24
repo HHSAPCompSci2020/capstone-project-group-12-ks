@@ -107,7 +107,11 @@ public class Weapon implements Collidable{
 		if(!swing) return false;
 		else if(getHitbox()==null) return false;
 		else {
-			return other.getHitbox().intersects(this.getHitbox());
+			if(other.getHitbox().intersects(this.getHitbox())) {
+				other.onImpact(this);
+				return true;
+			}
+			return false;
 		}
 	}
 

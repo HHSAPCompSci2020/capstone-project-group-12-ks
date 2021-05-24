@@ -64,6 +64,16 @@ public class EnemyManager implements ChildEventListener {
 		refs.get(i).setValueAsync(data);
 	}
 	
+	public void collide(Collidable other) {
+		for(int i = 0; i < refs.size(); i++) {
+			other.collisionCheck(enemies.get(i));
+			EnemyData data = new EnemyData();
+			data.x = enemies.get(i).getX();
+			data.y = enemies.get(i).getY();
+			refs.get(i).setValueAsync(data);
+		}
+	}
+	
 	public Enemy get(int i) {
 		return enemies.get(i);
 	}
@@ -126,6 +136,8 @@ public class EnemyManager implements ChildEventListener {
 		}
 		
 	}
+	
+	
 
 	@Override
 	public void onChildChanged(DataSnapshot arg0, String arg1) {

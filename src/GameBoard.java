@@ -193,17 +193,20 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		playerRef.setValueAsync(data);
 		
 		
-		for(int i=0;i<enemies.size();i++) {
-			if(!currentRoom.collisionCheck(enemies.get(i))){
-				enemies.move(i);
-			}
-		}
+//		for(int i=0;i<enemies.size();i++) {
+//			if(!currentRoom.collisionCheck(enemies.get(i))){
+//				enemies.move(i);
+//			}
+//		}
+		enemies.moveAll();
 		Weapon temp=p1.getWeapon();
-		for(int i=0;i<enemies.size();i++) {
-			if(temp.collisionCheck(enemies.get(i))){
-				enemies.get(i).reduceHealth(50);
-			}
-		}
+		enemies.collide(currentRoom);
+		enemies.collide(temp);
+//		for(int i=0;i<enemies.size();i++) {
+//			if(temp.collisionCheck(enemies.get(i))){
+//				enemies.get(i).reduceHealth(50);
+//			}
+//		}
 		enemies.drawAll(bufferedG);
 		
 		repaint();

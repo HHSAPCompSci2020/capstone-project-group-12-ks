@@ -78,11 +78,12 @@ public class Enemy implements Collidable{
 	@Override
 	public void onImpact(Collidable other) {
 		if(other.getClass() == Room.class || other.getClass().getSuperclass() == Room.class) {
-			xSpeed = 0;
-			ySpeed = 0;
+			x = 100;
+			y = 100;
 		}
 		if(other.getClass() == Weapon.class || other.getClass().getSuperclass() == Weapon.class) {
 			reduceHealth(50);
+			System.out.println("hi");
 		}
 		
 	}

@@ -9,6 +9,7 @@ public class EnemyData{
 		
 	}
 	public double x, y;
+	public double health;
 	
 	/**
 	 * getter for x coord
@@ -23,5 +24,9 @@ public class EnemyData{
 	 */
 	public double getY(){
 		return y;
+	}
+	
+	public double getHealth() {
+		return health;
 	}
 }

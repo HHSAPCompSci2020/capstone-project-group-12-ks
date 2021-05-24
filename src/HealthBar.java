@@ -36,4 +36,7 @@ public class HealthBar {
 	public void increaseHealth(double amt) {
 		currentHealth+=amt;
 	}
+	public double getHealth() {
+		return currentHealth;
+	}
 }

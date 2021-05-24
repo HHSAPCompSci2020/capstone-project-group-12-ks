@@ -149,7 +149,12 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		
 		
 		for(int i=10;i>0;i--) {
+			if(i==8) {
+				rooms.add(new BossRoom("scripts/Room1.txt","Boss Room","Images/RoomOption2.png", w, h));
+			}
+			else {
 			rooms.add(new EnemyRoom("scripts/Room1.txt","Room "+i,"Images/RoomOption1.png", w, h,3));
+			}
 		}
 		
 //		for(int i=0;i<rooms.size();i++) {
@@ -165,6 +170,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 
 
 		frame.addKeyListener(p1);
+	
 
 
 	}
@@ -209,7 +215,8 @@ public class GameBoard extends JPanel implements ChildEventListener{
 //				enemies.move(i);
 //			}
 //		}
-		//enemies.moveAll(p1.getX(),p1.getY());
+	enemies.moveAll(p1.getX(),p1.getY()); //TO BE UNCOMMENTED
+	//TO BE UNCOMMENTED	
 		Weapon temp=p1.getWeapon();
 		enemies.collide(currentRoom);
 		enemies.collide(temp);
@@ -227,7 +234,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 				p1.reduceHealth(40);
 			}
 			else {
-				enemies.get(i).move(p1.getX(), p1.getY());
+			//	enemies.get(i).move(p1.getX(), p1.getY()); //TO BE COMMENTED
 			}
 		}
 		

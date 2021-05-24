@@ -74,7 +74,7 @@ public class EnemyManager implements ChildEventListener {
 		data.y = enemies.get(i).getY();
 		data.health = enemies.get(i).getHealth();
 		refs.get(i).setValueAsync(data);
-		if(enemies.get(i).getHealth()<= 5) {
+		if(enemies.get(i).getHealth()<= 0) {
 			refs.get(i).removeValueAsync();
 		}
 		

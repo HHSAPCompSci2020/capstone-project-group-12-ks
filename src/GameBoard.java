@@ -149,7 +149,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		
 		
 		for(int i=10;i>0;i--) {
-			rooms.add(new EnemyRoom("scripts/Room1.txt","Room "+i,"Images/RoomOption1.png", w, h,1));
+			rooms.add(new EnemyRoom("scripts/Room1.txt","Room "+i,"Images/RoomOption1.png", w, h,3));
 		}
 		
 //		for(int i=0;i<rooms.size();i++) {
@@ -209,7 +209,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 //				enemies.move(i);
 //			}
 //		}
-		enemies.moveAll();
+		enemies.moveAll(p1.getX(),p1.getY());
 		Weapon temp=p1.getWeapon();
 		enemies.collide(currentRoom);
 		enemies.collide(temp);

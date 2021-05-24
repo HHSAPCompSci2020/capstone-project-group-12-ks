@@ -48,23 +48,38 @@ public class Enemy implements Collidable{
 	/**
 	 * Used to make the enemy move, intended to be used continously with other objects
 	 */
-	public void move() {
-		int r1 = (int)(Math.random()*2)+1;
-		int r2 = (int)(Math.random()*2)+1; 
-		
-		if(r1==1) {
-			x+=currentSpeedConstant;
+	public void move(int x, int y) {
+		if(this.x-x>0) {
+			this.x-=currentSpeedConstant;
 		}
-		else if(r1==2) {
-			x+=-currentSpeedConstant;
+		else if(this.x-x<0) {
+			this.x+=currentSpeedConstant;
 		}
 		
-		if(r2==1) {
-			y+=currentSpeedConstant;
+		if(this.y-y>0) {
+			this.y-=currentSpeedConstant;
 		}
-		else if(r2==2) {
-			y+=-currentSpeedConstant;
+		else if(this.y-y<0) {
+			this.y+=currentSpeedConstant;
 		}
+		
+		
+//		int r1 = (int)(Math.random()*2)+1;
+//		int r2 = (int)(Math.random()*2)+1; 
+//		
+//		if(r1==1) {
+//			x+=currentSpeedConstant;
+//		}
+//		else if(r1==2) {
+//			x+=-currentSpeedConstant;
+//		}
+//		
+//		if(r2==1) {
+//			y+=currentSpeedConstant;
+//		}
+//		else if(r2==2) {
+//			y+=-currentSpeedConstant;
+//		}
 	}
 	
 	public double getX() {

@@ -163,7 +163,7 @@ public class Player implements KeyListener, Collidable{
 		left = false;
 		right = false;
 		inMotion = false;
-		health = new HealthBar(200,150,Color.GREEN);
+		health = new HealthBar(200,200,Color.GREEN);
 	}
 
 //	//Methods

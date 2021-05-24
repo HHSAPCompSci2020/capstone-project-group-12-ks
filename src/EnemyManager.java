@@ -47,12 +47,12 @@ public class EnemyManager implements ChildEventListener {
 	/**
 	 * Calles the move method for every Enemy Object contained within this object
 	 */
-	public void moveAll() {
+	public void moveAll(int x, int y) {
 		for(int i : indeces) {
 			if(enemies.get(i) == null) {
 				return;
 			}
-			enemies.get(i).move();
+			enemies.get(i).move(x,y);
 			EnemyData data = new EnemyData();
 			data.x = enemies.get(i).getX();
 			data.y = enemies.get(i).getY();
@@ -64,8 +64,8 @@ public class EnemyManager implements ChildEventListener {
 		}
 	}
 	
-	public void move(int i) {
-		enemies.get(i).move();
+	public void move(int i,int x, int y ) {
+		enemies.get(i).move(x,y);
 		EnemyData data = new EnemyData();
 		data.x = enemies.get(i).getX();
 		data.y = enemies.get(i).getY();

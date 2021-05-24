@@ -70,6 +70,7 @@ public class EnemyManager implements ChildEventListener {
 			EnemyData data = new EnemyData();
 			data.x = enemies.get(i).getX();
 			data.y = enemies.get(i).getY();
+			data.health = enemies.get(i).getHealth();
 			refs.get(i).setValueAsync(data);
 		}
 	}
@@ -96,6 +97,7 @@ public class EnemyManager implements ChildEventListener {
 			EnemyData data = new EnemyData();
 			data.x = 150;
 			data.y = 150;
+			data.health = 150;
 			indeces.add(refs.size());
 			newRef.setValueAsync(data);
 			try {
@@ -123,7 +125,9 @@ public class EnemyManager implements ChildEventListener {
 		EnemyData e = arg0.getValue(EnemyData.class);
 		int index = Integer.parseInt(arg0.getKey());
 		enemies.add(null);
-		enemies.set(index, new Enemy(e.getX(), e.getY(),new HealthBar(150,150,Color.red)));
+		Enemy enemy = new Enemy(e.getX(), e.getY(),new HealthBar(150,150,Color.red));
+		enemy.reduceHealth(150-e.getHealth());
+		enemies.set(index, enemy);
 		refs.add(null);
 		refs.set(index, arg0.getRef());
 		if(indeces.contains(index)) {
@@ -142,7 +146,9 @@ public class EnemyManager implements ChildEventListener {
 	@Override
 	public void onChildChanged(DataSnapshot arg0, String arg1) {
 		EnemyData e = arg0.getValue(EnemyData.class);
-		enemies.set(Integer.parseInt(arg0.getKey()), new Enemy(e.getX(), e.getY(),new HealthBar(150,150,Color.red)));
+		Enemy enemy = new Enemy(e.getX(), e.getY(),new HealthBar(150,150,Color.red));
+		enemy.reduceHealth(150-e.getHealth());
+		enemies.set(Integer.parseInt(arg0.getKey()), enemy);
 		
 	}
 

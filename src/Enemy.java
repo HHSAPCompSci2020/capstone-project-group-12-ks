@@ -104,5 +104,8 @@ public class Enemy implements Collidable{
 	
 	public void reduceHealth(double amt) {health.reduceHealth(amt);}
 	public void increaseHealth(double amt) {health.increaseHealth(amt);}
+	public double getHealth() {
+		return health.getHealth();
+	}
 
 }

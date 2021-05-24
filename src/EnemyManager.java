@@ -100,6 +100,9 @@ public class EnemyManager implements ChildEventListener {
 	 * Used to create a new Enemy that will be managed by this class
 	 */
 	public void spawnRoomEnemies(int enemies) {
+		indeces.clear();
+		this.enemies.clear();
+		refs.clear();
 		for(int i = 0;  i < enemies/*to be changed*/; i++) {
 			DatabaseReference newRef;
 			if(refs == null) {

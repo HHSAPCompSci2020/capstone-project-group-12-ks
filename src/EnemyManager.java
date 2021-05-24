@@ -41,6 +41,7 @@ public class EnemyManager implements ChildEventListener {
 			if(enemies.get(i) != null)
 			enemies.get(i).draw(g);
 		}
+		
 	}
 	
 	/**

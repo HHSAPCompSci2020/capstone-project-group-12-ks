@@ -208,6 +208,10 @@ public class GameBoard extends JPanel implements ChildEventListener{
 //			}
 //		}
 		enemies.drawAll(bufferedG);
+		if(currentRoom instanceof EnemyRoom) {
+			((EnemyRoom) currentRoom).reduceEnemiesLeft(enemies);
+		}
+		System.out.println(currentRoom.checkWhetherCanMoveToNextRoom());
 		
 		repaint();
 	}

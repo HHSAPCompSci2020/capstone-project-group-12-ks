@@ -33,7 +33,7 @@ public class Player implements KeyListener, Collidable{
 	
 
 	private double xSpeed, ySpeed;
-
+	private Image rightImage, leftImages;
 	private boolean isLeft;
 	
 	private double currentSpeedConstant =20;

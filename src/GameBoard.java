@@ -181,13 +181,15 @@ public class GameBoard extends JPanel implements ChildEventListener{
 			}
 		}
 		
-		p1.draw(getBufferedGraphics());
+//		p1.draw(getBufferedGraphics());
 		boolean collided = currentRoom.collisionCheck(p1);
 		if(!collided)
 		p1.move();
 		PlayerData data = new PlayerData();
 		data.x = p1.getX();
 		data.y = p1.getY();
+		data.yVel = p1.getYVel();
+		data.xVel = p1.getXVel();
 		playerRef.setValueAsync(data);
 		
 		
@@ -257,7 +259,10 @@ public class GameBoard extends JPanel implements ChildEventListener{
 	public void onChildAdded(DataSnapshot arg0, String arg1) {
 		PlayerData data = arg0.getValue(PlayerData.class);
 		players.add(null);
-		players.set(Integer.parseInt(arg0.getKey()), new Player((int)data.getX(), (int)data.getY(), 50, 50));
+		Player p = new Player((int)data.getX(), (int)data.getY(), 50, 50);
+		p.setXSpeed(data.getxVel());
+		p.setYSpeed(data.getyVel());
+		players.set(Integer.parseInt(arg0.getKey()), p);
 	}
 
 
@@ -268,9 +273,10 @@ public class GameBoard extends JPanel implements ChildEventListener{
 	 */
 	public void onChildChanged(DataSnapshot arg0, String arg1) {
 		PlayerData data = arg0.getValue(PlayerData.class);
-
-		players.set(Integer.parseInt(arg0.getKey()), new Player((int)data.getX(), (int)data.getY(), 50, 50));
-
+		Player p = new Player((int)data.getX(), (int)data.getY(), 50, 50);
+		p.setXSpeed(data.getxVel());
+		p.setYSpeed(data.getyVel());
+		players.set(Integer.parseInt(arg0.getKey()), p);
 	}
 
 

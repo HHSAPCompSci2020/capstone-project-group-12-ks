@@ -76,7 +76,13 @@ public class Enemy implements Collidable{
 
 	@Override
 	public void onImpact(Collidable other) {
-		// TODO Auto-generated method stub
+		if(other.getClass() == Room.class || other.getClass().getSuperclass() == Room.class) {
+			xSpeed = 0;
+			ySpeed = 0;
+		}
+		if(other.getClass() == Weapon.class || other.getClass().getSuperclass() == Weapon.class) {
+			reduceHealth(50);
+		}
 		
 	}
 

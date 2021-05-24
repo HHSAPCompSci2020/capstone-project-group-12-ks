@@ -10,6 +10,7 @@ public class PlayerData{
 	}
 	public double x, y;
 	public boolean swing;
+	public double yVel, xVel;
 	
 	
 	/**
@@ -29,5 +30,13 @@ public class PlayerData{
 	
 	public boolean getSwing() {
 		return swing;
+	}
+	
+	public double getyVel() {
+		return yVel;
+	}
+	
+	public double getxVel() {
+		return xVel;
 	}
 }

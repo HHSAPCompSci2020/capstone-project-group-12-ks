@@ -222,7 +222,7 @@ public class Player implements KeyListener, Collidable{
 			g.drawString("Player",x+5,y+25);
 		}
 		
-		currentWeapon.draw(g, x+50, y-50);
+		currentWeapon.draw(g, x+50, y-50,up,down,left,right);
 		health.draw(g, x, y-15);
 		
 		
@@ -474,8 +474,10 @@ public class Player implements KeyListener, Collidable{
 	}
 	
 	public boolean isAttacking() {
-		return currentWeapon.isSwingingt();
+		return currentWeapon.isSwinging();
 	}
+	
+	public Weapon getWeapon() {return currentWeapon;}
 }
 
 

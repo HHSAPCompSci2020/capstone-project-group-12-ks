@@ -93,5 +93,8 @@ public class Enemy implements Collidable{
 		
 		return new Rectangle2D.Double(x+xSpeed,y+ySpeed,50,50);
 	}
+	
+	public void reduceHealth(double amt) {health.reduceHealth(amt);}
+	public void increaseHealth(double amt) {health.increaseHealth(amt);}
 
 }

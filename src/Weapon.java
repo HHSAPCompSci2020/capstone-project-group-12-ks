@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Double;
 
 /**
@@ -13,7 +14,9 @@ public class Weapon implements Collidable{
 	private boolean swing;
 	private int swingCount;
 	private String specialAbilityName;
-	
+	private boolean up,down,left,right;
+	private double x,y;
+
 	/**
 	 * Default Constructor that creates Weapon Object
 	 */
@@ -24,29 +27,41 @@ public class Weapon implements Collidable{
 		swingCount= 0;
 		weaponType = "Great Sword";
 		weaponRarity = 1;
-		
+
 	}
-	
+
 	/**
 	 * represents the Weapon Object graphically using the Graphics object for the pixel grid it refers to
 	 * @param g the graphics object connected to the pixel grid you wish to draw this object on
 	 * @param x X coordinate you wish to draw this Weapon Object
 	 * @param y Y coordinate you wish to draw this Weapon Object
 	 */
-	public void draw(Graphics g,double x, double y) {
-		if(swing && swingCount<=3) {
-			g.drawRect((int)x, (int)y+90, 90, 10);
-			swingCount++;
+	public void draw(Graphics g,double x, double y, boolean up, boolean down, boolean left, boolean right) {
+		this.up=up;
+		this.down=down;
+		this.left=left;
+		this.right=right;
+		this.x=x;
+		this.y=y;
+		
+		
+		if(right) {
+			if(swing && swingCount<=3) {
+				g.drawRect((int)x, (int)y+90, 90, 10);
+				swingCount++;
+			}
+			else if(swing && swingCount>3) {
+				g.drawRect((int)x, (int)y, 10, 90);
+				swing=false;
+			}
+			else{
+				g.drawRect((int)x, (int)y, 10, 90);
+			}
 		}
-		else if(swing && swingCount>3) {
-			g.drawRect((int)x, (int)y, 10, 90);
-			swing=false;
-		}
-		else{
-			g.drawRect((int)x, (int)y, 10, 90);
-		}
+	//	g.drawRect((int)x, (int)y, 90, 90);
+		g.drawRect((int)x, (int)y, 10, 90);
 	}
-	
+
 	/**
 	 * Sets up variables for attack animation and initiates it
 	 */
@@ -58,20 +73,26 @@ public class Weapon implements Collidable{
 	@Override
 	public void onImpact(Collidable other) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public boolean collisionCheck(Collidable other) {
-		// TODO Auto-generated method stub
-		return false;
+		if(!swing) return false;
+		else if(getHitbox()==null) return false;
+		else {
+			return other.getHitbox().intersects(this.getHitbox());
+		}
 	}
 
 	@Override
 	public Double getHitbox() {
-		
+		Rectangle2D.Double hitbox;
+		if(swing && right) {
+			hitbox = new Rectangle2D.Double(x,y,90,90);
+		}
 		return null;
 	}
 
-	public boolean isSwingingt() {return swing;}
+	public boolean isSwinging() {return swing;}
 }

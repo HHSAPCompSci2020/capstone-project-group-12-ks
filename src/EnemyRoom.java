@@ -12,16 +12,18 @@ public class EnemyRoom extends Room {
 
 	private int enemiesLeft;
 	private int alternator;
+	private int originalNumOfEnemies;
 
 	/**
 	 * Creates a EnemyRoom Object
 	 * @param filePath filePath to the subtitles with the story for this room
 	 * @param roomName the name this room will recieve
 	 */
-	public EnemyRoom(String filePath, String roomName, String imageFilePath, int w, int h) {
+	public EnemyRoom(String filePath, String roomName, String imageFilePath, int w, int h, int originalNumOfEnemies) {
 		super(filePath, roomName,imageFilePath, w, h);
 		enemiesLeft = numEnemiesForRoom;
 		alternator=0;
+		this.originalNumOfEnemies=originalNumOfEnemies;
 	}
 
 
@@ -75,5 +77,7 @@ public class EnemyRoom extends Room {
 		hitbox = new Rectangle2D.Double(85, 380, 45, 100);
 		return hitbox;
 	}
+	
+	public int getOriginalNumberOfEnemies() {return originalNumOfEnemies;}
 
 }

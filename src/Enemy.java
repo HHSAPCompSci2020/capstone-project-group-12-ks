@@ -16,6 +16,7 @@ public class Enemy implements Collidable{
 	private double currentSpeedConstant = 15;
 	private Image img;
 	private HealthBar health;
+	private boolean move;
 	
 	
 	
@@ -29,6 +30,7 @@ public class Enemy implements Collidable{
 		this.x = x;
 		this.y = y;
 		this.health=health;
+		move = true;
 	}
 	
 	
@@ -49,6 +51,11 @@ public class Enemy implements Collidable{
 	 * Used to make the enemy move, intended to be used continously with other objects
 	 */
 	public void move(int x, int y) {
+		if(!move) {
+			move = true;
+			System.out.println("i");
+			return;
+		}
 		if(this.x-x>0) {
 			this.x-=currentSpeedConstant;
 		}
@@ -93,8 +100,10 @@ public class Enemy implements Collidable{
 	@Override
 	public void onImpact(Collidable other) {
 		if(other.getClass() == Room.class || other.getClass().getSuperclass() == Room.class) {
-			x = 100;
-			y = 100;
+//			x = 100;
+//			y = 100;
+			move = false;
+			
 		}
 		if(other.getClass() == Weapon.class || other.getClass().getSuperclass() == Weapon.class) {
 			health.reduceHealth(((Weapon) other).getDamage());

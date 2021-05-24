@@ -140,7 +140,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 //		spawn.players = newData;
 		playerRef.setValueAsync(currentPost);
 		try {
-			Thread.sleep(500);//delay to add player to database
+			Thread.sleep(700);//delay to add player to database
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -181,7 +181,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 			}
 		}
 		
-//		p1.draw(getBufferedGraphics());
+		p1.draw(getBufferedGraphics());
 		boolean collided = currentRoom.collisionCheck(p1);
 		if(!collided)
 		p1.move();

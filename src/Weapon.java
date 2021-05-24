@@ -73,15 +73,28 @@ public class Weapon implements Collidable{
 		}
 		else if(down) {
 			if(swing && swingCount<=3) {
-				g.drawRect((int)x-140, (int)y+180, 10, 90);
+				g.drawRect((int)x-50, (int)y+100, 10, 90);
 				swingCount++;
 			}
 			else if(swing && swingCount>3) {
-				g.drawRect((int)x-140, (int)y+180, 10, 90);
+				g.drawRect((int)x-50, (int)y+100, 10, 90);
 				swing=false;
 			}
 			else{
-				g.drawRect((int)x-60, (int)y, 90, 10);
+				g.drawRect((int)x-50, (int)y+100, 90, 10);
+			}
+		}
+		else if(up) {
+			if(swing && swingCount<=3) {
+				g.drawRect((int)x-50, (int)y+25-90, 10, 90);
+				swingCount++;
+			}
+			else if(swing && swingCount>3) {
+				g.drawRect((int)x-50, (int)y+25-90, 10, 90);
+				swing=false;
+			}
+			else{
+				g.drawRect((int)x-50, (int)y+25, 90, 10);
 			}
 		}
 		//	g.drawRect((int)x, (int)y, 90, 90);

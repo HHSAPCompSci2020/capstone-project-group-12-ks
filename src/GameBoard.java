@@ -178,13 +178,13 @@ public class GameBoard extends JPanel implements ChildEventListener{
 	 * Updates database with new location of player
 	 * (intended to be called continously for the game to run)
 	 */
-	public void refreshGame() {
+	public boolean refreshGame() {
 		
 //		for(int i=0;i<rooms.size();i++) {
 //			System.out.println(rooms.get(i));
 //		}
 		if(!loaded) {
-			return;
+			return true;
 		}
 		currentRoom.draw(bufferedG);
 		Player p;
@@ -208,7 +208,8 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		p1.move();
 		if(p1.getHealth()<=0) {
 			playerRef.removeValueAsync();
-			p1 = null;
+			return true;
+			
 			
 		}
 		PlayerData data = new PlayerData();
@@ -254,6 +255,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		}
 		
 		repaint();
+		return false;
 	}
 
 	/**

@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JFrame;
@@ -22,7 +23,9 @@ public class Main extends JFrame {
 		while(true) {
 			
 			board.clear();
-			board.refreshGame();
+			if(board.refreshGame()) {
+				break;
+			}
 			board.paintComponent(g);
 			
 			
@@ -34,6 +37,10 @@ public class Main extends JFrame {
 			}
 			
 		}
+		g.setColor(Color.black);
+		g.fillRect(0, 0, 750, 550);
+		g.setColor(Color.red);
+		g.drawString("GAME OVER", 335, 275);
 		
 //		Main window = new Main(); 
 //		window.setTitle("Legends of Kenjiro: The Infinite Dungeon");
@@ -42,4 +49,5 @@ public class Main extends JFrame {
 //		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		window.setVisible(true);
 	}
+	
 }

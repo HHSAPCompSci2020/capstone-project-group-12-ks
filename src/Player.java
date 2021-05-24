@@ -222,21 +222,21 @@ public class Player implements KeyListener, Collidable{
 			g.drawString("Player",x+5,y+25);
 		}
 		
-		if(ySpeed >= 0) {
-			up = true;
-			down = false;
-		} else {
-			up = false;
-			down = true;
-		}
-		
-		if(xSpeed >= 0) {
-			right = true;
-			left = false;
-		} else {
-			right = false;
-			left = true;
-		}
+//		if(ySpeed >= 0) {
+//			up = true;
+//			down = false;
+//		} else {
+//			up = false;
+//			down = true;
+//		}
+//		
+//		if(xSpeed >= 0) {
+//			right = true;
+//			left = false;
+//		} else {
+//			right = false;
+//			left = true;
+//		}
 		
 		currentWeapon.draw(g, x+50, y-50,up,down,left,right);
 		health.draw(g, x, y-15);

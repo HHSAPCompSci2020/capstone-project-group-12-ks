@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Double;
@@ -49,10 +50,14 @@ public class Weapon implements Collidable{
 			if(swing && swingCount<=3) {
 				g.drawRect((int)x, (int)y+90, 90, 10);
 				swingCount++;
+				g.setColor(Color.PINK);
+				g.drawRect((int)x,(int)y,90,100);
 			}
 			else if(swing && swingCount>3) {
 				g.drawRect((int)x, (int)y, 10, 90);
 				swing=false;
+				g.setColor(Color.PINK);
+				g.drawRect((int)x,(int)y,90,100);
 			}
 			else{
 				g.drawRect((int)x, (int)y, 10, 90);
@@ -62,10 +67,14 @@ public class Weapon implements Collidable{
 			if(swing && swingCount<=3) {
 				g.drawRect((int)x-140, (int)y+100, 90, 10);
 				swingCount++;
+				g.setColor(Color.PINK);
+				g.drawRect((int)x-90-50, (int)y, 90, 100);
 			}
 			else if(swing && swingCount>3) {
 				g.drawRect((int)x-140, (int)y+100, 90, 10);
 				swing=false;
+				g.setColor(Color.PINK);
+				g.drawRect((int)x-90-50, (int)y, 90, 100);
 			}
 			else{
 				g.drawRect((int)x-60, (int)y+10, 10, 90);
@@ -75,10 +84,14 @@ public class Weapon implements Collidable{
 			if(swing && swingCount<=3) {
 				g.drawRect((int)x-50, (int)y+100, 10, 90);
 				swingCount++;
+				g.setColor(Color.PINK);
+				g.drawRect((int)x-50,(int)y+100, 90,100);
 			}
 			else if(swing && swingCount>3) {
 				g.drawRect((int)x-50, (int)y+100, 10, 90);
 				swing=false;
+				g.setColor(Color.PINK);
+				g.drawRect((int)x-50,(int)y+100, 90,100);
 			}
 			else{
 				g.drawRect((int)x-50, (int)y+100, 90, 10);
@@ -88,10 +101,14 @@ public class Weapon implements Collidable{
 			if(swing && swingCount<=3) {
 				g.drawRect((int)x-50, (int)y+25-90+15, 10, 90);
 				swingCount++;
+				g.setColor(Color.PINK);
+				g.drawRect((int)x-50,(int)y-50, 90,100);
 			}
 			else if(swing && swingCount>3) {
 				g.drawRect((int)x-50, (int)y+25-90+15, 10, 90);
 				swing=false;
+				g.setColor(Color.PINK);
+				g.drawRect((int)x-50,(int)y-50, 90,100);
 			}
 			else{
 				g.drawRect((int)x-50, (int)y+25+15, 90, 10);
@@ -103,7 +120,7 @@ public class Weapon implements Collidable{
 		//right
 		//g.drawRect((int)x,(int)y,90,100);
 		//left
-		//.drawRect((int)x-90-50, (int)y, 90, 100);
+		//g.drawRect((int)x-90-50, (int)y, 90, 100);
 		//up
 		//g.drawRect((int)x-50,(int)y-50, 90,100);
 		//down

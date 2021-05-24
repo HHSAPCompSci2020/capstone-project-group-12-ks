@@ -60,15 +60,15 @@ public class Weapon implements Collidable{
 		}
 		else if(left) {
 			if(swing && swingCount<=3) {
-				g.drawRect((int)x-140, (int)y+90, 90, 10);
+				g.drawRect((int)x-140, (int)y+100, 90, 10);
 				swingCount++;
 			}
 			else if(swing && swingCount>3) {
-				g.drawRect((int)x-140, (int)y+90, 90, 10);
+				g.drawRect((int)x-140, (int)y+100, 90, 10);
 				swing=false;
 			}
 			else{
-				g.drawRect((int)x-60, (int)y, 10, 90);
+				g.drawRect((int)x-60, (int)y+10, 10, 90);
 			}
 		}
 		else if(down) {
@@ -86,19 +86,28 @@ public class Weapon implements Collidable{
 		}
 		else if(up) {
 			if(swing && swingCount<=3) {
-				g.drawRect((int)x-50, (int)y+25-90, 10, 90);
+				g.drawRect((int)x-50, (int)y+25-90+15, 10, 90);
 				swingCount++;
 			}
 			else if(swing && swingCount>3) {
-				g.drawRect((int)x-50, (int)y+25-90, 10, 90);
+				g.drawRect((int)x-50, (int)y+25-90+15, 10, 90);
 				swing=false;
 			}
 			else{
-				g.drawRect((int)x-50, (int)y+25, 90, 10);
+				g.drawRect((int)x-50, (int)y+25+15, 90, 10);
 			}
 		}
 		//	g.drawRect((int)x, (int)y, 90, 90);
 		//g.drawRect((int)x, (int)y, 10, 90);
+		
+		//right
+		//g.drawRect((int)x,(int)y,90,100);
+		//left
+		//.drawRect((int)x-90-50, (int)y, 90, 100);
+		//up
+		//g.drawRect((int)x-50,(int)y-50, 90,100);
+		//down
+		//g.drawRect((int)x-50,(int)y+100, 90,100);
 	}
 
 	/**
@@ -128,9 +137,19 @@ public class Weapon implements Collidable{
 	public Double getHitbox() {
 		Rectangle2D.Double hitbox;
 		if(!swing) return null;
-		if(right) {
-			hitbox = new Rectangle2D.Double(x,y,90,90);
+		else if(right) {
+			hitbox = new Rectangle2D.Double(x,y,90,100);
 		}
+		else if(left){
+			hitbox = new Rectangle2D.Double(x-90-50, y, 90, 100);
+		}
+		else if(up){
+			hitbox = new Rectangle2D.Double(x-50,y-50, 90,100);
+		}
+		else if(up){
+			hitbox = new Rectangle2D.Double(x-50,y+100, 90,100);
+		}
+
 
 		return null;
 	}

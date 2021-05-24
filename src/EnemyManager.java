@@ -48,12 +48,18 @@ public class EnemyManager implements ChildEventListener {
 	 */
 	public void moveAll() {
 		for(int i : indeces) {
+			if(enemies.get(i) == null) {
+				return;
+			}
 			enemies.get(i).move();
 			EnemyData data = new EnemyData();
 			data.x = enemies.get(i).getX();
 			data.y = enemies.get(i).getY();
 			data.health = enemies.get(i).getHealth();
 			refs.get(i).setValueAsync(data);
+			if(enemies.get(i).getHealth()<= 0) {
+				refs.get(i).removeValueAsync();
+			}
 		}
 	}
 	
@@ -63,14 +69,14 @@ public class EnemyManager implements ChildEventListener {
 		data.x = enemies.get(i).getX();
 		data.y = enemies.get(i).getY();
 		refs.get(i).setValueAsync(data);
-//		if(enemies.get(i).getHealth()<= 0) {
-//			refs.get(i);
-//			DatabaseReference.goOffline();
-//		}
+//		
 	}
 	
 	public void collide(Collidable other) {
 		for(int i = 0; i < refs.size(); i++) {
+			if(enemies.get(i) == null) {
+				return;
+			}
 			if(other.collisionCheck(enemies.get(i))) {
 				EnemyData data = new EnemyData();
 				data.x = enemies.get(i).getX();

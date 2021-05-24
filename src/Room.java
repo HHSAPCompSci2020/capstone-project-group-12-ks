@@ -92,7 +92,7 @@ public class Room implements Collidable, MouseListener {
 		}
 		this.imageFilePath=imageFilePath;
 		
-//		storyFile = new File("file.txt");
+//		storyFile = new File("/src/scripts.Room1.txt");
 //		System.out.println(storyFile.exists());
 //		System.out.println(storyFile.isDirectory());
 //		System.out.println(storyFile.canRead());
@@ -104,7 +104,7 @@ public class Room implements Collidable, MouseListener {
 		
 		FileInputStream fis;
 		try {
-			fis = new FileInputStream("Scripts/scripts/Room1.txt");
+			fis = new FileInputStream("src/scripts/Room1.txt");
 			storyReader=new Scanner(fis);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

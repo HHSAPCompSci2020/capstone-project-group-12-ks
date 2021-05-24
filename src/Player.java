@@ -484,9 +484,9 @@ public class Player implements KeyListener, Collidable{
 //				y-=cross.getHeight();
 //			}
 			health.reduceHealth(200);
-		}
+			}
 		
-	}
+		}
 
 	@Override
 	public boolean collisionCheck(Collidable other) {
@@ -517,6 +517,7 @@ public class Player implements KeyListener, Collidable{
 	public double getYVel() {
 		return ySpeed;
 	}
+	
 }
 
 

@@ -207,8 +207,8 @@ public class Player implements KeyListener, Collidable{
 	 * @param g the graphics object connected to the pixel grid you wish to draw this object on
 	 */
 	public void draw(Graphics g) {
-		System.out.println("IN DRAW --- "+up+" "+down+" "+left+" "+right);
-	    System.out.println(xSpeed+" "+ySpeed+" "+x+" "+y);
+//		System.out.println("IN DRAW --- "+up+" "+down+" "+left+" "+right);
+//	    System.out.println(xSpeed+" "+ySpeed+" "+x+" "+y);
 		g.setColor(Color.blue);
 		//g.drawImage(right1, x-165, y-105, null);
 		if(isLeft) {
@@ -374,7 +374,7 @@ public class Player implements KeyListener, Collidable{
 		}
 		else if(keycode==KeyEvent.VK_R) {
 			currentWeapon.attack();
-			System.out.println("DONE");
+//			System.out.println("DONE");
 		}
 		
 
@@ -383,7 +383,7 @@ public class Player implements KeyListener, Collidable{
 	public void keyPressed(KeyEvent e) 
 	{
 		inMotion=true;
-		System.out.println("IN KEY PRESSED ");
+//		System.out.println("IN KEY PRESSED ");
 		int keycode = e.getKeyCode();
 
 		if(keycode==KeyEvent.VK_D) 
@@ -414,7 +414,7 @@ public class Player implements KeyListener, Collidable{
 	public void keyReleased(KeyEvent e) 
 	{
 		inMotion = false;
-		System.out.println("IN KEY RELEASED");
+//		System.out.println("IN KEY RELEASED");
 		if (e.getKeyCode() == KeyEvent.VK_A) 
 		{
 			//setLeft(true);

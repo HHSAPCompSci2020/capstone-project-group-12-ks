@@ -143,20 +143,19 @@ public class Weapon implements Collidable{
 
 	@Override
 	public boolean collisionCheck(Collidable other) {
-		if(!swing) return false;
-		else if(getHitbox()==null) return false;
-		else {
+		if(swing && getHitbox() != null) {
 			if(other.getHitbox().intersects(this.getHitbox())) {
+				System.out.println(getHitbox());
 				other.onImpact(this);
 				return true;
 			}
-			return false;
 		}
+		return false;
 	}
 
 	@Override
 	public Double getHitbox() {
-		Rectangle2D.Double hitbox;
+		Rectangle2D.Double hitbox = null;
 		if(!swing) return null;
 		else if(right) {
 			hitbox = new Rectangle2D.Double(x,y,90,100);
@@ -172,7 +171,7 @@ public class Weapon implements Collidable{
 		}
 
 
-		return null;
+		return hitbox;
 	}
 
 	public boolean isSwinging() {return swing;}

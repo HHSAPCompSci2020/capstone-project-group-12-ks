@@ -526,6 +526,10 @@ public class Player implements KeyListener, Collidable{
 		this.y=y;
 	}
 	
+	public void reduceHealth(double amt) {
+		health.reduceHealth(amt);
+	}
+	
 }
 
 

@@ -209,7 +209,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 //				enemies.move(i);
 //			}
 //		}
-		enemies.moveAll(p1.getX(),p1.getY());
+		//enemies.moveAll(p1.getX(),p1.getY());
 		Weapon temp=p1.getWeapon();
 		enemies.collide(currentRoom);
 		enemies.collide(temp);
@@ -219,9 +219,22 @@ public class GameBoard extends JPanel implements ChildEventListener{
 //			}
 //		}
 		enemies.drawAll(bufferedG);
+		
+		for(int i=0;i<enemies.size();i++) {
+			if(enemies.get(i)==null)continue;
+			if(p1.collisionCheck(enemies.get(i))) {
+				System.out.println("printed");
+				p1.reduceHealth(40);
+			}
+			else {
+				enemies.get(i).move(p1.getX(), p1.getY());
+			}
+		}
+		
 		if(currentRoom instanceof EnemyRoom) {
 			((EnemyRoom) currentRoom).reduceEnemiesLeft(enemies);
 		}
+		
 		
 		
 		if(currentRoom.checkWhetherCanMoveToNextRoom()) {

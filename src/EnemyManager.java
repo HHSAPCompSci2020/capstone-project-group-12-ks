@@ -65,12 +65,19 @@ public class EnemyManager implements ChildEventListener {
 	}
 	
 	public void move(int i,int x, int y ) {
+		if(enemies.get(i) == null) {
+			return;
+		}
 		enemies.get(i).move(x,y);
 		EnemyData data = new EnemyData();
 		data.x = enemies.get(i).getX();
 		data.y = enemies.get(i).getY();
+		data.health = enemies.get(i).getHealth();
 		refs.get(i).setValueAsync(data);
-//		
+		if(enemies.get(i).getHealth()<= 5) {
+			refs.get(i).removeValueAsync();
+		}
+		
 	}
 	
 	public void collide(Collidable other) {

@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Double;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
@@ -91,7 +92,7 @@ public class Room implements Collidable, MouseListener {
 		}
 		this.imageFilePath=imageFilePath;
 		
-//		storyFile = new File("capstone-project-group-12-ks/src/scripts/Room1.txt");
+//		storyFile = new File("/src/scripts.Room1.txt");
 //		System.out.println(storyFile.exists());
 //		System.out.println(storyFile.isDirectory());
 //		System.out.println(storyFile.canRead());
@@ -100,6 +101,16 @@ public class Room implements Collidable, MouseListener {
 //		} catch (FileNotFoundException e) {
 //			e.printStackTrace();
 //		}
+		
+		FileInputStream fis;
+		try {
+			fis = new FileInputStream("src/scripts/Room1.txt");
+			storyReader=new Scanner(fis);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		currentLine="";
 		storyActive = true;
 	}
@@ -189,6 +200,15 @@ public class Room implements Collidable, MouseListener {
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public String toString() {
+		if(filePath.indexOf("Option1")!=-1) {
+			return "Option1";
+		}
+		else {
+			return "Option2";
+		}
 	}
 	
 }

@@ -10,9 +10,19 @@ import java.awt.geom.Rectangle2D.Double;
  */
 public class EnemyRoom extends Room {
 
-	private int enemiesLeft;
-	private int alternator;
-	private int originalNumOfEnemies;
+	/**
+	 * Num enemies left in room
+	 */
+	protected int enemiesLeft;
+	
+	/**
+	 * used to draw blinking yellow plate for move to next room availability
+	 */
+	protected int alternator;
+	/**
+	 * original number of enemies that were in the room
+	 */
+	protected int originalNumOfEnemies;
 
 	/**
 	 * Creates a EnemyRoom Object

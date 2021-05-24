@@ -153,7 +153,12 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		
 		
 		for(int i=10;i>0;i--) {
-			rooms.add(new EnemyRoom("scripts/Room1.txt","Room "+i,"Images/RoomOption1.png", w, h,1));
+			if(i==8) {
+				rooms.add(new BossRoom("scripts/Room1.txt","Boss Room","Images/RoomOption2.png", w, h));
+			}
+			else {
+			rooms.add(new EnemyRoom("scripts/Room1.txt","Room "+i,"Images/RoomOption1.png", w, h,3));
+			}
 		}
 		
 //		for(int i=0;i<rooms.size();i++) {
@@ -169,6 +174,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 
 
 		frame.addKeyListener(p1);
+	
 
 
 	}
@@ -222,23 +228,26 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		playerRef.setValueAsync(data);
 		
 		
-//		for(int i=0;i<enemies.size();i++) {
-//			if(!currentRoom.collisionCheck(enemies.get(i))){
-//				enemies.move(i);
-//			}
-//		}
-		enemies.moveAll();
-		
-		
-//		for(int i=0;i<enemies.size();i++) {
-//			if(temp.collisionCheck(enemies.get(i))){
-//				enemies.get(i).reduceHealth(50);
-//			}
-//		}
+
+	enemies.moveAll(p1.getX(),p1.getY()); //TO BE UNCOMMENTED
+
 		enemies.drawAll(bufferedG);
+		
+		// for(int i=0;i<enemies.size();i++) {
+		// 	if(enemies.get(i)==null)continue;
+		// 	if(p1.collisionCheck(enemies.get(i))) {
+		// 		System.out.println("printed");
+		// 		p1.reduceHealth(40);
+		// 	}
+		// 	else {
+		// 	//	enemies.get(i).move(p1.getX(), p1.getY()); //TO BE COMMENTED
+		// 	}
+		// }
+		
 		if(currentRoom instanceof EnemyRoom) {
 			((EnemyRoom) currentRoom).reduceEnemiesLeft(enemies);
 		}
+		
 		
 		
 		if(currentRoom.checkWhetherCanMoveToNextRoom()) {

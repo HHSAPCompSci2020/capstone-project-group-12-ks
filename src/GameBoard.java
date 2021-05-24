@@ -151,6 +151,11 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		for(int i=10;i>0;i--) {
 			rooms.add(new EnemyRoom("scripts/Room1.txt","Room "+i,"Images/RoomOption1.png", w, h));
 		}
+		
+		for(int i=0;i<rooms.size();i++) {
+			System.out.println(rooms.get(i));
+		}
+		
 		currentRoom = rooms.pop();
 		enemies.spawnRoomEnemies();
 
@@ -169,6 +174,11 @@ public class GameBoard extends JPanel implements ChildEventListener{
 	 * (intended to be called continously for the game to run)
 	 */
 	public void refreshGame() {
+		
+		for(int i=0;i<rooms.size();i++) {
+			System.out.println(rooms.get(i));
+		}
+		
 		currentRoom.draw(bufferedG);
 		Player p;
 		for(int i =0;i<players.size();i++) {
@@ -211,7 +221,16 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		if(currentRoom instanceof EnemyRoom) {
 			((EnemyRoom) currentRoom).reduceEnemiesLeft(enemies);
 		}
-		System.out.println(currentRoom.checkWhetherCanMoveToNextRoom());
+		
+		
+		if(currentRoom.checkWhetherCanMoveToNextRoom()) {
+			if(currentRoom instanceof EnemyRoom) {
+				if(p1.getHitbox().intersects(((EnemyRoom) currentRoom).getHitboxForNextRoomPlate())){
+					currentRoom = rooms.pop();
+					enemies.spawnRoomEnemies();
+				}
+			}
+		}
 		
 		repaint();
 	}

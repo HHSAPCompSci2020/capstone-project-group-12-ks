@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.Rectangle2D.Double;
 
 /**
  * This is a subclass of the Room class and represents a room full of enemies
@@ -7,8 +9,9 @@ import java.awt.Graphics;
  * @version 1.0.0
  */
 public class EnemyRoom extends Room {
-	
+
 	private int enemiesLeft;
+	private int alternator;
 
 	/**
 	 * Creates a EnemyRoom Object
@@ -18,9 +21,10 @@ public class EnemyRoom extends Room {
 	public EnemyRoom(String filePath, String roomName, String imageFilePath, int w, int h) {
 		super(filePath, roomName,imageFilePath, w, h);
 		enemiesLeft = numEnemiesForRoom;
+		alternator=0;
 	}
-	
-	
+
+
 	/**
 	 * Checks whether the requirements have been fufilled to move to the next room
 	 */
@@ -44,7 +48,7 @@ public class EnemyRoom extends Room {
 		}
 		enemiesLeft = count;
 	}
-	
+
 	@Override
 	public void draw(Graphics g) {
 		//draw image here because its the background image for room
@@ -56,11 +60,20 @@ public class EnemyRoom extends Room {
 			g.setColor(Color.white);
 			g.drawString(currentLine, 50, 200+50);
 		}
-		if(canMoveToNextRoom) {
+		if(canMoveToNextRoom && alternator<=3) {
 			g.setColor(Color.yellow);
-			g.fillRect(20, 300, 50, 100);
+			g.fillRect(85, 380, 45, 100);
 			System.out.println("done");
 		}
+		alternator++;
+		if(alternator==6) alternator=0;
 	}
-	
+
+	public Double getHitboxForNextRoomPlate() {
+		if(!canMoveToNextRoom) return null;
+		Rectangle2D.Double hitbox = null;
+		hitbox = new Rectangle2D.Double(85, 380, 45, 100);
+		return hitbox;
+	}
+
 }

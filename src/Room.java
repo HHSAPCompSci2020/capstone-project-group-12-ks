@@ -91,15 +91,15 @@ public class Room implements Collidable, MouseListener {
 		}
 		this.imageFilePath=imageFilePath;
 		
-		storyFile = new File("capstone-project-group-12-ks/src/scripts/Room1.txt");
-		System.out.println(storyFile.exists());
-		System.out.println(storyFile.isDirectory());
-		System.out.println(storyFile.canRead());
-		try {
-			storyReader = new Scanner(storyFile);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+//		storyFile = new File("capstone-project-group-12-ks/src/scripts/Room1.txt");
+//		System.out.println(storyFile.exists());
+//		System.out.println(storyFile.isDirectory());
+//		System.out.println(storyFile.canRead());
+//		try {
+//			storyReader = new Scanner(storyFile);
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		}
 		currentLine="";
 		storyActive = true;
 	}

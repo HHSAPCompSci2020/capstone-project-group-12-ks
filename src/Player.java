@@ -454,6 +454,21 @@ public class Player implements KeyListener, Collidable{
 			xSpeed = 0;
 			ySpeed = 0;
 		}
+		if(other.getClass() == Enemy.class || other.getClass().getSuperclass() == Enemy.class) {
+//			System.out.println("hi");
+//			Rectangle2D cross = getHitbox().createIntersection(other.getHitbox());
+//			if(cross.getX() < 0) {
+//				x+=cross.getWidth();
+//			} else {
+//				x-=cross.getWidth();
+//			}
+//			if(cross.getY() < 0) {
+//				y+=cross.getHeight();
+//			} else {
+//				y-=cross.getHeight();
+//			}
+			health.reduceHealth(200);
+		}
 		
 	}
 
@@ -478,6 +493,14 @@ public class Player implements KeyListener, Collidable{
 	}
 	
 	public Weapon getWeapon() {return currentWeapon;}
+	
+	public double getXVel() {
+		return xSpeed;
+	}
+	
+	public double getYVel() {
+		return ySpeed;
+	}
 }
 
 

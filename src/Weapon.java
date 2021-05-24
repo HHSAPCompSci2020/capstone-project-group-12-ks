@@ -17,6 +17,8 @@ public class Weapon implements Collidable{
 	private String specialAbilityName;
 	private boolean up,down,left,right;
 	private double x,y;
+	private int killCount;
+	private int damage;
 
 	/**
 	 * Default Constructor that creates Weapon Object
@@ -28,6 +30,8 @@ public class Weapon implements Collidable{
 		swingCount= 0;
 		weaponType = "Great Sword";
 		weaponRarity = 1;
+		killCount = 0;
+		damage = 10;
 
 	}
 
@@ -137,15 +141,20 @@ public class Weapon implements Collidable{
 
 	@Override
 	public void onImpact(Collidable other) {
-		// TODO Auto-generated method stub
-
+		killCount++;
+		if(Math.sqrt(killCount)%2 == 0) {
+			damage+= 10;
+		}
+	}
+	
+	public int getDamage() {
+		return damage;
 	}
 
 	@Override
 	public boolean collisionCheck(Collidable other) {
 		if(swing && getHitbox() != null) {
 			if(other.getHitbox().intersects(this.getHitbox())) {
-				System.out.println(getHitbox());
 				other.onImpact(this);
 				return true;
 			}
@@ -175,4 +184,8 @@ public class Weapon implements Collidable{
 	}
 
 	public boolean isSwinging() {return swing;}
+	
+	public void kill() {
+		
+	}
 }

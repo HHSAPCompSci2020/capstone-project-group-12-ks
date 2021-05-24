@@ -82,8 +82,7 @@ public class Enemy implements Collidable{
 			y = 100;
 		}
 		if(other.getClass() == Weapon.class || other.getClass().getSuperclass() == Weapon.class) {
-			health.reduceHealth(50.0);
-			System.out.println("hi");
+			health.reduceHealth(((Weapon) other).getDamage());
 		}
 		
 	}

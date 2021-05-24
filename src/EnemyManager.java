@@ -48,6 +48,7 @@ public class EnemyManager implements ChildEventListener {
 	 * Calles the move method for every Enemy Object contained within this object
 	 */
 	public void moveAll() {
+		if(enemies.size()>= indeces.get(indeces.size()-1))
 		for(int i : indeces) {
 			if(enemies.get(i) == null) {
 				return;

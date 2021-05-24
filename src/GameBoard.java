@@ -50,6 +50,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 	private DatabaseReference playerRef;
 	private OnDisconnect disconnector;
 	private DatabaseReference enemyRef;
+	private boolean loaded;
 	
 	private Stack<Room> rooms;
 
@@ -63,6 +64,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 	 * @param h height of window that should be created
 	 */
 	public GameBoard(int x, int y, int w, int h) {
+		loaded = false;
 		players = new ArrayList<Player>();
 		enemies = new EnemyManager();
 		//Firebase Setup
@@ -83,17 +85,17 @@ public class GameBoard extends JPanel implements ChildEventListener{
 			enemyRef.addChildEventListener(enemies);
 
 			playersRef.addChildEventListener(this);
-
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
-			Thread.sleep(5000);//5 sec loading time
+			Thread.sleep(7000);//5 sec loading time
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		loaded = true;
 		enemies.setReference(enemyRef);
 		currentPost = null;
 		
@@ -135,6 +137,8 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		currentPost = new PlayerData();
 		currentPost.x = 200;
 		currentPost.y = 200;
+		currentPost.health = 150;
+		currentPost.down = true;
 //		newData.add(currentPost);
 //		Post spawn = new Post();
 //		spawn.players = newData;
@@ -179,7 +183,9 @@ public class GameBoard extends JPanel implements ChildEventListener{
 //		for(int i=0;i<rooms.size();i++) {
 //			System.out.println(rooms.get(i));
 //		}
-		
+		if(!loaded) {
+			return;
+		}
 		currentRoom.draw(bufferedG);
 		Player p;
 		for(int i =0;i<players.size();i++) {
@@ -193,14 +199,26 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		}
 		
 		p1.draw(getBufferedGraphics());
+		Weapon temp=p1.getWeapon();
+		enemies.collide(currentRoom);
+		enemies.collide(temp);
+		enemies.collide(p1);
 		boolean collided = currentRoom.collisionCheck(p1);
 		if(!collided)
 		p1.move();
+		if(p1.getHealth()<=0) {
+			playerRef.removeValueAsync();
+			p1 = null;
+		}
 		PlayerData data = new PlayerData();
 		data.x = p1.getX();
 		data.y = p1.getY();
-		data.yVel = p1.getYVel();
-		data.xVel = p1.getXVel();
+		data.up = p1.getUp();
+		data.down = p1.getDown();
+		data.left = p1.getLeft();
+		data.right = p1.getRight();
+		data.health = p1.getHealth();
+		data.swing = p1.getSwing();
 		playerRef.setValueAsync(data);
 		
 		
@@ -210,9 +228,8 @@ public class GameBoard extends JPanel implements ChildEventListener{
 //			}
 //		}
 		enemies.moveAll();
-		Weapon temp=p1.getWeapon();
-		enemies.collide(currentRoom);
-		enemies.collide(temp);
+		
+		
 //		for(int i=0;i<enemies.size();i++) {
 //			if(temp.collisionCheck(enemies.get(i))){
 //				enemies.get(i).reduceHealth(50);
@@ -289,8 +306,14 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		PlayerData data = arg0.getValue(PlayerData.class);
 		players.add(null);
 		Player p = new Player((int)data.getX(), (int)data.getY(), 50, 50);
-		p.setXSpeed(data.getxVel());
-		p.setYSpeed(data.getyVel());
+		p.setUp(data.getUp());
+		p.setDown(data.getDown());
+		p.setLeft(data.getLeft());
+		p.setRight(data.getRight());
+		p.setHealth(data.getHealth());
+		if(data.getSwing() == true) {
+			p.setSwing();
+		}
 		players.set(Integer.parseInt(arg0.getKey()), p);
 	}
 
@@ -303,8 +326,14 @@ public class GameBoard extends JPanel implements ChildEventListener{
 	public void onChildChanged(DataSnapshot arg0, String arg1) {
 		PlayerData data = arg0.getValue(PlayerData.class);
 		Player p = new Player((int)data.getX(), (int)data.getY(), 50, 50);
-		p.setXSpeed(data.getxVel());
-		p.setYSpeed(data.getyVel());
+		p.setUp(data.getUp());
+		p.setDown(data.getDown());
+		p.setLeft(data.getLeft());
+		p.setRight(data.getRight());
+		p.setHealth(data.getHealth());
+		if(data.getSwing() == true) {
+			p.setSwing();
+		}
 		players.set(Integer.parseInt(arg0.getKey()), p);
 	}
 

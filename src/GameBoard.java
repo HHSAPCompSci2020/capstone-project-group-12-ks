@@ -152,9 +152,9 @@ public class GameBoard extends JPanel implements ChildEventListener{
 			rooms.add(new EnemyRoom("scripts/Room1.txt","Room "+i,"Images/RoomOption1.png", w, h,1));
 		}
 		
-		for(int i=0;i<rooms.size();i++) {
-			System.out.println(rooms.get(i));
-		}
+//		for(int i=0;i<rooms.size();i++) {
+//			System.out.println(rooms.get(i));
+//		}
 		
 		currentRoom = rooms.pop();
 		if(currentRoom instanceof EnemyRoom)
@@ -176,9 +176,9 @@ public class GameBoard extends JPanel implements ChildEventListener{
 	 */
 	public void refreshGame() {
 		
-		for(int i=0;i<rooms.size();i++) {
-			System.out.println(rooms.get(i));
-		}
+//		for(int i=0;i<rooms.size();i++) {
+//			System.out.println(rooms.get(i));
+//		}
 		
 		currentRoom.draw(bufferedG);
 		Player p;

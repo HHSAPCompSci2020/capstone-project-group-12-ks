@@ -29,6 +29,7 @@ public class Enemy implements Collidable{
 		this.x = x;
 		this.y = y;
 		this.health=health;
+		
 	}
 	
 	

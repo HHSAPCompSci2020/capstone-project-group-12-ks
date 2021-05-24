@@ -37,7 +37,12 @@ public class EnemyManager implements ChildEventListener {
 	 * @param g graphics for the pixel grid you wish to draw this object on
 	 */
 	public void drawAll(Graphics g) {
+	
 		for(int i=0;i<enemies.size();i++) {
+			if(enemies.get(i).toBeRemoved()) {
+				enemies.remove(i);
+				i--;
+			}
 			if(enemies.get(i) != null)
 			enemies.get(i).draw(g);
 		}

@@ -42,6 +42,7 @@ public class Enemy implements Collidable{
 		g.drawOval((int)x, (int)y, 50, 50);
 		g.drawString("Enemy", (int)x+8, (int)y+27);
 		health.draw(g, (int)x, (int)y-15);
+		g.drawRect((int)x,(int)y,50,50);
 	}
 	
 	/**
@@ -91,7 +92,7 @@ public class Enemy implements Collidable{
 	@Override
 	public Double getHitbox() {
 		
-		return new Rectangle2D.Double(x+xSpeed,y+ySpeed,50,50);
+		return new Rectangle2D.Double(x,y,50,50);
 	}
 	
 	public void reduceHealth(double amt) {health.reduceHealth(amt);}

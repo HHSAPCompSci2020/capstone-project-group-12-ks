@@ -140,7 +140,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 //		spawn.players = newData;
 		playerRef.setValueAsync(currentPost);
 		try {
-			Thread.sleep(200);//delay to add player to database
+			Thread.sleep(500);//delay to add player to database
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -43,8 +43,8 @@ public class Weapon implements Collidable{
 		this.right=right;
 		this.x=x;
 		this.y=y;
-		
-		
+
+
 		if(right) {
 			if(swing && swingCount<=3) {
 				g.drawRect((int)x, (int)y+90, 90, 10);
@@ -58,8 +58,34 @@ public class Weapon implements Collidable{
 				g.drawRect((int)x, (int)y, 10, 90);
 			}
 		}
-	//	g.drawRect((int)x, (int)y, 90, 90);
-		g.drawRect((int)x, (int)y, 10, 90);
+		else if(left) {
+			if(swing && swingCount<=3) {
+				g.drawRect((int)x-140, (int)y+90, 90, 10);
+				swingCount++;
+			}
+			else if(swing && swingCount>3) {
+				g.drawRect((int)x-140, (int)y+90, 90, 10);
+				swing=false;
+			}
+			else{
+				g.drawRect((int)x-60, (int)y, 10, 90);
+			}
+		}
+		else if(down) {
+			if(swing && swingCount<=3) {
+				g.drawRect((int)x-140, (int)y+180, 10, 90);
+				swingCount++;
+			}
+			else if(swing && swingCount>3) {
+				g.drawRect((int)x-140, (int)y+180, 10, 90);
+				swing=false;
+			}
+			else{
+				g.drawRect((int)x-60, (int)y, 90, 10);
+			}
+		}
+		//	g.drawRect((int)x, (int)y, 90, 90);
+		//g.drawRect((int)x, (int)y, 10, 90);
 	}
 
 	/**
@@ -88,9 +114,11 @@ public class Weapon implements Collidable{
 	@Override
 	public Double getHitbox() {
 		Rectangle2D.Double hitbox;
-		if(swing && right) {
+		if(!swing) return null;
+		if(right) {
 			hitbox = new Rectangle2D.Double(x,y,90,90);
 		}
+
 		return null;
 	}
 

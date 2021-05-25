@@ -89,9 +89,6 @@ public class EnemyManager implements ChildEventListener {
 //				System.out.println("ENEMIES NULLLLLL");
 //				return;
 //			}
-			
-		
-			
 			if(enemies.get(i) == null) {
 				return;
 			}

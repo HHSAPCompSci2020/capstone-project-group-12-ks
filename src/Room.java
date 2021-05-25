@@ -111,7 +111,6 @@ public class Room implements Collidable, MouseListener {
 			e.printStackTrace();
 		}
 
-		System.out.println(storyReader.next());
 		
 		currentLine="";
 		storyActive = true;

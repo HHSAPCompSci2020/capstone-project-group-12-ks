@@ -54,7 +54,6 @@ public class Player implements KeyListener, Collidable{
 	 */
 	public Player(int x, int y, int w, int h)
 	{
-		System.out.println();
 		//image = img;
 //		testImage = new ImageIcon("images/Test.png").getImage();
 //		testImage = Toolkit.getDefaultToolkit().getImage("images/Test.png");
@@ -483,7 +482,7 @@ public class Player implements KeyListener, Collidable{
 //			} else {
 //				y-=cross.getHeight();
 //			}
-			health.reduceHealth(10);
+			health.reduceHealth(1);
 			}
 		
 		}

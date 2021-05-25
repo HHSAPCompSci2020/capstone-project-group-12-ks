@@ -66,7 +66,6 @@ public class Enemy implements Collidable{
 	public void move(int x, int y) {
 		if(!move) {
 			move = true;
-			System.out.println("i");
 			return;
 		}
 		if(this.x-x>0) {

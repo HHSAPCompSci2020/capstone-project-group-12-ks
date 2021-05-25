@@ -27,11 +27,13 @@ public class EnemyManager implements ChildEventListener {
 	private ArrayList<OnDisconnect>  disconnectors;
 	private DatabaseReference enemiesRef;
 	private Image imgLeftEnemy,imgRightEnemy;
+	private boolean loaded;
 	
 	/**
 	 * constructor of EnemyManager Class (used to create a EnemyManager object)
 	 */
 	public EnemyManager() {
+		loaded = false;
 		enemies = new ArrayList<Enemy>();
 		refs = new ArrayList<DatabaseReference>();
 		indeces = new ArrayList<Integer>();
@@ -40,17 +42,24 @@ public class EnemyManager implements ChildEventListener {
 		
 		imgLeftEnemy = new ImageIcon("Images/position1forenemy").getImage();
 		try {
-			imgLeftEnemy = ImageIO.read(getClass().getClassLoader().getResource("Images/position1forenemy"));
+			imgLeftEnemy = ImageIO.read(getClass().getClassLoader().getResource("Images/position1forenemy.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		imgRightEnemy = new ImageIcon("Images/position2forenemy").getImage();
 		try {
-			imgRightEnemy = ImageIO.read(getClass().getClassLoader().getResource("Images/position2forenemy"));
+			imgRightEnemy = ImageIO.read(getClass().getClassLoader().getResource("Images/position2forenemy.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		loaded = true;
 	}
 	
 	/**
@@ -69,19 +78,21 @@ public class EnemyManager implements ChildEventListener {
 	 * Calles the move method for every Enemy Object contained within this object
 	 */
 	public void moveAll(int x, int y) {
+		if(!loaded) {
+			return;
+		}
 		for(int i : indeces) {
-			
+			System.out.println(indeces);
+			System.out.println(i);
 //			System.out.println("he");
 //			if(enemies==null) {
 //				System.out.println("ENEMIES NULLLLLL");
 //				return;
 //			}
 			
-			Thread thread = new Thread();
 		
 			
 			if(enemies.get(i) == null) {
-				System.out.println("i: "+i+" ");
 				return;
 			}
 			
@@ -140,9 +151,18 @@ public class EnemyManager implements ChildEventListener {
 	 * Used to create a new Enemy that will be managed by this class
 	 */
 	public void spawnRoomEnemies(int enemies) {
-		indeces.clear();
-		this.enemies.clear();
-		refs.clear();
+		while(!loaded) {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		
+//		indeces.clear();
+//		this.enemies.clear();
+//		refs.clear();
 		for(int i = 0;  i < enemies/*to be changed*/; i++) {
 			DatabaseReference newRef;
 			if(refs == null) {
@@ -178,6 +198,7 @@ public class EnemyManager implements ChildEventListener {
 
 	@Override
 	public void onChildAdded(DataSnapshot arg0, String arg1) {
+		loaded = false;
 		EnemyData e = arg0.getValue(EnemyData.class);
 		int index = Integer.parseInt(arg0.getKey());
 		enemies.add(null);
@@ -187,13 +208,13 @@ public class EnemyManager implements ChildEventListener {
 		refs.add(null);
 		refs.set(index, arg0.getRef());
 		if(indeces.contains(index)) {
-			System.out.println(index);
 			disconnectors.add(refs.get(index).onDisconnect());
 			for(OnDisconnect d : disconnectors) {
 				d.removeValueAsync();
 			}
 			
 		}
+		loaded = true;
 		
 	}
 	

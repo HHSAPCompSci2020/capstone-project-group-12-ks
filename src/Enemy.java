@@ -117,6 +117,13 @@ public class Enemy implements Collidable{
 			move = false;
 			
 		}
+		
+		if(other.getClass() == Player.class || other.getClass().getSuperclass() == Player.class) {
+//			x = 100;
+//			y = 100;
+			move = false;
+			
+		}
 		if(other.getClass() == Weapon.class || other.getClass().getSuperclass() == Weapon.class) {
 			health.reduceHealth(((Weapon) other).getDamage());
 		}

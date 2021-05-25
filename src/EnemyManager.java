@@ -40,19 +40,19 @@ public class EnemyManager implements ChildEventListener {
 		disconnectors = new ArrayList<OnDisconnect>();
 		
 		
-		imgLeftEnemy = new ImageIcon("Images/position1forenemy").getImage();
-		try {
-			imgLeftEnemy = ImageIO.read(getClass().getClassLoader().getResource("Images/position1forenemy.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		imgRightEnemy = new ImageIcon("Images/position2forenemy").getImage();
-		try {
-			imgRightEnemy = ImageIO.read(getClass().getClassLoader().getResource("Images/position2forenemy.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		imgLeftEnemy = new ImageIcon("Images/position1forenemy").getImage();
+//		try {
+//			imgLeftEnemy = ImageIO.read(getClass().getClassLoader().getResource("Images/position1forenemy.png"));
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		
+//		imgRightEnemy = new ImageIcon("Images/position2forenemy").getImage();
+//		try {
+//			imgRightEnemy = ImageIO.read(getClass().getClassLoader().getResource("Images/position2forenemy.png"));
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
@@ -61,7 +61,6 @@ public class EnemyManager implements ChildEventListener {
 		}
 		loaded = true;
 	}
-	
 	/**
 	 * Expresses the all the Enemy Objects contained within this object graphically
 	 * @param g graphics for the pixel grid you wish to draw this object on
@@ -83,13 +82,12 @@ public class EnemyManager implements ChildEventListener {
 		}
 		for(int i : indeces) {
 			System.out.println(indeces);
-			System.out.println(i);
-//			System.out.println("he");
 //			if(enemies==null) {
 //				System.out.println("ENEMIES NULLLLLL");
 //				return;
 //			}
 			if(enemies.get(i) == null) {
+				System.out.println("e");
 				return;
 			}
 			
@@ -219,6 +217,7 @@ public class EnemyManager implements ChildEventListener {
 
 	@Override
 	public void onChildChanged(DataSnapshot arg0, String arg1) {
+		System.out.println("d");
 		EnemyData e = arg0.getValue(EnemyData.class);
 		Enemy enemy = new Enemy(e.getX(), e.getY(),new HealthBar(150,150,Color.red));
 		enemy.reduceHealth(150-e.getHealth());

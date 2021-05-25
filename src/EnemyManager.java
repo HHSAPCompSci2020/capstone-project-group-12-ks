@@ -82,13 +82,15 @@ public class EnemyManager implements ChildEventListener {
 		}
 		for(int i : indeces) {
 			System.out.println(indeces);
+			System.out.println(enemies);
+			System.out.println(refs);
 //			if(enemies==null) {
 //				System.out.println("ENEMIES NULLLLLL");
 //				return;
 //			}
 			if(enemies.get(i) == null) {
 				System.out.println("e");
-				return;
+				continue;
 			}
 			
 			enemies.get(i).move(x,y);
@@ -122,7 +124,7 @@ public class EnemyManager implements ChildEventListener {
 	public void collide(Collidable other) {
 		for(int i = 0; i < refs.size(); i++) {
 			if(enemies.get(i) == null) {
-				return;
+				continue;
 			}
 			if(other.collisionCheck(enemies.get(i))) {
 				EnemyData data = new EnemyData();

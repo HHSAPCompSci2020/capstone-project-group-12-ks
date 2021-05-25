@@ -68,14 +68,16 @@ public class EnemyRoom extends Room {
 	@Override
 	public void draw(Graphics g) {
 		//draw image here because its the background image for room
-		g.drawString(roomName, 230, 10);
-		g.drawImage(img, -18, -10, null);
-		if(storyActive) {
-			g.setColor(Color.black);
-			g.drawRect(0, 300, 750, 200);
-			g.setColor(Color.white);
-			g.drawString(currentLine, 50, 200+50);
-		}
+		
+//		g.drawString(roomName, 230, 10);
+//		g.drawImage(img, -18, -10, null);
+//		if(storyActive) {
+//			g.setColor(Color.black);
+//			g.fillRect(0, 300, 750, 200);
+//			g.setColor(Color.white);
+//			g.drawString(currentLine, 50, 200+50);
+//		}
+		super.draw(g);
 		if(canMoveToNextRoom && alternator<=3) {
 			g.setColor(Color.yellow);
 			g.fillRect(85, 380, 45, 100);

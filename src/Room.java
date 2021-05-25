@@ -111,7 +111,7 @@ public class Room implements Collidable, MouseListener {
 			e.printStackTrace();
 		}
 
-		System.out.println(storyReader.next());
+		//System.out.println(storyReader.next());
 		
 		currentLine="";
 		storyActive = true;
@@ -127,9 +127,9 @@ public class Room implements Collidable, MouseListener {
 		g.drawImage(img, -18, -10, null);
 		if(storyActive) {
 			g.setColor(Color.black);
-			g.drawRect(0, 300, 750, 200);
+			g.fillRect(0, 350, 750, 250);
 			g.setColor(Color.white);
-			g.drawString(currentLine, 50, 200+50);
+			g.drawString(currentLine, 50, 350+70);
 		}
 	}
 	
@@ -170,12 +170,13 @@ public class Room implements Collidable, MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		System.out.println("HERE");
 		if(!storyReader.hasNext()) {
 			storyActive=false;
 			return;
 		}
 		currentLine = storyReader.nextLine();
-		if(currentLine.indexOf("---")==-1) {
+		if(currentLine.indexOf("---")!=-1) {
 			currentLine = storyReader.nextLine();
 		}
 	}

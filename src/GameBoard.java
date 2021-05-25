@@ -169,6 +169,8 @@ public class GameBoard extends JPanel implements ChildEventListener{
 
 
 		frame.addKeyListener(p1);
+		frame.addMouseListener(currentRoom);
+		
 
 
 	}
@@ -179,6 +181,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 	 * (intended to be called continously for the game to run)
 	 */
 	public boolean refreshGame() {
+		
 		
 //		for(int i=0;i<rooms.size();i++) {
 //			System.out.println(rooms.get(i));

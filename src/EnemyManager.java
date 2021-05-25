@@ -128,7 +128,12 @@ public class EnemyManager implements ChildEventListener {
 			}
 		}
 	}
-
+	/**
+	 * Moves an enemy of index i
+	 * @param i
+	 * @param x player loc
+	 * @param y player loc
+	 */
 	public void move(int i,int x, int y ) {
 		if(enemies.get(i) == null) {
 			return;
@@ -144,7 +149,10 @@ public class EnemyManager implements ChildEventListener {
 		}
 
 	}
-
+	/**
+	 * checks all enemies for collisions with other
+	 * @param other object to check collisions with
+	 */
 	public void collide(Collidable other) {
 		for(int i = 0; i < refs.size(); i++) {
 			if(enemies.get(i) == null) {
@@ -208,7 +216,10 @@ public class EnemyManager implements ChildEventListener {
 		}
 
 	}
-
+	/**
+	 * spawns boss
+	 * @param room the room to spawn in
+	 */
 	public void spawnRoomEnemiesForBossRoom(BossRoom room) {
 	
 		while(!loaded) {
@@ -264,7 +275,10 @@ public class EnemyManager implements ChildEventListener {
 		// TODO Auto-generatd method stub
 
 	}
-
+	/**
+	 * runs when something is added to database
+	 * @param arg0 the updated data
+	 */
 	@Override
 	public void onChildAdded(DataSnapshot arg0, String arg1) {
 		if(nextIsBoss) {
@@ -295,7 +309,9 @@ public class EnemyManager implements ChildEventListener {
 	}
 
 
-
+	/**
+	 * Runs when database is updated
+	 */
 	@Override
 	public void onChildChanged(DataSnapshot arg0, String arg1) {
 		
@@ -320,7 +336,9 @@ public class EnemyManager implements ChildEventListener {
 		// TODO Auto-generated method stub
 
 	}
-
+	/**
+	 * 
+	 */
 	@Override
 	public void onChildRemoved(DataSnapshot arg0) {
 		enemies.set(Integer.parseInt(arg0.getKey()), null);

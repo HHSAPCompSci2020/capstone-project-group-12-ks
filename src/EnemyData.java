@@ -25,7 +25,10 @@ public class EnemyData{
 	public double getY(){
 		return y;
 	}
-	
+	/**
+	 * Gets health in data
+	 * @return health
+	 */
 	public double getHealth() {
 		return health;
 	}

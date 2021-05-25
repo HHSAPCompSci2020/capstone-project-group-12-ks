@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
 
 /**
  * Player class that represents the users character
- * @author srikrishna
+ * @author srikrishna + kinjal(collison detection)
  * @version 1.0.0
  */
 public class Player implements KeyListener, Collidable{

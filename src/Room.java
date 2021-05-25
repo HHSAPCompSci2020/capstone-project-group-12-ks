@@ -205,6 +205,10 @@ public class Room implements Collidable, MouseListener {
 		
 	}
 	
+	public boolean isStoryActive() {
+		return storyActive;
+	}
+	
 	/**
 	 * returns String description of Object
 	 * @return returns String description of Object

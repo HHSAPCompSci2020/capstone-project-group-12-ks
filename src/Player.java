@@ -29,7 +29,7 @@ public class Player implements KeyListener, Collidable{
 	private Image testImage;
 	private int counter;
 	private boolean left,right,up,down;
-	private Image up1, up2, up3, down1, down2, down3, left1, left2,left3, right1,right2, right3;
+	
 	
 
 	private double xSpeed, ySpeed;
@@ -57,89 +57,7 @@ public class Player implements KeyListener, Collidable{
 		//image = img;
 //		testImage = new ImageIcon("images/Test.png").getImage();
 //		testImage = Toolkit.getDefaultToolkit().getImage("images/Test.png");
-		up1 = new ImageIcon("Images/position10.png").getImage();
-		try {
-			up1 = ImageIO.read(getClass().getClassLoader().getResource("Images/position10.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		
-		up2 = new ImageIcon("Images/position11.png").getImage();
-		try {
-			up2 = ImageIO.read(getClass().getClassLoader().getResource("Images/position11.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		up3 = new ImageIcon("Images/position12.png").getImage();
-		try {
-			up3 = ImageIO.read(getClass().getClassLoader().getResource("Images/position12.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		left1 = new ImageIcon("Images/position4.png").getImage();
-		try {
-			left1 = ImageIO.read(getClass().getClassLoader().getResource("Images/position4.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		left2 = new ImageIcon("Images/position5.png").getImage();
-		try {
-			left2 = ImageIO.read(getClass().getClassLoader().getResource("Images/position5.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		left3 = new ImageIcon("Images/position6.png").getImage();
-		try {
-			left3 = ImageIO.read(getClass().getClassLoader().getResource("Images/position6.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		right1 = new ImageIcon("Images/position7.png").getImage();
-		try {
-			right1 = ImageIO.read(getClass().getClassLoader().getResource("Images/position7.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		right2 = new ImageIcon("Images/position8.png").getImage();
-		try {
-			right2 = ImageIO.read(getClass().getClassLoader().getResource("Images/position8.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		right3 = new ImageIcon("Images/position9.png").getImage();
-		try {
-			right3 = ImageIO.read(getClass().getClassLoader().getResource("Images/position9.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		down1 = new ImageIcon("Images/position1.png").getImage();
-		try {
-			down1 = ImageIO.read(getClass().getClassLoader().getResource("Images/position1.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		down2 = new ImageIcon("Images/position2.png").getImage();
-		try {
-			down2 = ImageIO.read(getClass().getClassLoader().getResource("Images/position2.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		down3 = new ImageIcon("Images/position3.png").getImage();
-		try {
-			down3 = ImageIO.read(getClass().getClassLoader().getResource("Images/position3.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		
 		
 		this.x = x;
@@ -205,7 +123,10 @@ public class Player implements KeyListener, Collidable{
 	 * represents the Player graphically using the Graphics object for the pixel grid it refers to
 	 * @param g the graphics object connected to the pixel grid you wish to draw this object on
 	 */
-	public void draw(Graphics g) {
+	public void draw(Graphics g, Image up1, Image up2, Image up3,
+			Image down1, Image down2, Image down3,
+			Image left1, Image left2, Image left3,
+			Image right1, Image right2, Image right3) {
 //		System.out.println("IN DRAW --- "+up+" "+down+" "+left+" "+right);
 //	    System.out.println(xSpeed+" "+ySpeed+" "+x+" "+y);
 		g.setColor(Color.blue);

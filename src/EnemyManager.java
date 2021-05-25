@@ -40,19 +40,19 @@ public class EnemyManager implements ChildEventListener {
 		disconnectors = new ArrayList<OnDisconnect>();
 		
 		
-//		imgLeftEnemy = new ImageIcon("Images/position1forenemy").getImage();
-//		try {
-//			imgLeftEnemy = ImageIO.read(getClass().getClassLoader().getResource("Images/position1forenemy.png"));
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		
-//		imgRightEnemy = new ImageIcon("Images/position2forenemy").getImage();
-//		try {
-//			imgRightEnemy = ImageIO.read(getClass().getClassLoader().getResource("Images/position2forenemy.png"));
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+		imgLeftEnemy = new ImageIcon("Images/position1forenemy").getImage();
+		try {
+			imgLeftEnemy = ImageIO.read(getClass().getClassLoader().getResource("Images/position1forenemy.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		imgRightEnemy = new ImageIcon("Images/position2forenemy").getImage();
+		try {
+			imgRightEnemy = ImageIO.read(getClass().getClassLoader().getResource("Images/position2forenemy.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {

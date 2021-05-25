@@ -185,6 +185,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		
 		if(currentRoom.isStoryActive()) {
 			currentRoom.draw(bufferedG);
+			p1.draw(bufferedG);
 			Player p;
 			for(int i =0;i<players.size();i++) {
 				p = players.get(i);
@@ -196,12 +197,26 @@ public class GameBoard extends JPanel implements ChildEventListener{
 				}
 			}
 			if(storyCount==0) {
+				for(int i =0;i<players.size();i++) {
+					p = players.get(i);
+					if(p != null) {
+						frame.removeKeyListener(p);
+					}
+				}
 				frame.removeKeyListener(p1);
 				storyCount++;
 			}
+			
 			return false;
 		}
 		else if(!currentRoom.isStoryActive() && storyCount!=0) {
+			Player p;
+			for(int i =0;i<players.size();i++) {
+				p = players.get(i);
+				if(p != null) {
+					frame.addKeyListener(p1);
+				}
+			}
 			frame.addKeyListener(p1);
 			storyCount=0;
 		}
@@ -274,6 +289,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 			if(currentRoom instanceof EnemyRoom) {
 				if(p1.getHitbox().intersects(((EnemyRoom) currentRoom).getHitboxForNextRoomPlate())){
 					currentRoom = rooms.pop();
+					frame.addMouseListener(currentRoom);
 					enemies.spawnRoomEnemies(((EnemyRoom) currentRoom).getOriginalNumberOfEnemies());
 					p1.setX(550);
 					p1.setY(100);

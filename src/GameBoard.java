@@ -248,9 +248,10 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		//			rooms.add(new EnemyRoom("src/scripts/Room3.txt","Room "+i,"Images/RoomOption1.png", w, h,1));
 		//		}
 
-		rooms.add(new EnemyRoom("src/scripts/Room3.txt","Room ","Images/RoomOption1.png", w, h,1));
-		rooms.add(new BossRoom("src/scripts/Room3.txt","Room ","Images/RoomOption2.png", w, h));
-		rooms.add(new EnemyRoom("src/scripts/Room3.txt","Room ","Images/RoomOption1.png", w, h,1));
+		rooms.add(new BossRoom("src/scripts/BossRoom1.txt","Room ","Images/RoomOption2.png", w, h));
+		rooms.add(new EnemyRoom("src/scripts/Room2.txt","Room ","Images/RoomOption1.png", w, h,1));
+		rooms.add(new EnemyRoom("src/scripts/Room1.txt","Room ","Images/RoomOption1.png", w, h,1));
+	
 		//new EnemyRoom("src/scripts/Room3.txt","Room ","Images/RoomOption1.png", w, h,1);
 
 		//		for(int i=0;i<rooms.size();i++) {

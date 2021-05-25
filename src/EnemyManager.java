@@ -65,10 +65,10 @@ public class EnemyManager implements ChildEventListener {
 	 * Expresses the all the Enemy Objects contained within this object graphically
 	 * @param g graphics for the pixel grid you wish to draw this object on
 	 */
-	public void drawAll(Graphics g) {
+	public void drawAll(Graphics g, double x, double y) {
 		for(int i=0;i<enemies.size();i++) {
 			if(enemies.get(i) != null)
-			enemies.get(i).draw(g,imgLeftEnemy,imgRightEnemy);
+			enemies.get(i).draw(g,imgLeftEnemy,imgRightEnemy, x, y);
 		}
 		
 	}

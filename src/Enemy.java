@@ -46,18 +46,16 @@ public class Enemy implements Collidable{
 	 * (the graphics passed should be the pixel grid you intend to draw this object on)
 	 * @param g  graphics object passed which is the pixel grid you intend to draw this object on
 	 */
-	public void draw(Graphics g, Image imgLeft, Image imgRight) {
-		if(this.x-x>0) {
-			g.drawImage(imgLeft, (int)x, (int)y, null);
+	public void draw(Graphics g, Image imgLeft, Image imgRight, double pX, double pY) {
+		if(this.x-pX>0) {
+			g.drawImage(imgLeft, (int)x - 180, (int)y - 95, null);
 		}
-		else if(this.x-x<0) {
-			g.drawImage(imgRight, (int)x, (int)y, null);
+		else if(this.x-pX<0) {
+			g.drawImage(imgRight, (int)x - 180, (int)y - 95, null);
 		}
 		g.setColor(Color.red);
-		g.drawOval((int)x, (int)y, 50, 50);
 		g.drawString("Enemy", (int)x+8, (int)y+27);
 		health.draw(g, (int)x, (int)y-15);
-		g.drawRect((int)x,(int)y,50,50);
 	}
 	
 	/**
@@ -141,7 +139,7 @@ public class Enemy implements Collidable{
 	@Override
 	public Double getHitbox() {
 		
-		return new Rectangle2D.Double(x,y,50,50);
+		return new Rectangle2D.Double(x,y,45,70);
 	}
 	
 	public void reduceHealth(double amt) {health.reduceHealth(amt);}

@@ -21,6 +21,7 @@ public class Boss extends Enemy {
 		super(x, y, new HealthBar(2000,2000,Color.red));
 	}
 	
+	
 
 	@Override
 	public Double getHitbox() {

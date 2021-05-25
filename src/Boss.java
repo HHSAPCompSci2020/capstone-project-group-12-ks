@@ -10,6 +10,7 @@ import java.awt.geom.Rectangle2D.Double;
  */
 public class Boss extends Enemy {
 	
+
 	
 	/**
 	 * Creates new Boss

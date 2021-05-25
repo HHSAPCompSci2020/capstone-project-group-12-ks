@@ -112,7 +112,10 @@ public class Room implements Collidable, MouseListener {
 		}
 
 		
-		currentLine="";
+		currentLine = storyReader.nextLine();
+		if(currentLine.indexOf("---")!=-1) {
+			currentLine = storyReader.nextLine();
+		}
 		storyActive = true;
 	}
 	

@@ -163,7 +163,7 @@ public class Room implements Collidable, MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.println("HERE");
+		//System.out.println("HERE");
 		if(!storyReader.hasNext()) {
 			storyActive=false;
 			return;

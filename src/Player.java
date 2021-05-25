@@ -238,13 +238,13 @@ public class Player implements KeyListener, Collidable{
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		
+		//System.out.println("HI");
 		int keycode = e.getKeyCode();
 		
 
 		if(keycode==KeyEvent.VK_D) 
 		{
-		
+		System.out.println("DONE");
 			setRight(true);
 		
 		}
@@ -264,10 +264,7 @@ public class Player implements KeyListener, Collidable{
 			up = true;
 			
 		}
-		else if(keycode==KeyEvent.VK_R) {
-			currentWeapon.attack();
 		
-		}
 		
 
 	}
@@ -332,6 +329,13 @@ public class Player implements KeyListener, Collidable{
 		else if(e.getKeyCode()==KeyEvent.VK_SPACE) 
 		{
 			currentWeapon.attack();
+		}
+		else if(e.getKeyCode()==KeyEvent.VK_SHIFT) {
+			System.out.println("HELLO");
+			if(currentWeapon.getSpecialMoveName().equals("Heal")) {
+				health.increaseHealth(20);
+			}
+		
 		}
 		
 		

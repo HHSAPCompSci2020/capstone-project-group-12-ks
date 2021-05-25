@@ -27,7 +27,7 @@ public class Weapon implements Collidable{
 	 */
 	public Weapon() {
 		weaponName = "Basic Great Sword";
-		specialAbilityName = "Dash";
+		specialAbilityName = "Heal";
 		swing = false;
 		swingCount= 0;
 		weaponType = "Great Sword";
@@ -198,6 +198,13 @@ public class Weapon implements Collidable{
 	 */
 	public boolean isSwinging() {return swing;}
 	
+	/**
+	 * Returns name of special ability of this weapon
+	 * @return name of special ability of this weapon
+	 */
+	public String getSpecialMoveName() {
+		return specialAbilityName;
+	}
 	
 	
 }

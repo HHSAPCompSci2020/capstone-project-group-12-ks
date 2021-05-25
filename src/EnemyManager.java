@@ -16,7 +16,7 @@ import com.google.firebase.database.OnDisconnect;
 /**
  * The EnemyManager Class represents all the enemies on the grid
  * this class is intended to be used with a data structure using Rooms
- * @author kinjal
+ * @author srikrishna (basecode) + kinjal (firebase)
  * @version 1.0.0
  */
 public class EnemyManager implements ChildEventListener {
@@ -74,7 +74,6 @@ public class EnemyManager implements ChildEventListener {
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		loaded = true;
@@ -105,15 +104,8 @@ public class EnemyManager implements ChildEventListener {
 			return;
 		}
 		for(int i : indeces) {
-			//System.out.println(indeces);
-			//System.out.println(enemies);
-			//System.out.println(refs);
-			//			if(enemies==null) {
-			//				System.out.println("ENEMIES NULLLLLL");
-			//				return;
-			//			}
 			if(enemies.get(i) == null) {
-				//System.out.println("e");
+				
 				continue;
 			}
 
@@ -130,9 +122,9 @@ public class EnemyManager implements ChildEventListener {
 	}
 	/**
 	 * Moves an enemy of index i
-	 * @param i
-	 * @param x player loc
-	 * @param y player loc
+	 * @param i index
+	 * @param x player location
+	 * @param y player location
 	 */
 	public void move(int i,int x, int y ) {
 		if(enemies.get(i) == null) {
@@ -168,6 +160,11 @@ public class EnemyManager implements ChildEventListener {
 		}
 	}
 
+	/**
+	 * Gets enemy object at index i
+	 * @param i index which you want enemy from
+	 * @return Enemy at index i 
+	 */
 	public Enemy get(int i) {
 		return enemies.get(i);
 	}
@@ -177,22 +174,18 @@ public class EnemyManager implements ChildEventListener {
 	}
 
 	/**
-	 * Used to create a new Enemy that will be managed by this class
+	 * Used to create a new Enemy that will be managed by this class (used with EnemyRoom)
 	 */
 	public void spawnRoomEnemies(int enemies) {
 		while(!loaded) {
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
 
-		//		indeces.clear();
-		//		this.enemies.clear();
-		//		refs.clear();
-		for(int i = 0;  i < enemies/*to be changed*/; i++) {
+		for(int i = 0;  i < enemies; i++) {
 			DatabaseReference newRef;
 			if(refs == null) {
 				newRef = enemiesRef.child(0+"");
@@ -210,15 +203,14 @@ public class EnemyManager implements ChildEventListener {
 			try {
 				Thread.sleep(700);//delay to add enemy to database
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 
 	}
 	/**
-	 * spawns boss
-	 * @param room the room to spawn in
+	 * spawns boss 
+	 * @param room the room to spawn the boss in
 	 */
 	public void spawnRoomEnemiesForBossRoom(BossRoom room) {
 	
@@ -226,7 +218,6 @@ public class EnemyManager implements ChildEventListener {
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		}
@@ -234,9 +225,6 @@ public class EnemyManager implements ChildEventListener {
 		System.out.println("IN BOSS ROOMMMMMMM");
 		nextIsBoss=true;
 
-		//		indeces.clear();
-		//		this.enemies.clear();
-		//		refs.clear();
 
 		Boss enemy = room.getRoomBoss();
 
@@ -257,7 +245,6 @@ public class EnemyManager implements ChildEventListener {
 		try {
 			Thread.sleep(700);//delay to add enemy to database
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -266,15 +253,19 @@ public class EnemyManager implements ChildEventListener {
 	}
 
 
+	/**
+	 * sets data base reference
+	 * @param ref the reference you wish to set 
+	 */
 	public void setReference(DatabaseReference ref) {
 		enemiesRef = ref;
 	}
 
 	@Override
 	public void onCancelled(DatabaseError arg0) {
-		// TODO Auto-generatd method stub
 
 	}
+	
 	/**
 	 * runs when something is added to database
 	 * @param arg0 the updated data
@@ -315,7 +306,6 @@ public class EnemyManager implements ChildEventListener {
 	@Override
 	public void onChildChanged(DataSnapshot arg0, String arg1) {
 		
-		//System.out.println("d");
 		if(nextIsBoss) {
 			EnemyData e = arg0.getValue(EnemyData.class);
 			Boss enemy = new Boss(e.getX(),e.getY(),new HealthBar(2000,2000,Color.blue));
@@ -333,7 +323,6 @@ public class EnemyManager implements ChildEventListener {
 
 	@Override
 	public void onChildMoved(DataSnapshot arg0, String arg1) {
-		// TODO Auto-generated method stub
 
 	}
 	/**

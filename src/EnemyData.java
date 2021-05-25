@@ -5,6 +5,9 @@
  */
 public class EnemyData{
 	
+	/**
+	 * constructs EnemyData Object
+	 */
 	EnemyData(){
 		
 	}

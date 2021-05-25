@@ -5,13 +5,13 @@ import javax.swing.JFrame;
 
 /**
  * Main Class that initiates the Game "Legend of Kenjiro"
- * @author Kinjal
+ * @author Kinjal + Srikrishna
  * @version 1.0.0
  */
 public class Main extends JFrame {
 	/**
 	 * Main method creates window
-	 * @param args
+	 * @param args String array storing command lines of program
 	 */
 	public static void main(String[] args) {
 		System.out.println("Welcome to the Dungeon");
@@ -32,7 +32,7 @@ public class Main extends JFrame {
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 			

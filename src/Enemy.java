@@ -54,7 +54,6 @@ public class Enemy implements Collidable{
 			g.drawImage(imgRight, (int)x - 180, (int)y - 95, null);
 		}
 		g.setColor(Color.red);
-		//g.drawString("Enemy", (int)x+8, (int)y+27);
 		health.draw(g, (int)x, (int)y-15);
 	}
 	
@@ -81,27 +80,19 @@ public class Enemy implements Collidable{
 		}
 		
 		
-//		int r1 = (int)(Math.random()*2)+1;
-//		int r2 = (int)(Math.random()*2)+1; 
-//		
-//		if(r1==1) {
-//			x+=currentSpeedConstant;
-//		}
-//		else if(r1==2) {
-//			x+=-currentSpeedConstant;
-//		}
-//		
-//		if(r2==1) {
-//			y+=currentSpeedConstant;
-//		}
-//		else if(r2==2) {
-//			y+=-currentSpeedConstant;
-//		}
 	}
 	
+	/**
+	 * gets X field from enemy class
+	 * @return gets X field from enemy class
+	 */
 	public double getX() {
 		return x;
 	}
+	/**
+	 * gets Y field from enemy class
+	 * @return gets Y field from enemy class
+	 */
 	public double getY() {
 		return y;
 	}
@@ -110,15 +101,11 @@ public class Enemy implements Collidable{
 	@Override
 	public void onImpact(Collidable other) {
 		if(other.getClass() == Room.class || other.getClass().getSuperclass() == Room.class) {
-//			x = 100;
-//			y = 100;
 			move = false;
 			
 		}
 		
 		if(other.getClass() == Player.class || other.getClass().getSuperclass() == Player.class) {
-//			x = 100;
-//			y = 100;
 			move = false;
 			
 		}
@@ -131,7 +118,6 @@ public class Enemy implements Collidable{
 
 	@Override
 	public boolean collisionCheck(Collidable other) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -142,8 +128,20 @@ public class Enemy implements Collidable{
 		return new Rectangle2D.Double(x,y,45,70);
 	}
 	
+	/**
+	 * Reduces health of Enemy by amt (integer)
+	 * @param amt amount by which you wish to reduce enemy health
+	 */
 	public void reduceHealth(double amt) {health.reduceHealth(amt);}
+	/**
+	 * Increases health of Enemy by amt (integer)
+	 * @param amt amount by which you wish to increase enemy health
+	 */
 	public void increaseHealth(double amt) {health.increaseHealth(amt);}
+	/**
+	 * returns current health of the enemy
+	 * @return returns current health of the enemy
+	 */
 	public double getHealth() {
 		return health.getHealth();
 	}

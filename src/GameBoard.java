@@ -35,18 +35,17 @@ import com.google.firebase.database.OnDisconnect;
  */
 public class GameBoard extends JPanel implements ChildEventListener{
 
-	private Image backGroundImage;
+
 	private ArrayList<Player> players;
 	private Player p1;
 	private Image up1, up2, up3, down1, down2, down3, left1, left2,left3, right1,right2, right3;
 	private EnemyManager enemies;
-	private GameBoard board;
-	private ArrayList<String> storySubtitles; 	//Will contain string that have the file path to text documents (that hv subs)
-	//private ArrayList<Room> rooms;
+	
 	private Room currentRoom;
 	private BufferedImage bImage;
 	private Graphics bufferedG;
 	private JFrame frame;
+	
 	//Database fields
 	private PlayerData currentPost;
 	private DatabaseReference playersRef;
@@ -54,12 +53,13 @@ public class GameBoard extends JPanel implements ChildEventListener{
 	private OnDisconnect disconnector;
 	private DatabaseReference enemyRef;
 	private boolean loaded;
-
+	//Database Fields
+	
 	private Stack<Room> rooms;
 	private int storyCount;
 	private Image imgWeapon;
 
-	private Image bossImageLeft, bossImageRight;
+
 
 
 	/**
@@ -178,13 +178,13 @@ public class GameBoard extends JPanel implements ChildEventListener{
 
 			playersRef.addChildEventListener(this);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
 		try {
 			Thread.sleep(7000);//5 sec loading time
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		loaded = true;
@@ -214,10 +214,10 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		bufferedG.drawRect(x, y,w, h);
 
 
-		backGroundImage = null;
+		
 
 		rooms = new Stack<Room>();
-		storySubtitles = new ArrayList<String>();
+		
 
 
 
@@ -231,32 +231,23 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		currentPost.y = 200;
 		currentPost.health = 150;
 		currentPost.down = true;
-		//		newData.add(currentPost);
-		//		Post spawn = new Post();
-		//		spawn.players = newData;
+		
 		playerRef.setValueAsync(currentPost);
 		try {
 			Thread.sleep(700);//delay to add player to database
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 
 
-		//		for(int i=10;i>0;i--) {
-		//			rooms.add(new EnemyRoom("src/scripts/Room3.txt","Room "+i,"Images/RoomOption1.png", w, h,1));
-		//		}
+		
 
 		rooms.add(new BossRoom("src/scripts/BossRoom1.txt","Room ","Images/RoomOption2.png", w, h));
 		rooms.add(new EnemyRoom("src/scripts/Room2.txt","Room ","Images/RoomOption1.png", w, h,1));
 		rooms.add(new EnemyRoom("src/scripts/Room1.txt","Room ","Images/RoomOption1.png", w, h,1));
 	
-		//new EnemyRoom("src/scripts/Room3.txt","Room ","Images/RoomOption1.png", w, h,1);
-
-		//		for(int i=0;i<rooms.size();i++) {
-		//			System.out.println(rooms.get(i));
-		//		}
+		
 
 		int temp=0;
 		for(int i =0;i<players.size();i++) {
@@ -266,10 +257,9 @@ public class GameBoard extends JPanel implements ChildEventListener{
 			}	
 
 		}
-		//	currentRoom = rooms.pop();
+	
 		currentRoom = rooms.pop();
-		//System.out.println("KEY: "+Integer.parseInt(playerRef.getKey())+"     temp: "+temp);
-		//System.out.println(currentRoom instanceof BossRoom);
+		
 		if(currentRoom instanceof BossRoom && Integer.parseInt(playerRef.getKey())==temp) {
 			enemies.spawnRoomEnemiesForBossRoom((BossRoom)currentRoom);
 		}
@@ -315,7 +305,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 					p.draw(bufferedG, up1, up2, up3, down1, down2, down3, left1,
 							left2, left3, right1, right2, right3,imgWeapon);
 					if(i != Integer.parseInt(playerRef.getKey())) {
-						//p1.collisionCheck(p);
+						
 					}
 				}
 			}
@@ -345,9 +335,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		}
 
 
-		//		for(int i=0;i<rooms.size();i++) {
-		//			System.out.println(rooms.get(i));
-		//		}
+	
 		if(!loaded) {
 			return true;
 		}
@@ -391,19 +379,11 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		playerRef.setValueAsync(data);
 
 
-		//		for(int i=0;i<enemies.size();i++) {
-		//			if(!currentRoom.collisionCheck(enemies.get(i))){
-		//				enemies.move(i);
-		//			}
-		//		}
+	
 		enemies.moveAll(p1.getX(), p1.getY());
 
 
-		//		for(int i=0;i<enemies.size();i++) {
-		//			if(temp.collisionCheck(enemies.get(i))){
-		//				enemies.get(i).reduceHealth(50);
-		//			}
-		//		}
+		
 		enemies.drawAll(bufferedG, p1.getX(), p1.getY());
 		if(currentRoom instanceof EnemyRoom) {
 			((EnemyRoom) currentRoom).reduceEnemiesLeft(enemies);
@@ -438,14 +418,14 @@ public class GameBoard extends JPanel implements ChildEventListener{
 						p1.setY(100);
 					}
 
-					//storyCount=0;
+			
 				}
 			}
 			else if(currentRoom instanceof BossRoom) {
 				if(p1.getHitbox().intersects(((EnemyRoom) currentRoom).getHitboxForNextRoomPlate())){
 					currentRoom = rooms.pop();
 					frame.addMouseListener(currentRoom);
-					//enemies.spawnRoomEnemies(((EnemyRoom) currentRoom).getOriginalNumberOfEnemies());
+					
 					int temp1=0;
 					for(int i =0;i<players.size();i++) {
 						if(players.get(i)!=null) {
@@ -454,15 +434,14 @@ public class GameBoard extends JPanel implements ChildEventListener{
 						}	
 
 					}
-//					if(currentRoom instanceof BossRoom && Integer.parseInt(playerRef.getKey())==temp1)
-//						enemies.spawnRoomEnemiesForBossRoom((BossRoom)currentRoom);
+					
 					if(currentRoom instanceof EnemyRoom) {
 						enemies.spawnRoomEnemies(((EnemyRoom) currentRoom).getOriginalNumberOfEnemies());
 					}
 
 					p1.setX(550);
 					p1.setY(100);
-					//storyCount=0;
+				
 				}
 			}
 			
@@ -495,7 +474,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 
 
 	/**
-	 * important method that redraws everything on the screen by redrawing the BufferedImage 
+	 * important method that redraws everything on the screen by redrawing the BufferedImage on the jpanel (which is this class)
 	 */
 	public void paintComponent(Graphics g) {
 
@@ -507,18 +486,16 @@ public class GameBoard extends JPanel implements ChildEventListener{
 
 
 	@Override
-
 	public void onCancelled(DatabaseError arg0) {
-		// TODO Auto-generated method stub
 
 	}
 
 
-	@Override
 	/**
 	 * Runs when new players are added to the database
 	 * @param arg0 the current state of the database
 	 */
+	@Override
 	public void onChildAdded(DataSnapshot arg0, String arg1) {
 		PlayerData data = arg0.getValue(PlayerData.class);
 		players.add(null);
@@ -535,11 +512,11 @@ public class GameBoard extends JPanel implements ChildEventListener{
 	}
 
 
-	@Override
 	/**
 	 * runs when the database is updated
 	 * @param arg0 the current state of the database
 	 */
+	@Override
 	public void onChildChanged(DataSnapshot arg0, String arg1) {
 		PlayerData data = arg0.getValue(PlayerData.class);
 		Player p = new Player((int)data.getX(), (int)data.getY(), 50, 50);
@@ -557,11 +534,13 @@ public class GameBoard extends JPanel implements ChildEventListener{
 
 	@Override
 	public void onChildMoved(DataSnapshot arg0, String arg1) {
-		// TODO Auto-generated method stub
 
 	}
 
 
+	/**
+	 * Removes player data from players data structure using arg0
+	 */
 	@Override
 	public void onChildRemoved(DataSnapshot arg0) {
 		PlayerData data = arg0.getValue(PlayerData.class);

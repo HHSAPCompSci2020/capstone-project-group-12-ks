@@ -124,9 +124,8 @@ public class Weapon implements Collidable{
 				//g.drawImage(img,(int)x-50, (int)y+25+15, null);
 			}
 		}
-		//	g.drawRect((int)x, (int)y, 90, 90);
-		//g.drawRect((int)x, (int)y, 10, 90);
 		
+		//RANGE Boxes commented (can be uncommented for testing)	
 		//right
 		//g.drawRect((int)x,(int)y,90,100);
 		//left

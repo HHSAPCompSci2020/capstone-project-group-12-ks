@@ -17,7 +17,7 @@ import javax.swing.ImageIcon;
 
 /**
  * Room class that represents a single room in the dungeon
- * @author srikrishna + kinjal(Collision Detection)
+ * @author srikrishna + kinjal(Collidable methods)
  * @version 1.0.0
  */
 public class Room implements Collidable, MouseListener {
@@ -76,7 +76,7 @@ public class Room implements Collidable, MouseListener {
 	 * @param roomName Name of the Room
 	 */
 	public Room(String filePath, String roomName, String imageFilePath, int w, int h) {
-		//set image
+	
 		numEnemiesForRoom=10;
 		canMoveToNextRoom = false;
 		this.filePath=filePath;
@@ -84,6 +84,7 @@ public class Room implements Collidable, MouseListener {
 		width = w;
 		height = h;
 		
+		//set image
 		img = new ImageIcon(imageFilePath).getImage();
 		try {
 			img = ImageIO.read(getClass().getClassLoader().getResource(imageFilePath));
@@ -92,22 +93,12 @@ public class Room implements Collidable, MouseListener {
 		}
 		this.imageFilePath=imageFilePath;
 		
-//		storyFile = new File("/src/scripts.Room1.txt");
-//		System.out.println(storyFile.exists());
-//		System.out.println(storyFile.isDirectory());
-//		System.out.println(storyFile.canRead());
-//		try {
-//			storyReader = new Scanner(storyFile);
-//		} catch (FileNotFoundException e) {
-//			e.printStackTrace();
-//		}
-		
+		//load file
 		FileInputStream fis;
 		try {
 			fis = new FileInputStream(filePath);
 			storyReader=new Scanner(fis);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -145,7 +136,7 @@ public class Room implements Collidable, MouseListener {
 
 	@Override
 	public void onImpact(Collidable other) {
-		// TODO Auto-generated method stub
+	
 		
 	}
 
@@ -185,28 +176,32 @@ public class Room implements Collidable, MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
+	
 		
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
+	
 		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 	
+	/**
+	 * returns whether the storymode of the room is currently active
+	 * @return whether the storymode of the room is currently active (true for yes, false for no)
+	 */
 	public boolean isStoryActive() {
 		return storyActive;
 	}

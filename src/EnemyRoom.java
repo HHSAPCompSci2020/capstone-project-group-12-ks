@@ -66,16 +66,6 @@ public class EnemyRoom extends Room {
 
 	@Override
 	public void draw(Graphics g) {
-		//draw image here because its the background image for room
-		
-//		g.drawString(roomName, 230, 10);
-//		g.drawImage(img, -18, -10, null);
-//		if(storyActive) {
-//			g.setColor(Color.black);
-//			g.fillRect(0, 300, 750, 200);
-//			g.setColor(Color.white);
-//			g.drawString(currentLine, 50, 200+50);
-//		}
 		super.draw(g);
 		if(canMoveToNextRoom && alternator<=3) {
 			g.setColor(Color.yellow);
@@ -85,6 +75,12 @@ public class EnemyRoom extends Room {
 		if(alternator==6) alternator=0;
 	}
 
+	/**
+	 * Returns Rectangle2D.Double which represents a hitbox for the yellow blinking square allowing
+	 * player to move to next room
+	 * @return Returns Rectangle2D.Double which represents a hitbox for the yellow blinking square allowing
+	 * player to move to next room
+	 */
 	public Double getHitboxForNextRoomPlate() {
 		if(!canMoveToNextRoom) return null;
 		Rectangle2D.Double hitbox = null;
@@ -92,6 +88,10 @@ public class EnemyRoom extends Room {
 		return hitbox;
 	}
 	
+	/**
+	 * returns the original number of enemies in room (integer)
+	 * @return returns the original number of enemies in room (integer)
+	 */
 	public int getOriginalNumberOfEnemies() {return originalNumOfEnemies;}
 
 }

@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
 
 /**
  * Player class that represents the users character
- * @author srikrishna + kinjal(collison detection)
+ * @author srikrishna + kinjal(collidable methods)
  * @version 1.0.0
  */
 public class Player implements KeyListener, Collidable{
@@ -42,10 +42,10 @@ public class Player implements KeyListener, Collidable{
 	
 	private boolean inMotion;
 	private HealthBar health;
-	
-	
-	
 	private int count = 1;
+	
+	
+	
 
 	/**
 	 * Constructor that creates a Player Object
@@ -54,9 +54,7 @@ public class Player implements KeyListener, Collidable{
 	 */
 	public Player(int x, int y, int w, int h)
 	{
-		//image = img;
-//		testImage = new ImageIcon("images/Test.png").getImage();
-//		testImage = Toolkit.getDefaultToolkit().getImage("images/Test.png");
+		
 		
 		
 		
@@ -67,8 +65,7 @@ public class Player implements KeyListener, Collidable{
 		isVisible = true;
 		hit=false;
 		counter=0;
-		//right=new ImageIcon("png name").getImage();
-		//left=new ImageIcon("png name").getImage();
+		
 		xSpeed = 0;
 		ySpeed = 0;
 
@@ -82,17 +79,6 @@ public class Player implements KeyListener, Collidable{
 		inMotion = false;
 		health = new HealthBar(200,200,Color.GREEN);
 	}
-
-//	//Methods
-//	public void horizontal(int dir) {
-//		xSpeed = dir;
-//		moveByAmount((int)xSpeed, 0);
-//	}
-//
-//	public void vertical(int dir) {
-//		ySpeed = dir;
-//		moveByAmount(0,(int)ySpeed);
-//	}
 
 	/**
 	 * Sets the vertical Speed of the Player class to the parameter passed
@@ -127,36 +113,20 @@ public class Player implements KeyListener, Collidable{
 			Image down1, Image down2, Image down3,
 			Image left1, Image left2, Image left3,
 			Image right1, Image right2, Image right3, Image imgWeapon) {
-//		System.out.println("IN DRAW --- "+up+" "+down+" "+left+" "+right);
-//	    System.out.println(xSpeed+" "+ySpeed+" "+x+" "+y);
+
 		g.setColor(Color.blue);
-		//g.drawImage(right1, x-165, y-105, null);
+		
 		if(isLeft) {
-			//g.drawImage(left, x, y,width,height, io);
+		
 			g.drawRect(x, y, width, height);
 			g.drawString("Player",x+5,y+25);
 		}
 		else if(isVisible){
-			//g.drawImage(right, x, y, width, height, io);
+			
 			g.drawRect(x, y, width, height);
 			g.drawString("Player",x+5,y+25);
 		}
 		
-//		if(ySpeed >= 0) {
-//			up = true;
-//			down = false;
-//		} else {
-//			up = false;
-//			down = true;
-//		}
-//		
-//		if(xSpeed >= 0) {
-//			right = true;
-//			left = false;
-//		} else {
-//			right = false;
-//			left = true;
-//		}
 		
 		currentWeapon.draw(g, x+50, y-50,up,down,left,right,imgWeapon);
 		health.draw(g, x, y-15);
@@ -221,25 +191,29 @@ public class Player implements KeyListener, Collidable{
 		
 		
 		
-		//g.drawImage(testImage, 50, 50, null);
+		
 		
 	}
 
-//	public void setLeft(boolean left) {
-//		this.isLeft=left;
-//	}
-//
-//	public void toggleVisibility() {
-//		isVisible = true;
-//	}
-//
+
+
 	
+	/**
+	 * sets left boolean field
+	 * @param left boolean which you wish to set left to
+	 */
 	public void setLeft(boolean left) {
 		this.left=left;
 	}
+	
+	/**
+	 * sets right boolean field
+	 * @param left boolean which you wish to set right to
+	 */
 	public void setRight(boolean right) {
 		this.right=right;
 	}
+	
 	/**
 	 * Immediately moves Player to new Location
 	 * @param x X coordinate of Where the Player object should move
@@ -260,25 +234,23 @@ public class Player implements KeyListener, Collidable{
 		this.y += y;
 	}
 	
-//	public void addKeyListener() {
-//		
-//	}
+
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
+		
 		int keycode = e.getKeyCode();
 		
 
 		if(keycode==KeyEvent.VK_D) 
 		{
-			//setLeft(false);
+		
 			setRight(true);
 		
 		}
 		else if(keycode==KeyEvent.VK_A) 
 		{
-			//setLeft(true);
+		
 			setLeft(true);
 			
 		}
@@ -294,7 +266,7 @@ public class Player implements KeyListener, Collidable{
 		}
 		else if(keycode==KeyEvent.VK_R) {
 			currentWeapon.attack();
-//			System.out.println("DONE");
+		
 		}
 		
 
@@ -303,18 +275,18 @@ public class Player implements KeyListener, Collidable{
 	public void keyPressed(KeyEvent e) 
 	{
 		inMotion=true;
-//		System.out.println("IN KEY PRESSED ");
+
 		int keycode = e.getKeyCode();
 
 		if(keycode==KeyEvent.VK_D) 
 		{
-			//setLeft(false);
+		
 			setRight(true);
 			this.setXSpeed(currentSpeedConstant);
 		}
 		else if(keycode==KeyEvent.VK_A) 
 		{
-			//setLeft(true);
+	
 			setLeft(true);
 			this.setXSpeed(-currentSpeedConstant);
 		}
@@ -334,16 +306,16 @@ public class Player implements KeyListener, Collidable{
 	public void keyReleased(KeyEvent e) 
 	{
 		inMotion = false;
-//		System.out.println("IN KEY RELEASED");
+
 		if (e.getKeyCode() == KeyEvent.VK_A) 
 		{
-			//setLeft(true);
+
 			setLeft(false);
 			this.setXSpeed(0);
 		} 
 		else if (e.getKeyCode() == KeyEvent.VK_D) 
 		{
-			//setLeft(false);
+	
 			setRight(false);
 			this.setXSpeed(0);
 		} 
@@ -365,9 +337,17 @@ public class Player implements KeyListener, Collidable{
 		
 	}
 	
+	/**
+	 * gets X coordinate 
+	 * @return gets X coordinate (integer value)
+	 */
 	public int getX() {
 		return x;
 	}
+	/**
+	 * gets Y coordinate 
+	 * @return gets Y coordinate (integer value)
+	 */
 	public int getY() {
 		return y;
 	}
@@ -375,34 +355,12 @@ public class Player implements KeyListener, Collidable{
 	@Override
 	public void onImpact(Collidable other) {
 		if(other.getClass() == Room.class || other.getClass().getSuperclass() == Room.class) {
-//			System.out.println("hi");
-//			Rectangle2D cross = getHitbox().createIntersection(other.getHitbox());
-//			if(cross.getX() < 0) {
-//				x+=cross.getWidth();
-//			} else {
-//				x-=cross.getWidth();
-//			}
-//			if(cross.getY() < 0) {
-//				y+=cross.getHeight();
-//			} else {
-//				y-=cross.getHeight();
-//			}
+
 			xSpeed = 0;
 			ySpeed = 0;
 		}
 		if(other.getClass() == Enemy.class || other.getClass().getSuperclass() == Enemy.class) {
-//			System.out.println("hi");
-//			Rectangle2D cross = getHitbox().createIntersection(other.getHitbox());
-//			if(cross.getX() < 0) {
-//				x+=cross.getWidth();
-//			} else {
-//				x-=cross.getWidth();
-//			}
-//			if(cross.getY() < 0) {
-//				y+=cross.getHeight();
-//			} else {
-//				y-=cross.getHeight();
-//			}
+
 			health.reduceHealth(1);
 			}
 		
@@ -424,66 +382,123 @@ public class Player implements KeyListener, Collidable{
 		return hitbox;
 	}
 	
+	/**
+	 * returns boolean expressing whether player is currently attacking or not
+	 * @return boolean expressing whether player is currently attacking or not
+	 */
 	public boolean isAttacking() {
 		return currentWeapon.isSwinging();
 	}
 	
+	/**
+	 * returns current weapon used by this Player class
+	 * @return returns current weapon used by this Player class
+	 */
 	public Weapon getWeapon() {return currentWeapon;}
 	
+	/**
+	 * returns Player xSpeed
+	 * @return returns Player xSpeed
+	 */
 	public double getXVel() {
 		return xSpeed;
 	}
-	
+	/**
+	 * returns Player ySpeed
+	 * @return returns Player ySpeed
+	 */
 	public double getYVel() {
 		return ySpeed;
 	}
-	
+	/**
+	 * sets x field of player
+	 * @param x integer parameter you wish to set x to
+	 */
 	public void setX(int x) {
 		this.x=x;
 	}
-	
+	/**
+	 * sets y field of player
+	 * @param y integer parameter you wish to set y to
+	 */
 	public void setY(int y) {
 		this.y=y;
 	}
 	
+	/**
+	 * gets left boolean 
+	 * @return left boolean 
+	 */
 	public boolean getLeft() {
 		return left;
 	}
-	
+	/**
+	 * gets right boolean 
+	 * @return right boolean 
+	 */
 	public boolean getRight() {
 		return right;
 	}
-	
+	/**
+	 * gets up boolean 
+	 * @return up boolean 
+	 */
 	public boolean getUp() {
 		return up;
 	}
-	
+	/**
+	 * gets down boolean 
+	 * @return down boolean 
+	 */
 	public boolean getDown() {
 		return down;
 	}
 	
+	/**
+	 * sets up boolean to u
+	 * @param u boolean you wish to set up to
+	 */
 	public void setUp(boolean u) {
 		up = u;
 	}
-	
+	/**
+	 * sets down boolean to d
+	 * @param d boolean you wish to set down to
+	 */
 	public void setDown(boolean d) {
 		down = d;
 	}
+	/**
+	 * sets the health of Player class (using health bar class)
+	 * @param h double of new health for player
+	 */
 	public void setHealth(double h) {
 		health.reduceHealth(health.getHealth()-h);
 	}
-	
+	/**
+	 * returns current health for player
+	 * @return current health for player
+	 */
 	public double getHealth() {
 		return health.getHealth();
 	}
-	
+	/**
+	 * returns whether player is swinging weapon
+	 * @return whether player is swinging weapon
+	 */
 	public boolean getSwing() {
 		return currentWeapon.isSwinging();
 	}
-	
+	/**
+	 * sets currentWeapon to "attack mode" which sets swing to true in currentWeapon
+	 */
 	public void setSwing() {
 		currentWeapon.attack();
 	}
+	/**
+	 * reduces health by amt
+	 * @param amt amount by which you want to reduce health
+	 */
 	public void reduceHealth(double amt) {
 		health.reduceHealth(amt);
 	}

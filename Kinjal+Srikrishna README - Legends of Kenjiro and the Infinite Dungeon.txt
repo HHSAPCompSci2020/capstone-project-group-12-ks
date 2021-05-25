@@ -22,22 +22,21 @@ The users should be able to traverse the dungeon using the WASD keys and fight u
 Instructions:
 [Explain how to use the program. This needs to be specific: 
 Which keyboard keys will do what? 
-* AWSD to move
-* Left Mouse Click to initiate attack (attack depends on weapon equipped)
-* Right Mouse Click if weapon has a special ability to activate it
-* E to pick up items and interact with the world
-* Wherever the mouse is placed that will be the direction the user’s avatar faces towards
+
+	* AWSD to move
+	* Space bar to attack
+	* Shift to Activate Weapon Special Move
+
 
 
 Where will you need to click? 
 
-
-You can click at any time although there is no point when there are no monsters or enemies nearby. If there are enemies nearby and your cursor is aligned with them when you click it the weapon should attack the monster if it is within the weapons range.
+Clicking will only be necessary during story mode. Left click during story mode to move to next subtitle. Other than that no clicking will be necessary
 
 
 Will you have menus that need to be navigated? What will they look like? 
-At the beginning there will be a start menu. This start menu will have the options of START, CHARACTER SELECTION, and VIEW INSTRUCTIONS. If we decide to have a inventory or trade menu those will be menus that are traverable as well. These specific menus will not be very complicated and should be rather simple if we decide to code them.
 
+No menus
 
 Do actions need to be taken in a certain order?]
 The story line must be followed in order to access the next phase of the game

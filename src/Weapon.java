@@ -6,7 +6,7 @@ import java.awt.geom.Rectangle2D.Double;
 
 /**
  * Weapon Class that represents a weapon a Player can use (In the Future Enemy Class may use it too)
- * @author srikrishna
+ * @author srikrishna + kinjal(damage and collision detection)
  * @version 1.0.0
  */
 public class Weapon implements Collidable{

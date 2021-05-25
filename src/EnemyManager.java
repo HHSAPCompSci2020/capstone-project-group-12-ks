@@ -167,6 +167,8 @@ public class EnemyManager implements ChildEventListener {
 			} else {
 				newRef = enemiesRef.child(refs.size()+"");
 			}
+			disconnectors.add(newRef.onDisconnect());
+			disconnectors.get(disconnectors.size()-1).removeValueAsync();
 			EnemyData data = new EnemyData();
 			data.x = 150;
 			data.y = 150;
@@ -204,13 +206,6 @@ public class EnemyManager implements ChildEventListener {
 		enemies.set(index, enemy);
 		refs.add(null);
 		refs.set(index, arg0.getRef());
-		if(indeces.contains(index)) {
-			disconnectors.add(refs.get(index).onDisconnect());
-			for(OnDisconnect d : disconnectors) {
-				d.removeValueAsync();
-			}
-			
-		}
 		loaded = true;
 		
 	}

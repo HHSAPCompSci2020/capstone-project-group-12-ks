@@ -1,6 +1,11 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -21,6 +26,7 @@ public class EnemyManager implements ChildEventListener {
 	private ArrayList<Integer> indeces;
 	private ArrayList<OnDisconnect>  disconnectors;
 	private DatabaseReference enemiesRef;
+	private Image imgLeftEnemy,imgRightEnemy;
 	
 	/**
 	 * constructor of EnemyManager Class (used to create a EnemyManager object)
@@ -30,6 +36,21 @@ public class EnemyManager implements ChildEventListener {
 		refs = new ArrayList<DatabaseReference>();
 		indeces = new ArrayList<Integer>();
 		disconnectors = new ArrayList<OnDisconnect>();
+		
+		
+		imgLeftEnemy = new ImageIcon("Images/position1forenemy").getImage();
+		try {
+			imgLeftEnemy = ImageIO.read(getClass().getClassLoader().getResource("Images/position1forenemy"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		imgRightEnemy = new ImageIcon("Images/position2forenemy").getImage();
+		try {
+			imgRightEnemy = ImageIO.read(getClass().getClassLoader().getResource("Images/position2forenemy"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -39,7 +60,7 @@ public class EnemyManager implements ChildEventListener {
 	public void drawAll(Graphics g) {
 		for(int i=0;i<enemies.size();i++) {
 			if(enemies.get(i) != null)
-			enemies.get(i).draw(g);
+			enemies.get(i).draw(g,imgLeftEnemy,imgRightEnemy);
 		}
 		
 	}
@@ -55,6 +76,10 @@ public class EnemyManager implements ChildEventListener {
 //				System.out.println("ENEMIES NULLLLLL");
 //				return;
 //			}
+			
+			Thread thread = new Thread();
+		
+			
 			if(enemies.get(i) == null) {
 				System.out.println("i: "+i+" ");
 				return;
@@ -156,7 +181,7 @@ public class EnemyManager implements ChildEventListener {
 		EnemyData e = arg0.getValue(EnemyData.class);
 		int index = Integer.parseInt(arg0.getKey());
 		enemies.add(null);
-		Enemy enemy = new Enemy(e.getX(), e.getY(),new HealthBar(150,150,Color.red),"Images/position1forenemy","Images/position2forenemy");
+		Enemy enemy = new Enemy(e.getX(), e.getY(),new HealthBar(150,150,Color.red));
 		enemy.reduceHealth(150-e.getHealth());
 		enemies.set(index, enemy);
 		refs.add(null);
@@ -177,7 +202,7 @@ public class EnemyManager implements ChildEventListener {
 	@Override
 	public void onChildChanged(DataSnapshot arg0, String arg1) {
 		EnemyData e = arg0.getValue(EnemyData.class);
-		Enemy enemy = new Enemy(e.getX(), e.getY(),new HealthBar(150,150,Color.red),"Images/position1forenemy","Images/position2forenemy");
+		Enemy enemy = new Enemy(e.getX(), e.getY(),new HealthBar(150,150,Color.red));
 		enemy.reduceHealth(150-e.getHealth());
 		enemies.set(Integer.parseInt(arg0.getKey()), enemy);
 		

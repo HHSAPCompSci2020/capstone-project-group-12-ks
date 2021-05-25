@@ -23,6 +23,8 @@ public class EnemyRoom extends Room {
 	 * original number of enemies that were in the room
 	 */
 	protected int originalNumOfEnemies;
+	
+	
 
 	/**
 	 * Creates a EnemyRoom Object
@@ -34,6 +36,8 @@ public class EnemyRoom extends Room {
 		enemiesLeft = numEnemiesForRoom;
 		alternator=0;
 		this.originalNumOfEnemies=originalNumOfEnemies;
+		
+		
 	}
 
 

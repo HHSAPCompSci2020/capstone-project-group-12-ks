@@ -29,26 +29,14 @@ public class Enemy implements Collidable{
 	 * @param x coordinate spawn point
 	 * @param y coordinate spawn point
 	 */
-	public Enemy(double x, double y, HealthBar health, String imgLeftFilePath, String imgRightFilePath) {
+	public Enemy(double x, double y, HealthBar health) {
 		isHit = false;
 		this.x = x;
 		this.y = y;
 		this.health=health;
 		move = true;
 		
-		imgLeft = new ImageIcon(imgLeftFilePath).getImage();
-		try {
-			imgLeft = ImageIO.read(getClass().getClassLoader().getResource(imgLeftFilePath));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		
-		imgRight = new ImageIcon(imgRightFilePath).getImage();
-		try {
-			imgRight = ImageIO.read(getClass().getClassLoader().getResource(imgRightFilePath));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		
 	}
 	
@@ -58,8 +46,13 @@ public class Enemy implements Collidable{
 	 * (the graphics passed should be the pixel grid you intend to draw this object on)
 	 * @param g  graphics object passed which is the pixel grid you intend to draw this object on
 	 */
-	public void draw(Graphics g) {
-		g.drawImage(imgLeft, (int)x, (int)y, null);
+	public void draw(Graphics g, Image imgLeft, Image imgRight) {
+		if(this.x-x>0) {
+			g.drawImage(imgLeft, (int)x, (int)y, null);
+		}
+		else if(this.x-x<0) {
+			g.drawImage(imgRight, (int)x, (int)y, null);
+		}
 		g.setColor(Color.red);
 		g.drawOval((int)x, (int)y, 50, 50);
 		g.drawString("Enemy", (int)x+8, (int)y+27);

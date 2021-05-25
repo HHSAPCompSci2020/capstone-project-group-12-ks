@@ -104,7 +104,7 @@ public class Room implements Collidable, MouseListener {
 		
 		FileInputStream fis;
 		try {
-			fis = new FileInputStream("src/scripts/Room1.txt");
+			fis = new FileInputStream(filePath);
 			storyReader=new Scanner(fis);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

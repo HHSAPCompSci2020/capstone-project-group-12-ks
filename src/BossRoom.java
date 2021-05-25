@@ -1,12 +1,15 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class BossRoom extends EnemyRoom {
+public class BossRoom extends Room {
+	
+	private Boss roomBoss;
+	
 	
 	
 
 	public BossRoom(String filePath, String roomName, String imageFilePath, int w, int h) {
-		super(filePath, roomName, imageFilePath, w, h,1);
+		super(filePath, roomName, imageFilePath, w, h);
 		
 	}
 
@@ -22,12 +25,12 @@ public class BossRoom extends EnemyRoom {
 			g.setColor(Color.white);
 			g.drawString(currentLine, 50, 200+50);
 		}
-		if(canMoveToNextRoom && alternator<=3) {
-			g.setColor(Color.yellow);
-			g.fillRect(85, 380, 45, 100);
-			System.out.println("done");
-		}
-		alternator++;
-		if(alternator==6) alternator=0;
+//		if(canMoveToNextRoom && alternator<=3) {
+//			g.setColor(Color.yellow);
+//			g.fillRect(85, 380, 45, 100);
+//			System.out.println("done");
+//		}
+//		alternator++;
+//		if(alternator==6) alternator=0;
 	}
 }

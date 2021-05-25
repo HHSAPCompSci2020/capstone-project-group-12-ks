@@ -49,6 +49,7 @@ public class EnemyManager implements ChildEventListener {
 	 */
 	public void moveAll(int x, int y) {
 		for(int i : indeces) {
+			
 			System.out.println("he");
 			if(enemies.get(i) == null) {
 				return;
@@ -150,7 +151,7 @@ public class EnemyManager implements ChildEventListener {
 		EnemyData e = arg0.getValue(EnemyData.class);
 		int index = Integer.parseInt(arg0.getKey());
 		enemies.add(null);
-		Enemy enemy = new Enemy(e.getX(), e.getY(),new HealthBar(150,150,Color.red));
+		Enemy enemy = new Enemy(e.getX(), e.getY(),new HealthBar(150,150,Color.red),"hi","hi");
 		enemy.reduceHealth(150-e.getHealth());
 		enemies.set(index, enemy);
 		refs.add(null);
@@ -171,7 +172,7 @@ public class EnemyManager implements ChildEventListener {
 	@Override
 	public void onChildChanged(DataSnapshot arg0, String arg1) {
 		EnemyData e = arg0.getValue(EnemyData.class);
-		Enemy enemy = new Enemy(e.getX(), e.getY(),new HealthBar(150,150,Color.red));
+		Enemy enemy = new Enemy(e.getX(), e.getY(),new HealthBar(150,150,Color.red),"hi","hi");
 		enemy.reduceHealth(150-e.getHealth());
 		enemies.set(Integer.parseInt(arg0.getKey()), enemy);
 		

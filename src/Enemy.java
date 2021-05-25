@@ -3,6 +3,10 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Double;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 /**
  * Enemy Class that represents a single enemy unit in the game
  * @author srikrishna joshi
@@ -14,7 +18,7 @@ public class Enemy implements Collidable{
 	private double xSpeed, ySpeed;
 	private boolean isHit;
 	private double currentSpeedConstant = 15;
-	private Image img;
+	private Image imgLeft,imgRight;
 	private HealthBar health;
 	private boolean move;
 	
@@ -25,12 +29,20 @@ public class Enemy implements Collidable{
 	 * @param x coordinate spawn point
 	 * @param y coordinate spawn point
 	 */
-	public Enemy(double x, double y, HealthBar health) {
+	public Enemy(double x, double y, HealthBar health, String imgLeftFilePath, String imgRightFilePath) {
 		isHit = false;
 		this.x = x;
 		this.y = y;
 		this.health=health;
 		move = true;
+		
+//		img = new ImageIcon("Images/Zombie.png").getImage();
+//		try {
+//			img = ImageIO.read(getClass().getClassLoader().getResource("Images/Zombie.png"));
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+		
 	}
 	
 	
@@ -40,6 +52,7 @@ public class Enemy implements Collidable{
 	 * @param g  graphics object passed which is the pixel grid you intend to draw this object on
 	 */
 	public void draw(Graphics g) {
+		//g.drawImage(img, (int)x, (int)y, null);
 		g.setColor(Color.red);
 		g.drawOval((int)x, (int)y, 50, 50);
 		g.drawString("Enemy", (int)x+8, (int)y+27);

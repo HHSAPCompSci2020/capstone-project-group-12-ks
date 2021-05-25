@@ -42,12 +42,7 @@ public class Main extends JFrame {
 		g.setColor(Color.red);
 		g.drawString("GAME OVER", 335, 275);
 		
-//		Main window = new Main(); 
-//		window.setTitle("Legends of Kenjiro: The Infinite Dungeon");
-//		window.setBounds(100, 100, 500, 400);
-//		window.setResizable(true);
-//		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		window.setVisible(true);
+
 	}
 	
 }

@@ -164,7 +164,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		if(currentRoom instanceof EnemyRoom)
 		enemies.spawnRoomEnemies(((EnemyRoom) currentRoom).getOriginalNumberOfEnemies());
 
-		p1 = new Player(200,200,50,50);
+		p1 = new Player(250,250,50,50);
 
 
 

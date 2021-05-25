@@ -147,6 +147,10 @@ public class Weapon implements Collidable{
 		}
 	}
 	
+	/**
+	 * Returns weapon damage (currently not in use)
+	 * @return weapon damage (currently not in use)
+	 */
 	public int getDamage() {
 		return damage;
 	}
@@ -183,9 +187,12 @@ public class Weapon implements Collidable{
 		return hitbox;
 	}
 
+	/**
+	 * returns boolean describing whether the weapon is swinging to attack
+	 * @return returns boolean describing whether the weapon is swinging to attack
+	 */
 	public boolean isSwinging() {return swing;}
 	
-	public void kill() {
-		
-	}
+	
+	
 }

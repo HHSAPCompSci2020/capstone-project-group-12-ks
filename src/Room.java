@@ -202,6 +202,10 @@ public class Room implements Collidable, MouseListener {
 		
 	}
 	
+	/**
+	 * returns String description of Object
+	 * @return returns String description of Object
+	 */
 	public String toString() {
 		if(filePath.indexOf("Option1")!=-1) {
 			return "Option1";

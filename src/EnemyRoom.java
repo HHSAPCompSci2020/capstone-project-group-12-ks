@@ -47,7 +47,6 @@ public class EnemyRoom extends Room {
 	public boolean checkWhetherCanMoveToNextRoom() {
 		if(enemiesLeft<=0) {
 			canMoveToNextRoom = true;
-			System.out.println("DONE");
 			return true;
 		}
 		return false;
@@ -81,7 +80,6 @@ public class EnemyRoom extends Room {
 		if(canMoveToNextRoom && alternator<=3) {
 			g.setColor(Color.yellow);
 			g.fillRect(85, 380, 45, 100);
-			System.out.println("done");
 		}
 		alternator++;
 		if(alternator==6) alternator=0;

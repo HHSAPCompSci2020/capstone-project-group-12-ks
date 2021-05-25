@@ -111,26 +111,68 @@ Credits:
 [Gives credit for project components. This includes both internal credit (your group members) and external credit (other people, websites, libraries). To do this:
 * List the group members and describe how each member contributed to the completion of the final program. This could be classes written, art assets created, leadership/organizational skills exercises, or other tasks. Initially, this is how you plan on splitting the work.
 * Give credit to all outside resources used. This includes downloaded images or sounds, external java libraries, parent/tutor/student coding help, etc.]
-   * We are going to use images from online
    * Firebase library
    * Setup code from firebase demos
+   * Background pngs are from
+      * https://www.reddit.com/r/PixelArt/comments/bi59sh/my_first_go_at_a_top_down_rogue_like_dungeon_tile/
+   * Original png for Player (Blue hair guy)
+      * https://fb.ru/article/182885/spraytyi-dlya-igr---chto-eto-takoe
+   * Original Zombie png for Enemy
+      * http://clipart-library.com/clip-art/zombie-png-transparent-15.htm
+   * Original Knight png (not used in game currently, was intended for different enemy types)
+      * https://favpng.com/png_view/knight-knight-pixel-art-cartoon-png/egdjAQVu
+   * Original Spider png (not used in game currently, was intended for different enemy types)
+      * https://www.shutterstock.com/image-vector/vector-pixel-art-spider-isolated-cartoon-1137690707
+   * Original Boss Image for Boss
+      * https://www.pngkey.com/detail/u2q8r5q8o0a9w7w7_blue-flame-boss-fire-enemy-pixel-art/
+   * Original Weapon Images (none in use currently)
+      * https://www.istockphoto.com/vector/pixel-weapons-for-games-icons-vector-set-gm492258666-76213573?irgwc=1&cid=IS&utm_medium=affiliate&utm_source=TinEye&clickid=Uy636NTdTxyLWTm0RHQK3XRkUkBzTOScE0BtRA0&utm_term=&utm_campaign=&utm_content=435504&irpid=77643
+      * https://depositphotos.com/175013198/stock-illustration-set-of-weapon-icons-in.html
+
+
+
+
 * Kinjal
    * Set up eclipse project
    * Implementation of multiplayer
-      * Used: Gameboard, PlayerData, Player
+      * Used: Gameboard, PlayerData, Player, EnemyManager, Enemy, EnemyData
+      * Wrote database all interaction code
+      * Designed database schema
+      * Implemented conflict resolution
+      * Optimized construction and drawing game objects to reduce database lag
+      * Initiating the objects from the database correctly
    *  Modified our existing code to add collision detections
       * Collidable Interface
-      * Added Collision detection loop between players in Gameboard
+      * Designed the collision detection organization system
+      * Implemented collision detection for all things in game.
+
+
+
+
 * Srikrishna
-   * Coded the
-      * GameBoard
-      * Player
-      * Enemy
-      * EnemyManager
+   * Implemented drawing 
+      * Sprites
+      * Graphics (Gameboard)
+      * Animation
+         * Running animation for player
+         * Swing animation for weapon
+   * PhotoShop + Art Studios
+      * Used Photoshop and Art platforms like Clip Art Studio paint to crop and create pngs for the game (literally all the pngs used in the game other than the background pngs were cropped/created by me)
+      * When doing so i would have to use the one original image to create 2-12 images for animation
+   * Room System
+      * Moving from room to room
+      * Drawing correct room background
+      * Enemies Spawning for rooms
+      * Boss Room + EnemyRoom functionality
+      * Subtitles and game story were coded by me including the scripts
+   * Coded (when excluding collisions)
+      * BossRoom
       * Room
       * EnemyRoom
+      * Player 
+      * Enemy
+      * Boss
       * Weapon
-   * [a]How will you implement/code boss fights and puzzle rooms? It's a little unclear what these concepts are.
-[b]_Marked as resolved_
-[c]_Re-opened_
-[d]How will it be dropped? Will there be a place to drop weapons/gear or will they "fall on" the player?
+      * GameBoard 
+      * EnemyManager (with Kinjal’s help (database heavy))
+      * HealthBar

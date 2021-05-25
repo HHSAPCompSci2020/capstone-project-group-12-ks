@@ -28,7 +28,10 @@ public class BossRoom extends EnemyRoom {
 		
 		roomBoss.draw(g, left, right, pX, pY);
 	}
-	
+	/**
+	 * Get boss
+	 * @return Boss object
+	 */
 	public Boss getRoomBoss() {return roomBoss;}
 	
 	

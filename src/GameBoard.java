@@ -54,10 +54,12 @@ public class GameBoard extends JPanel implements ChildEventListener{
 	private OnDisconnect disconnector;
 	private DatabaseReference enemyRef;
 	private boolean loaded;
-	
+
 	private Stack<Room> rooms;
 	private int storyCount;
 	private Image imgWeapon;
+
+	private Image bossImageLeft, bossImageRight;
 
 
 	/**
@@ -72,91 +74,91 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		loaded = false;
 		players = new ArrayList<Player>();
 		enemies = new EnemyManager();
-		
+
 		up1 = new ImageIcon("Images/position10.png").getImage();
 		try {
 			up1 = ImageIO.read(getClass().getClassLoader().getResource("Images/position10.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		up2 = new ImageIcon("Images/position11.png").getImage();
 		try {
 			up2 = ImageIO.read(getClass().getClassLoader().getResource("Images/position11.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		up3 = new ImageIcon("Images/position12.png").getImage();
 		try {
 			up3 = ImageIO.read(getClass().getClassLoader().getResource("Images/position12.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		left1 = new ImageIcon("Images/position4.png").getImage();
 		try {
 			left1 = ImageIO.read(getClass().getClassLoader().getResource("Images/position4.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		left2 = new ImageIcon("Images/position5.png").getImage();
 		try {
 			left2 = ImageIO.read(getClass().getClassLoader().getResource("Images/position5.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		left3 = new ImageIcon("Images/position6.png").getImage();
 		try {
 			left3 = ImageIO.read(getClass().getClassLoader().getResource("Images/position6.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		right1 = new ImageIcon("Images/position7.png").getImage();
 		try {
 			right1 = ImageIO.read(getClass().getClassLoader().getResource("Images/position7.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		right2 = new ImageIcon("Images/position8.png").getImage();
 		try {
 			right2 = ImageIO.read(getClass().getClassLoader().getResource("Images/position8.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		right3 = new ImageIcon("Images/position9.png").getImage();
 		try {
 			right3 = ImageIO.read(getClass().getClassLoader().getResource("Images/position9.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		down1 = new ImageIcon("Images/position1.png").getImage();
 		try {
 			down1 = ImageIO.read(getClass().getClassLoader().getResource("Images/position1.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		down2 = new ImageIcon("Images/position2.png").getImage();
 		try {
 			down2 = ImageIO.read(getClass().getClassLoader().getResource("Images/position2.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		down3 = new ImageIcon("Images/position3.png").getImage();
 		try {
 			down3 = ImageIO.read(getClass().getClassLoader().getResource("Images/position3.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		//Firebase Setup
 		FileInputStream refreshToken;
 		try {
@@ -188,9 +190,9 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		loaded = true;
 		enemies.setReference(enemyRef);
 		currentPost = null;
-		
+
 		//Window Setup
-		
+
 
 		frame=new JFrame("MyDrawingBoard");
 		frame.setBounds(x, y,0,0);
@@ -213,25 +215,25 @@ public class GameBoard extends JPanel implements ChildEventListener{
 
 
 		backGroundImage = null;
-		
+
 		rooms = new Stack<Room>();
 		storySubtitles = new ArrayList<String>();
 
-		
+
 
 		playerRef = playersRef.child(players.size()+"");
 		disconnector = playerRef.onDisconnect();
 		disconnector.removeValueAsync();
-		
+
 
 		currentPost = new PlayerData();
 		currentPost.x = 200;
 		currentPost.y = 200;
 		currentPost.health = 150;
 		currentPost.down = true;
-//		newData.add(currentPost);
-//		Post spawn = new Post();
-//		spawn.players = newData;
+		//		newData.add(currentPost);
+		//		Post spawn = new Post();
+		//		spawn.players = newData;
 		playerRef.setValueAsync(currentPost);
 		try {
 			Thread.sleep(700);//delay to add player to database
@@ -239,20 +241,40 @@ public class GameBoard extends JPanel implements ChildEventListener{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
-		for(int i=10;i>0;i--) {
-			rooms.add(new EnemyRoom("src/scripts/Room3.txt","Room "+i,"Images/RoomOption1.png", w, h,1));
+
+
+
+		//		for(int i=10;i>0;i--) {
+		//			rooms.add(new EnemyRoom("src/scripts/Room3.txt","Room "+i,"Images/RoomOption1.png", w, h,1));
+		//		}
+
+		rooms.add(new EnemyRoom("src/scripts/Room3.txt","Room ","Images/RoomOption1.png", w, h,1));
+		rooms.add(new BossRoom("src/scripts/Room3.txt","Room ","Images/RoomOption2.png", w, h));
+		rooms.add(new EnemyRoom("src/scripts/Room3.txt","Room ","Images/RoomOption1.png", w, h,1));
+		//new EnemyRoom("src/scripts/Room3.txt","Room ","Images/RoomOption1.png", w, h,1);
+
+		//		for(int i=0;i<rooms.size();i++) {
+		//			System.out.println(rooms.get(i));
+		//		}
+
+		int temp=0;
+		for(int i =0;i<players.size();i++) {
+			if(players.get(i)!=null) {
+				temp =i;
+				break;
+			}	
+
 		}
-		
-//		for(int i=0;i<rooms.size();i++) {
-//			System.out.println(rooms.get(i));
-//		}
-		
+		//	currentRoom = rooms.pop();
 		currentRoom = rooms.pop();
-		if(currentRoom instanceof EnemyRoom)
-		enemies.spawnRoomEnemies(((EnemyRoom) currentRoom).getOriginalNumberOfEnemies());
+		//System.out.println("KEY: "+Integer.parseInt(playerRef.getKey())+"     temp: "+temp);
+		//System.out.println(currentRoom instanceof BossRoom);
+		if(currentRoom instanceof BossRoom && Integer.parseInt(playerRef.getKey())==temp) {
+			enemies.spawnRoomEnemiesForBossRoom((BossRoom)currentRoom);
+		}
+		if(currentRoom instanceof EnemyRoom) {
+			enemies.spawnRoomEnemies(((EnemyRoom) currentRoom).getOriginalNumberOfEnemies());}
+
 
 		p1 = new Player(250,250,50,50);
 
@@ -269,6 +291,9 @@ public class GameBoard extends JPanel implements ChildEventListener{
 			e.printStackTrace();
 		}
 
+
+
+
 	}
 
 	/**
@@ -277,7 +302,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 	 * (intended to be called continously for the game to run)
 	 */
 	public boolean refreshGame() {
-		
+
 		if(currentRoom.isStoryActive()) {
 			currentRoom.draw(bufferedG);
 			p1.draw(bufferedG, up1, up2, up3, down1, down2, down3, left1,
@@ -303,7 +328,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 				frame.removeKeyListener(p1);
 				storyCount++;
 			}
-			
+
 			return false;
 		}
 		else if(!currentRoom.isStoryActive() && storyCount!=0) {
@@ -317,11 +342,11 @@ public class GameBoard extends JPanel implements ChildEventListener{
 			frame.addKeyListener(p1);
 			storyCount=0;
 		}
-		
-		
-//		for(int i=0;i<rooms.size();i++) {
-//			System.out.println(rooms.get(i));
-//		}
+
+
+		//		for(int i=0;i<rooms.size();i++) {
+		//			System.out.println(rooms.get(i));
+		//		}
 		if(!loaded) {
 			return true;
 		}
@@ -337,7 +362,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 				}
 			}
 		}
-		
+
 		p1.draw(getBufferedGraphics(), up1, up2, up3, down1, down2, down3, left1,
 				left2, left3, right1, right2, right3, imgWeapon);
 		Weapon temp=p1.getWeapon();
@@ -346,12 +371,12 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		enemies.collide(p1);
 		boolean collided = currentRoom.collisionCheck(p1);
 		if(!collided)
-		p1.move();
+			p1.move();
 		if(p1.getHealth()<=0) {
 			playerRef.removeValueAsync();
 			return true;
-			
-			
+
+
 		}
 		PlayerData data = new PlayerData();
 		data.x = p1.getX();
@@ -363,40 +388,85 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		data.health = p1.getHealth();
 		data.swing = p1.getSwing();
 		playerRef.setValueAsync(data);
-		
-		
-//		for(int i=0;i<enemies.size();i++) {
-//			if(!currentRoom.collisionCheck(enemies.get(i))){
-//				enemies.move(i);
-//			}
-//		}
+
+
+		//		for(int i=0;i<enemies.size();i++) {
+		//			if(!currentRoom.collisionCheck(enemies.get(i))){
+		//				enemies.move(i);
+		//			}
+		//		}
 		enemies.moveAll(p1.getX(), p1.getY());
-		
-		
-//		for(int i=0;i<enemies.size();i++) {
-//			if(temp.collisionCheck(enemies.get(i))){
-//				enemies.get(i).reduceHealth(50);
-//			}
-//		}
+
+
+		//		for(int i=0;i<enemies.size();i++) {
+		//			if(temp.collisionCheck(enemies.get(i))){
+		//				enemies.get(i).reduceHealth(50);
+		//			}
+		//		}
 		enemies.drawAll(bufferedG, p1.getX(), p1.getY());
 		if(currentRoom instanceof EnemyRoom) {
 			((EnemyRoom) currentRoom).reduceEnemiesLeft(enemies);
 		}
-		
-		
+
+
 		if(currentRoom.checkWhetherCanMoveToNextRoom()) {
 			if(currentRoom instanceof EnemyRoom) {
 				if(p1.getHitbox().intersects(((EnemyRoom) currentRoom).getHitboxForNextRoomPlate())){
 					currentRoom = rooms.pop();
 					frame.addMouseListener(currentRoom);
-					enemies.spawnRoomEnemies(((EnemyRoom) currentRoom).getOriginalNumberOfEnemies());
+					if(currentRoom instanceof BossRoom) {
+
+						int temp1=0;
+						for(int i =0;i<players.size();i++) {
+							if(players.get(i)!=null) {
+								temp1 =i;
+								break;
+							}	
+
+						}
+						System.out.println(temp);
+						if(currentRoom instanceof BossRoom && Integer.parseInt(playerRef.getKey())==temp1)
+							enemies.spawnRoomEnemiesForBossRoom((BossRoom)currentRoom);
+
+						p1.setX(550);
+						p1.setY(100);
+					}
+					else if(currentRoom instanceof EnemyRoom) {
+						enemies.spawnRoomEnemies(((EnemyRoom) currentRoom).getOriginalNumberOfEnemies());
+						p1.setX(550);
+						p1.setY(100);
+					}
+
+					//storyCount=0;
+				}
+			}
+			else if(currentRoom instanceof BossRoom) {
+				if(p1.getHitbox().intersects(((EnemyRoom) currentRoom).getHitboxForNextRoomPlate())){
+					currentRoom = rooms.pop();
+					frame.addMouseListener(currentRoom);
+					//enemies.spawnRoomEnemies(((EnemyRoom) currentRoom).getOriginalNumberOfEnemies());
+					int temp1=0;
+					for(int i =0;i<players.size();i++) {
+						if(players.get(i)!=null) {
+							temp1 =i;
+							break;
+						}	
+
+					}
+//					if(currentRoom instanceof BossRoom && Integer.parseInt(playerRef.getKey())==temp1)
+//						enemies.spawnRoomEnemiesForBossRoom((BossRoom)currentRoom);
+					if(currentRoom instanceof EnemyRoom) {
+						enemies.spawnRoomEnemies(((EnemyRoom) currentRoom).getOriginalNumberOfEnemies());
+					}
+
 					p1.setX(550);
 					p1.setY(100);
 					//storyCount=0;
 				}
 			}
+			
 		}
-		
+
 		repaint();
 		return false;
 	}
@@ -422,7 +492,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		return bufferedG;
 	}
 
-	
+
 	/**
 	 * important method that redraws everything on the screen by redrawing the BufferedImage 
 	 */

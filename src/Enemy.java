@@ -54,7 +54,7 @@ public class Enemy implements Collidable{
 			g.drawImage(imgRight, (int)x - 180, (int)y - 95, null);
 		}
 		g.setColor(Color.red);
-		g.drawString("Enemy", (int)x+8, (int)y+27);
+		//g.drawString("Enemy", (int)x+8, (int)y+27);
 		health.draw(g, (int)x, (int)y-15);
 	}
 	

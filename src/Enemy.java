@@ -30,6 +30,7 @@ public class Enemy implements Collidable{
 	 * @param y coordinate spawn point
 	 */
 	public Enemy(double x, double y, HealthBar health, String imgLeftFilePath, String imgRightFilePath) {
+		System.out.println(Thread.currentThread());
 		isHit = false;
 		this.x = x;
 		this.y = y;

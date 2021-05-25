@@ -110,6 +110,8 @@ public class Room implements Collidable, MouseListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		System.out.println(storyReader.next());
 		
 		currentLine="";
 		storyActive = true;

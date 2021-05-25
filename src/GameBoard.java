@@ -264,7 +264,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 
 		imgWeapon = new ImageIcon("Images/weapon2.png").getImage();
 		try {
-			imgWeapon = ImageIO.read(getClass().getClassLoader().getResource("Images/position10.png"));
+			imgWeapon = ImageIO.read(getClass().getClassLoader().getResource("Images/weapon2.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -281,13 +281,13 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		if(currentRoom.isStoryActive()) {
 			currentRoom.draw(bufferedG);
 			p1.draw(bufferedG, up1, up2, up3, down1, down2, down3, left1,
-					left2, left3, right1, right2, right3);
+					left2, left3, right1, right2, right3,imgWeapon);
 			Player p;
 			for(int i =0;i<players.size();i++) {
 				p = players.get(i);
 				if(p != null) {
 					p.draw(bufferedG, up1, up2, up3, down1, down2, down3, left1,
-							left2, left3, right1, right2, right3);
+							left2, left3, right1, right2, right3,imgWeapon);
 					if(i != Integer.parseInt(playerRef.getKey())) {
 						//p1.collisionCheck(p);
 					}
@@ -331,7 +331,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 			p = players.get(i);
 			if(p != null) {
 				p.draw(bufferedG, up1, up2, up3, down1, down2, down3, left1,
-						left2, left3, right1, right2, right3);
+						left2, left3, right1, right2, right3, imgWeapon);
 				if(i != Integer.parseInt(playerRef.getKey())) {
 					p1.collisionCheck(p);
 				}
@@ -339,7 +339,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		}
 		
 		p1.draw(getBufferedGraphics(), up1, up2, up3, down1, down2, down3, left1,
-				left2, left3, right1, right2, right3);
+				left2, left3, right1, right2, right3, imgWeapon);
 		Weapon temp=p1.getWeapon();
 		enemies.collide(currentRoom);
 		enemies.collide(temp);

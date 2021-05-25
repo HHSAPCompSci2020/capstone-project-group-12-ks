@@ -126,7 +126,7 @@ public class Player implements KeyListener, Collidable{
 	public void draw(Graphics g, Image up1, Image up2, Image up3,
 			Image down1, Image down2, Image down3,
 			Image left1, Image left2, Image left3,
-			Image right1, Image right2, Image right3) {
+			Image right1, Image right2, Image right3, Image imgWeapon) {
 //		System.out.println("IN DRAW --- "+up+" "+down+" "+left+" "+right);
 //	    System.out.println(xSpeed+" "+ySpeed+" "+x+" "+y);
 		g.setColor(Color.blue);
@@ -158,7 +158,7 @@ public class Player implements KeyListener, Collidable{
 //			left = true;
 //		}
 		
-		currentWeapon.draw(g, x+50, y-50,up,down,left,right);
+		currentWeapon.draw(g, x+50, y-50,up,down,left,right,imgWeapon);
 		health.draw(g, x, y-15);
 		
 		

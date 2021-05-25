@@ -43,7 +43,7 @@ public class Weapon implements Collidable{
 	 * @param x X coordinate you wish to draw this Weapon Object
 	 * @param y Y coordinate you wish to draw this Weapon Object
 	 */
-	public void draw(Graphics g,double x, double y, boolean up, boolean down, boolean left, boolean right) {
+	public void draw(Graphics g,double x, double y, boolean up, boolean down, boolean left, boolean right, Image img) {
 		this.up=up;
 		this.down=down;
 		this.left=left;
@@ -67,6 +67,7 @@ public class Weapon implements Collidable{
 			}
 			else{
 				g.drawRect((int)x, (int)y, 10, 90);
+				g.drawImage(img,(int)x, (int)y, null);
 			}
 		}
 		else if(left) {
@@ -84,6 +85,7 @@ public class Weapon implements Collidable{
 			}
 			else{
 				g.drawRect((int)x-60, (int)y+10, 10, 90);
+				g.drawImage(img,(int)x-60-185, (int)y+10-75, null);
 			}
 		}
 		else if(down) {
@@ -101,6 +103,7 @@ public class Weapon implements Collidable{
 			}
 			else{
 				g.drawRect((int)x-50, (int)y+100, 90, 10);
+				g.drawImage(img,(int)x-50, (int)y+100, null);
 			}
 		}
 		else if(up) {
@@ -118,6 +121,7 @@ public class Weapon implements Collidable{
 			}
 			else{
 				g.drawRect((int)x-50, (int)y+25+15, 90, 10);
+				g.drawImage(img,(int)x-50, (int)y+25+15, null);
 			}
 		}
 		//	g.drawRect((int)x, (int)y, 90, 90);

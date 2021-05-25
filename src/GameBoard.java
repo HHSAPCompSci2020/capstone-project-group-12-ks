@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Stack;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -54,6 +56,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 	
 	private Stack<Room> rooms;
 	private int storyCount;
+	private Image imgWeapon;
 
 
 	/**
@@ -173,6 +176,12 @@ public class GameBoard extends JPanel implements ChildEventListener{
 		frame.addMouseListener(currentRoom);
 		storyCount=0;
 
+		imgWeapon = new ImageIcon("Images/weapon2.png").getImage();
+		try {
+			imgWeapon = ImageIO.read(getClass().getClassLoader().getResource("Images/position10.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 	}
 

@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Double;
 
@@ -19,6 +20,7 @@ public class Weapon implements Collidable{
 	private double x,y;
 	private int killCount;
 	private int damage;
+
 
 	/**
 	 * Default Constructor that creates Weapon Object

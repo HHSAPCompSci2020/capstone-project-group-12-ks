@@ -98,7 +98,7 @@ public class EnemyManager implements ChildEventListener {
 	}
 
 	/**
-	 * Calles the move method for every Enemy Object contained within this object
+	 * Calls the move method for every Enemy Object contained within this object
 	 */
 	public void moveAll(int x, int y) {
 		if(!loaded) {
@@ -337,7 +337,7 @@ public class EnemyManager implements ChildEventListener {
 
 	}
 	/**
-	 * 
+	 * Runs when something is removed from the database
 	 */
 	@Override
 	public void onChildRemoved(DataSnapshot arg0) {

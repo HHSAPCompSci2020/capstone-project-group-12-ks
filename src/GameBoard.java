@@ -378,7 +378,7 @@ public class GameBoard extends JPanel implements ChildEventListener{
 //				enemies.get(i).reduceHealth(50);
 //			}
 //		}
-		enemies.drawAll(bufferedG);
+		enemies.drawAll(bufferedG, p1.getX(), p1.getY());
 		if(currentRoom instanceof EnemyRoom) {
 			((EnemyRoom) currentRoom).reduceEnemiesLeft(enemies);
 		}

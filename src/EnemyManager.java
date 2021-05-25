@@ -50,8 +50,13 @@ public class EnemyManager implements ChildEventListener {
 	public void moveAll(int x, int y) {
 		for(int i : indeces) {
 			
-			System.out.println("he");
+//			System.out.println("he");
+//			if(enemies==null) {
+//				System.out.println("ENEMIES NULLLLLL");
+//				return;
+//			}
 			if(enemies.get(i) == null) {
+				System.out.println("i: "+i+" ");
 				return;
 			}
 			
@@ -151,7 +156,7 @@ public class EnemyManager implements ChildEventListener {
 		EnemyData e = arg0.getValue(EnemyData.class);
 		int index = Integer.parseInt(arg0.getKey());
 		enemies.add(null);
-		Enemy enemy = new Enemy(e.getX(), e.getY(),new HealthBar(150,150,Color.red),"hi","hi");
+		Enemy enemy = new Enemy(e.getX(), e.getY(),new HealthBar(150,150,Color.red),"Images/position1forenemy","Images/position2forenemy");
 		enemy.reduceHealth(150-e.getHealth());
 		enemies.set(index, enemy);
 		refs.add(null);
@@ -172,7 +177,7 @@ public class EnemyManager implements ChildEventListener {
 	@Override
 	public void onChildChanged(DataSnapshot arg0, String arg1) {
 		EnemyData e = arg0.getValue(EnemyData.class);
-		Enemy enemy = new Enemy(e.getX(), e.getY(),new HealthBar(150,150,Color.red),"hi","hi");
+		Enemy enemy = new Enemy(e.getX(), e.getY(),new HealthBar(150,150,Color.red),"Images/position1forenemy","Images/position2forenemy");
 		enemy.reduceHealth(150-e.getHealth());
 		enemies.set(Integer.parseInt(arg0.getKey()), enemy);
 		

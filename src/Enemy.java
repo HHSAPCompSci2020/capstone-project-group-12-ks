@@ -36,12 +36,19 @@ public class Enemy implements Collidable{
 		this.health=health;
 		move = true;
 		
-//		img = new ImageIcon("Images/Zombie.png").getImage();
-//		try {
-//			img = ImageIO.read(getClass().getClassLoader().getResource("Images/Zombie.png"));
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+		imgLeft = new ImageIcon(imgLeftFilePath).getImage();
+		try {
+			imgLeft = ImageIO.read(getClass().getClassLoader().getResource(imgLeftFilePath));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		imgRight = new ImageIcon(imgRightFilePath).getImage();
+		try {
+			imgRight = ImageIO.read(getClass().getClassLoader().getResource(imgRightFilePath));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	
@@ -52,7 +59,7 @@ public class Enemy implements Collidable{
 	 * @param g  graphics object passed which is the pixel grid you intend to draw this object on
 	 */
 	public void draw(Graphics g) {
-		//g.drawImage(img, (int)x, (int)y, null);
+		g.drawImage(imgLeft, (int)x, (int)y, null);
 		g.setColor(Color.red);
 		g.drawOval((int)x, (int)y, 50, 50);
 		g.drawString("Enemy", (int)x+8, (int)y+27);
